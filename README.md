@@ -2,6 +2,13 @@
 Tema: Studentski dom
 
 
+# Članovi tima
+
+- Emir Mujanović
+- Nedim Hastor
+- Tarik Mehulić
+
+
 # Opis projekta
 
 Većina odraslih će se složiti da studentski dani predstavljaju njihov omiljeni period života, za koje se vežu njihove najljepše uspomene. Međutim poseban doživljaj i posebnu čar imaju osobe koje su boravile u studentskim domovima tokom svog studija. Uzimajući u obzir navedene stvari, uz činjenicu da smo mi, kreatori ovog softvera, također stanari studentskog doma, inspirisani smo da realizujemo naš sistem koji će predstavljati rad studenstkog doma. Cilj projekta je da modernizuje način rada uprave i restorana, s željom da se ostvari što efikasnija realizacija osnovnih zahtjeva studenata. Ovaj softver predstavlja poboljšanje već postojećih međusobnih veza između uprave, restorana i studenata studentskog doma, odnosno ovaj softver predstavlja viši nivo povezanosti navedenih aktera. Korištenjem ovog softvera vrši se efikasnija koordinacija, raspodjela poslova te niz olakšica tokom upravljanja studenskim domom. Također uz već postojeće mogućnosti, uvodi se i niz novih funkcionalnosti, da bi studenti bili zadovoljniji životom u domovima, načinom rada doma; te naravno da bi se i rukovodiocima doma posao pojednostavio.
