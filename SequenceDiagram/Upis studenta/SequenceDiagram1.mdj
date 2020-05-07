@@ -920,7 +920,7 @@
 															"top": 47,
 															"width": 101.03173828125,
 															"height": 13,
-															"text": "Baza podataka"
+															"text": "DbContext"
 														},
 														{
 															"_type": "LabelView",
@@ -1739,7 +1739,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFx5mO8dli+rZU="
 									},
-									"name": "Baza podataka",
+									"name": "DbContext",
 									"represent": {
 										"$ref": "AAAAAAFx5oW04FsCEeU="
 									},
@@ -1786,7 +1786,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFx5mO8dVi9MSE="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1794,7 +1795,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFx5mO8dVi9MSE="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
