@@ -23,6 +23,7 @@ namespace StudentskiDom.Controllers
         {
             Response.WriteAsync("JA SAM EMIR");
             Response.WriteAsync("E neka si");
+            Response.WriteAsync("Ma nisi");
             return View();
         }
 
