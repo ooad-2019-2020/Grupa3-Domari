@@ -15,6 +15,7 @@ namespace StudentskiDom.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            // Glupi komentar
             _logger = logger;
         }
 
