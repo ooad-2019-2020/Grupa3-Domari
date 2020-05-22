@@ -22,6 +22,7 @@ namespace StudentskiDom.Controllers
         public IActionResult Index()
         {
             Response.WriteAsync("JA SAM EMIR");
+            Response.WriteAsync("E neka si");
             return View();
         }
 
