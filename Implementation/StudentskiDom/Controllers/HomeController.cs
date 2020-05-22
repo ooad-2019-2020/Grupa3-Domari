@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudentskiDom.Models;
@@ -20,6 +21,7 @@ namespace StudentskiDom.Controllers
 
         public IActionResult Index()
         {
+            Response.WriteAsync("JA SAM EMIR");
             return View();
         }
 
