@@ -1036,20 +1036,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\korisnik\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\5440\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+>>>>>>> 3e0b20b8f136610bc9a19c9085c4ab8f02209b31
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
       "projectName": "StudentskiDom",
       "projectPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
       "packagesPath": "C:\\Users\\korisnik\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\5440\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+      "projectName": "StudentskiDom",
+      "projectPath": "C:\\Users\\5440\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+      "packagesPath": "C:\\Users\\5440\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\5440\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
+>>>>>>> 3e0b20b8f136610bc9a19c9085c4ab8f02209b31
       "projectStyle": "PackageReference",
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\5440\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+>>>>>>> 3e0b20b8f136610bc9a19c9085c4ab8f02209b31
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
