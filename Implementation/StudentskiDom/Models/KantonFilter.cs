@@ -9,6 +9,8 @@ namespace StudentskiDom.Models
     {
         private string kanton;
 
+        public string Kanton { get { return kanton; } set { kanton = value; } }
+
         public KantonFilter(string kanton)
         {
             this.kanton = kanton;
