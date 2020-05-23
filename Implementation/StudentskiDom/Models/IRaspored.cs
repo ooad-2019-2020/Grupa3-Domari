@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    interface IRaspored
+    public interface IRaspored
     {
         void RasporediStudenta(Student student);
     }

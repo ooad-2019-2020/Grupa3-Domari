@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    interface AzurirajMeni
+    public interface AzurirajMeni
     {
         void DodajRucak(string rucak);
         void DodajVeceru(string vecera);
