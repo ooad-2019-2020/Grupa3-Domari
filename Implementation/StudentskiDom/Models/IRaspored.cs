@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class NedoKLASALOL
+    interface IRaspored
     {
-        private int nedo;
-        private int tarik;
-        private double emir;
-        private double opet;
+        void RasporediStudenta(Student student);
     }
 }

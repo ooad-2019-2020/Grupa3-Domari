@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class NedoKLASALOL
+    public interface ISoba
     {
-        private int nedo;
-        private int tarik;
-        private double emir;
-        private double opet;
+        public ISoba Clone();
     }
 }

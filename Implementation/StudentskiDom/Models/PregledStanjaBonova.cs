@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class NedoKLASALOL
+    interface PregledStanjaBonova
     {
-        private int nedo;
-        private int tarik;
-        private double emir;
-        private double opet;
+        int DajBrojRucakaZaStudenta(int id);
+        int DajBrojVeceraZaStudenta(int id);
     }
 }
