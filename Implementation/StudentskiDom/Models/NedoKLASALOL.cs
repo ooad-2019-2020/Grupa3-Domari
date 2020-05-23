@@ -7,6 +7,7 @@ namespace StudentskiDom.Models
 {
     public class NedoKLASALOL
     {
-        // Neke promjene ne znam nista drugo napisati
+        private int nedo;
+        private int tarik;
     }
 }
