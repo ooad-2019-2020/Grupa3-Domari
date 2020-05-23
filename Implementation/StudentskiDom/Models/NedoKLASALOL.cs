@@ -9,5 +9,6 @@ namespace StudentskiDom.Models
     {
         private int nedo;
         private int tarik;
+        private double emir;
     }
 }
