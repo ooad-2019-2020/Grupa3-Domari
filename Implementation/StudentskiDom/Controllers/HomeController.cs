@@ -24,6 +24,7 @@ namespace StudentskiDom.Controllers
             Response.WriteAsync("JA SAM EMIR");
             Response.WriteAsync("E neka si");
             Response.WriteAsync("Ma nisi");
+            Response.WriteAsync("Promjena 23.05.2020, 14:13");
             return View();
         }
 
