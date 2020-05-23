@@ -30,6 +30,7 @@ namespace StudentskiDom.Controllers
             Response.WriteAsync("Valjda.");
             Response.WriteAsync("Izgleda da radi");
             Response.WriteAsync("Nadam se");
+            Response.WriteAsync("Very good commit");
             return View();
         }
 
