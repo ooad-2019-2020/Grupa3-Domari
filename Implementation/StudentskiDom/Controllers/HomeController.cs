@@ -29,6 +29,7 @@ namespace StudentskiDom.Controllers
             Response.WriteAsync("Meni radi jedva");
             Response.WriteAsync("Valjda.");
             Response.WriteAsync("Izgleda da radi");
+            Response.WriteAsync("Nadam se");
             return View();
         }
 
