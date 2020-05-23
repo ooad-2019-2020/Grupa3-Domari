@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class Restoran: AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
+    public class Restoran : AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
         private DnevniMeni dnevniMeni;
         private int idTrenutnogStudenta;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    interface AzurirajStanjeBonova
+    public interface AzurirajStanjeBonova
     {
         void AzurirajStanjeRucaka(int id);
         void AzurirajStanjeVecera(int id);

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    interface PregledStanjaBonova
+    public interface PregledStanjaBonova
     {
         int DajBrojRucakaZaStudenta(int id);
         int DajBrojVeceraZaStudenta(int id);
