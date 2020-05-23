@@ -7,5 +7,7 @@ namespace StudentskiDom.Models
 {
     public class NedoKLASALOL
     {
+        private int nedo;
+        private int tarik;
     }
 }
