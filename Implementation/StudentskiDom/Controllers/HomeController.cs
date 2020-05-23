@@ -27,6 +27,7 @@ namespace StudentskiDom.Controllers
             Response.WriteAsync("Promjena 23.05.2020, 14:13");
             Response.WriteAsync("Nadam se da sad radi");
             Response.WriteAsync("Meni radi jedva");
+            Response.WriteAsync("Valjda.");
             return View();
         }
 
