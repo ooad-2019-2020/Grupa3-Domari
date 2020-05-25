@@ -8,7 +8,10 @@ namespace StudentskiDom.Models
     public class ZahtjevStudenta : Zahtjev
     {
         public int ZahtjevStudentaId { get; set; }
-        public Student PodnosilacZahtjeva { get; set; }
+        //public Student PodnosilacZahtjeva { get; set; }
+
+        // Baza
+        public int StudentId { get; set; }
 
         // Veze sa ostlalim klasama
         public virtual Student Student { get; set; }
@@ -18,7 +21,7 @@ namespace StudentskiDom.Models
 
         public ZahtjevStudenta(Student podnosilacZahtjeva, DateTime datum) : base(datum)
         {
-            PodnosilacZahtjeva = podnosilacZahtjeva;
+            //PodnosilacZahtjeva = podnosilacZahtjeva;
         }
     }
 }

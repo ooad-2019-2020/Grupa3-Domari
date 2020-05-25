@@ -10,7 +10,7 @@ namespace StudentskiDom.Models
         public int SobaId { get; set; }
         public int BrojSobe { get; set; }
         public int Kapacitet { get; set; }
-        public List<Student> Studenti { get; set; }
+        //public List<Student> Studenti { get; set; }
         public int PaviljonId { get; set; }
 
         // Veze sa ostalim klasama

@@ -8,12 +8,18 @@ namespace StudentskiDom.Models
     public class Student : Korisnik
     {
         public int StudentId { get; set; }
-        public LicniPodaci LicniPodaci { get; set; }
-        public PrebivalisteInfo PrebivalisteInfo { get; set; }
-        public SkolovanjeInfo SkolovanjeInfo { get; set; }
-        public Soba Soba { get; set; }
+        //public LicniPodaci LicniPodaci { get; set; }
+        //public PrebivalisteInfo PrebivalisteInfo { get; set; }
+        //public SkolovanjeInfo SkolovanjeInfo { get; set; }
+        //public Soba Soba { get; set; }
         public int BrojRucaka { get; set; }
         public int BrojVecera { get; set; }
+
+        // Baza
+        public int LicniPodaciId { get; set; }
+        public int PrebivalisteInfoId { get; set; }
+        public int SkolovanjeInfoId { get; set; }
+        public int SobaId { get; set; }
 
         // Veze sa ostalim klasama
         public virtual Korisnik Korisnik { get; set; }

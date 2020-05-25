@@ -9,9 +9,16 @@ namespace StudentskiDom.Models
     public class ZahtjevZaUpis : Zahtjev
     {
         public int ZahtjevZaUpisId { get; set; }
-        public LicniPodaci LicniPodaci { get; set; }
-        public PrebivalisteInfo Prebivaliste { get; set; }
-        public SkolovanjeInfo Skolovanje { get; set; }
+        //public LicniPodaci LicniPodaci { get; set; }
+        //public PrebivalisteInfo Prebivaliste { get; set; }
+        //public SkolovanjeInfo Skolovanje { get; set; }
+
+        // Baza
+        public int ZahtjevId { get; set; }
+        public int LicniPodaciId { get; set; }
+        public int PrebivalisteInfoId { get; set; }
+        public int SkolovanjeInfoId { get; set; }
+
 
         // Veze sa ostalim klasama
         public virtual Zahtjev Zahtjev { get; set; }
@@ -22,9 +29,9 @@ namespace StudentskiDom.Models
         public ZahtjevZaUpis(LicniPodaci licniPodaci, PrebivalisteInfo prebivaliste, SkolovanjeInfo skolovanje, DateTime datum)
             : base(datum)
         {
-            LicniPodaci = licniPodaci;
-            Prebivaliste = prebivaliste;
-            Skolovanje = skolovanje;
+            //LicniPodaci = licniPodaci;
+            //Prebivaliste = prebivaliste;
+            //Skolovanje = skolovanje;
         }
     }
 }

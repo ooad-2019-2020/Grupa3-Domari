@@ -10,6 +10,9 @@ namespace StudentskiDom.Models
         public int NamirnicaId { get; set; }
         public string Naziv { get; set; }
 
+        // Baza
+        public int ZahtjevZaNabavkuNamirnicaId { get; set; }
+
         // Veze sa ostalim klasama
         public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
 

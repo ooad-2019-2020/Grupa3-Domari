@@ -9,7 +9,7 @@ namespace StudentskiDom.Models
     {
         public int PaviljonId { get; set; }
         public string Naziv { get; set; }
-        public List<ISoba> Sobe { get; set; }
+        //public List<ISoba> Sobe { get; set; }
         public int Kapacitet { get; set; }
         public int BrojStudenata { get; set; }
 

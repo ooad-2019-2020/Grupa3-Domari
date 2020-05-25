@@ -8,8 +8,12 @@ namespace StudentskiDom.Models
     public class Restoran : Korisnik, AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
         public int RestoranId { get; set; }
-        public DnevniMeni DnevniMeni { get; set; }
-        public int IdTrenutnogStudenta { get; set; }
+        //public DnevniMeni DnevniMeni { get; set; }
+        //public int IdTrenutnogStudenta { get; set; }
+
+        // Baza
+        public int DnevniMeniId { get; set; }
+        public int StudentId { get; set; }
 
         // Veze sa ostalim klasama
         public virtual Student Student { get; set; }
