@@ -10,10 +10,8 @@ namespace StudentskiDom.Models
     public class Korisnik
     {
         public int KorisnikId { get; set; }
-
         [Index(IsUnique=true)]
         public string Username { get; set; }
-
         public string Password { get; set; }
 
         // Veze sa ostalim klasama

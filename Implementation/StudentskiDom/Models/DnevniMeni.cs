@@ -8,8 +8,8 @@ namespace StudentskiDom.Models
     public class DnevniMeni : AzurirajMeni
     {
         public int DnevniMeniId { get; set; }
-        public List<string> ListaRucaka { get; set; }
-        public List<string> ListaVecera { get; set; }
+        //public List<string> ListaRucaka { get; set; }
+        //public List<string> ListaVecera { get; set; }
 
         // Veze sa ostalim klasama
         public virtual Restoran Restoran { get; set; }

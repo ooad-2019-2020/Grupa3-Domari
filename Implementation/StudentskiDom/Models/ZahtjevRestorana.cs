@@ -8,7 +8,10 @@ namespace StudentskiDom.Models
     public class ZahtjevRestorana : Zahtjev
     {
         public int ZahtjevRestoranaId { get; set; }
-        public Restoran PodnosilacZahtjeva { get; set; }
+        //public Restoran PodnosilacZahtjeva { get; set; }
+        
+        // Baza
+        public int RestoranId { get; set; }
 
         // Veze sa ostlalim klasama
         public virtual Restoran Restoran { get; set; }
