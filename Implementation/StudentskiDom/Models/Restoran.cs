@@ -5,23 +5,26 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class Restoran : AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
+    public class Restoran : Korisnik, AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
-        private DnevniMeni dnevniMeni;
-        private int idTrenutnogStudenta;
+        public int RestoranId { get; set; }
+        public DnevniMeni DnevniMeni { get; set; }
+        public int IdTrenutnogStudenta { get; set; }
 
-        public DnevniMeni DnevniMeni { get { return dnevniMeni; } set { dnevniMeni = value; } }
-
-        public int IdTrenutnogStudenta { get { return idTrenutnogStudenta; } set { idTrenutnogStudenta = value; } }
+        // Veze sa ostalim klasama
+        public virtual Student Student { get; set; }
+        public virtual DnevniMeni Meni { get; set; }
+        public virtual Korisnik Korisnik { get; set; }
 
         public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
         {
-
+            throw new NotImplementedException();
         }
 
         public Restoran()
         {
-
+            IdTrenutnogStudenta = -1;
+            // Treba postaviti useranme i password za Restoran
         }
 
         public void DodajRucak(string rucak)

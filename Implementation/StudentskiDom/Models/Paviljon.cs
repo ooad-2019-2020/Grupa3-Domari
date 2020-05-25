@@ -7,37 +7,16 @@ namespace StudentskiDom.Models
 {
     public class Paviljon
     {
-        private string naziv;
+        public int PaviljonId { get; set; }
+        public string Naziv { get; set; }
+        public List<ISoba> Sobe { get; set; }
+        public int Kapacitet { get; set; }
+        public int BrojStudenata { get; set; }
 
-        public string Naziv
-        {
-            get { return naziv; }
-            set { naziv = value; }
-        }
-
-        private List<ISoba> sobe;
-
-        public List<ISoba> Sobe
-        {
-            get { return sobe; }
-            set { sobe = value; }
-        }
-
-        private int kapacitet;
-
-        public int Kapacitet
-        {
-            get { return kapacitet; }
-            set { kapacitet = value; }
-        }
-
-        private int brojStudenata;
-
-        public int BrojStudenata
-        {
-            get { return brojStudenata; }
-            set { brojStudenata = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
+        public virtual ZahtjevZaPremjestanje ZahtjevZaPremjestanje { get; set; }
+        public virtual ICollection<Soba> Sobe { get; set; }
 
         public Paviljon(string naziv, List<ISoba> sobe, int kapacitet, int brojStudenata)
         {
@@ -49,12 +28,12 @@ namespace StudentskiDom.Models
 
         public bool DaLiImaMjesta()
         {
-            return brojStudenata < kapacitet;
+            return BrojStudenata < Kapacitet;
         }
 
         public int BrojSlobodnihMjesta()
         {
-            return kapacitet - brojStudenata;
+            return Kapacitet - BrojStudenata;
         }
     }
 }

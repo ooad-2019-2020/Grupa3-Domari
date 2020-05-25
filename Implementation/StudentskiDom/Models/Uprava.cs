@@ -7,9 +7,12 @@ namespace StudentskiDom.Models
 {
     public class Uprava
     {
-        private Blagajna blagajna;
+        public int UpravaId { get; set; }
+        public Blagajna Blagajna { get; set; }
 
-        public Blagajna Blagajna { get { return blagajna; } set { blagajna = value; } }
+        // Veze sa ostalim klasama
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual Blagajna Blagajna { get; set; }
 
         public Uprava()
         {

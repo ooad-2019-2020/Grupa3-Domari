@@ -7,17 +7,17 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevRestorana : Zahtjev
     {
-        private Restoran podnosilacZahtjeva;
+        public int ZahtjevRestoranaId { get; set; }
+        public Restoran PodnosilacZahtjeva { get; set; }
 
-        public Restoran PodnosilacZahtjeva
-        {
-            get { return podnosilacZahtjeva; }
-            set { podnosilacZahtjeva = value; }
-        }
+        // Veze sa ostlalim klasama
+        public virtual Restoran Restoran { get; set; }
+        public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
+        public virtual Zahtjev Zahtjev { get; set; }
 
         public ZahtjevRestorana(Restoran podnosilacZahtjeva, DateTime datum) : base(datum)
         {
-            this.podnosilacZahtjeva = podnosilacZahtjeva;
+            PodnosilacZahtjeva = podnosilacZahtjeva;
         }
     }
 }

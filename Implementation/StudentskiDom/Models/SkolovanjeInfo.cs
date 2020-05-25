@@ -7,37 +7,15 @@ namespace StudentskiDom.Models
 {
     public class SkolovanjeInfo
     {
-        private string fakultet;
+        public int SkolovanjeInfoId { get; set; }
+        public string Fakultet { get; set; }
+        public int BrojIndeksa { get; set; }
+        public int CiklusStudija { get; set; }
+        public int GodinaStudija { get; set; }
 
-        public string Fakultet
-        {
-            get { return fakultet; }
-            set { fakultet = value; }
-        }
-
-        private int brojIndeksa;
-
-        public int BrojIndeksa
-        {
-            get { return brojIndeksa; }
-            set { brojIndeksa = value; }
-        }
-
-        private int ciklusStudija;
-
-        public int CiklusStudija
-        {
-            get { return ciklusStudija; }
-            set { ciklusStudija = value; }
-        }
-
-        private int godinaStudija;
-
-        public int GodinaStudija
-        {
-            get { return godinaStudija; }
-            set { godinaStudija = value; }
-        }
+        // Veza sa ostalim klasama
+        public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
+        public virtual Student Student { get; set; }
 
         public SkolovanjeInfo(string fakultet, int brojIndeksa, int ciklusStudija, int godinaStudija)
         {

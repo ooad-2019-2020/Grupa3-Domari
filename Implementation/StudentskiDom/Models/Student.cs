@@ -7,66 +7,30 @@ namespace StudentskiDom.Models
 {
     public class Student : Korisnik
     {
-        private int id;
+        public int StudentId { get; set; }
+        public LicniPodaci LicniPodaci { get; set; }
+        public PrebivalisteInfo PrebivalisteInfo { get; set; }
+        public SkolovanjeInfo SkolovanjeInfo { get; set; }
+        public Soba Soba { get; set; }
+        public int BrojRucaka { get; set; }
+        public int BrojVecera { get; set; }
 
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual PrebivalisteInfo PrebivalisteInfo { get; set; }
+        public virtual LicniPodaci LicniPodaci { get; set; }
+        public virtual SkolovanjeInfo SkolovanjeInfo { get; set; }
+        public virtual Restoran Restoran { get; set; }
+        public virtual Blagajna Blagajna { get; set; }
+        public virtual Soba Soba { get; set; }
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj1 { get; set; }
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj2 { get; set; }
 
-        private LicniPodaci licniPodaci;
-
-        public LicniPodaci LicniPodaci
-        {
-            get { return licniPodaci; }
-            set { licniPodaci = value; }
-        }
-
-        private PrebivalisteInfo prebivalisteInfo;
-
-        public PrebivalisteInfo PrebivalisteInfo
-        {
-            get { return prebivalisteInfo; }
-            set { prebivalisteInfo = value; }
-        }
-
-        private SkolovanjeInfo skolovanjeInfo;
-
-        public SkolovanjeInfo SkolovanjeInfo
-        {
-            get { return skolovanjeInfo; }
-            set { skolovanjeInfo = value; }
-        }
-
-        private Soba soba;
-
-        public Soba Soba
-        {
-            get { return soba; }
-            set { soba = value; }
-        }
-
-        private int brojRucaka;
-
-        public int BrojRucaka
-        {
-            get { return brojRucaka; }
-            set { brojRucaka = value; }
-        }
-
-        private int brojVecera;
-
-        public int BrojVecera
-        {
-            get { return brojVecera; }
-            set { brojVecera = value; }
-        }
 
         public Student(int id, LicniPodaci podaci, PrebivalisteInfo prebivaliste, SkolovanjeInfo skolovanje,
             Soba soba, int brojRucaka, int brojVecera)
         {
-            Id = id;
+            StudentId = id;
             LicniPodaci = podaci;
             PrebivalisteInfo = prebivaliste;
             SkolovanjeInfo = skolovanje;
