@@ -42,7 +42,7 @@ namespace StudentskiDom.Models
             modelBuilder.Entity<SkolovanjeInfo>().ToTable("SkolovanjeInfo");
             modelBuilder.Entity<ZahtjevZaUpis>().ToTable("ZahtjevZaUpit");
             modelBuilder.Entity<LicniPodaci>().ToTable("LicniPodaci");
-            modelBuilder.Entity<ZahtjevZaPremjestanje>().ToTable("ZahtjevZaPremjestanje";
+            modelBuilder.Entity<ZahtjevZaPremjestanje>().ToTable("ZahtjevZaPremjestanje");
             modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<Soba>().ToTable("Soba");
             modelBuilder.Entity<ZahtjevZaCimeraj>().ToTable("ZahtjevZaCimeraj");
