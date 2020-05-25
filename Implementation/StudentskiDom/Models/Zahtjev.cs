@@ -34,6 +34,9 @@ namespace StudentskiDom.Models
             Odobren = false;
         }
 
-        public void PosaljiZahtjev() { }
+        public void PosaljiZahtjev() 
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace StudentskiDom.Models
         }
 
         public ZahtjevZaPremjestanje(Paviljon trenutniPaviljon, Soba trenutnaSoba, Paviljon noviPaviljon, Soba novaSoba, 
-            string razlogPremjestanja, Korisnik podnosilacZahtjeva, DateTime datum) : base(podnosilacZahtjeva, datum)
+            string razlogPremjestanja, Korisnik podnosilacZahtjeva, DateTime datum) : base((Student)podnosilacZahtjeva, datum)
         {
             TrenutniPaviljon = trenutniPaviljon;
             TrenutnaSoba = trenutnaSoba;

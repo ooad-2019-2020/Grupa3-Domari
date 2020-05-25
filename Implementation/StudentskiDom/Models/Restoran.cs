@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class Restoran : AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
+    public class Restoran : Korisnik, AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
         private DnevniMeni dnevniMeni;
         private int idTrenutnogStudenta;
@@ -16,12 +16,13 @@ namespace StudentskiDom.Models
 
         public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
         {
-
+            throw new NotImplementedException();
         }
 
         public Restoran()
         {
-
+            IdTrenutnogStudenta = -1;
+            // Treba postaviti useranme i password za Restoran
         }
 
         public void DodajRucak(string rucak)

@@ -48,7 +48,7 @@ namespace StudentskiDom.Models
         }
 
         public ZahtjevZaCimeraj(Paviljon paviljon, Soba soba, Student prviCimer, Student drugiCimer, string dodatneNapomene,
-            Korisnik podnosilacZahtjeva, DateTime datum) : base(podnosilacZahtjeva, datum)
+            Korisnik podnosilacZahtjeva, DateTime datum) : base((Student) podnosilacZahtjeva, datum)
         {
             Paviljon = paviljon;
             Soba = soba;

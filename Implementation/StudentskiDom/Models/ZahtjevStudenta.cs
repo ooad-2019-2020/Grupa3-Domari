@@ -15,9 +15,9 @@ namespace StudentskiDom.Models
             set { podnosilacZahtjeva = value; }
         }
 
-        public ZahtjevRestorana(Student podnosilacZahtjeva, DateTime datum) : base(datum)
+        public ZahtjevStudenta(Student podnosilacZahtjeva, DateTime datum) : base(datum)
         {
-            this.podnosilacZahtjeva = podnosilacZahtjeva;
+            PodnosilacZahtjeva = podnosilacZahtjeva;
         }
     }
 }

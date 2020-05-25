@@ -24,7 +24,7 @@ namespace StudentskiDom.Models
         }
 
         public ZahtjevZaNabavkuNamirnica(List<string> listNamirnica, List<StavkaNarudzbe> narudzba, 
-            Korisnik pdonosilacZahtjeva, DateTime datum) : base(podnosilacZahtjeva, datum)
+            Korisnik podnosilacZahtjeva, DateTime datum) : base((Restoran) podnosilacZahtjeva, datum)
         {
             ListNamirnica = listNamirnica;
             Narudzba = narudzba;
