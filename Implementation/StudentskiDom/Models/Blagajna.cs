@@ -7,11 +7,13 @@ namespace StudentskiDom.Models
 {
     public class Blagajna : AzurirajStanjeBonova
     {
-        private double stanjeBudgeta;
-        private IStudent trenutniStudent;
+        public int BlagajnaId { get; set; }
+        public double StanjeBudgeta { get; set; }
+        public IStudent TrenutniStudent { get; set; }
 
-        public double StanjeBudgeta { get { return stanjeBudgeta; } set { stanjeBudgeta = value; } }
-        public IStudent TrenutniStudent { get { return trenutniStudent; } set { trenutniStudent = value; } }
+        // Veze sa ostalim klasama
+        public virtual Uprava Uprava { get; set; }
+        public virtual Student Student { get; set; }
 
         public Blagajna()
         {
@@ -25,12 +27,12 @@ namespace StudentskiDom.Models
 
         public void UplatiDomZaOdabraniMjesec()
         {
-
+            throw new NotImplementedException();
         }
 
         private void UcitajStanjeBudzeta()
         {
-
+            throw new NotImplementedException();
         }
 
         public void AzurirajStanjeRucaka(int id)

@@ -7,13 +7,11 @@ namespace StudentskiDom.Models
 {
     public class KantonFilter : Algoritam
     {
-        private string kanton;
-
-        public string Kanton { get { return kanton; } set { kanton = value; } }
+        public string Kanton { get; set; }
 
         public KantonFilter(string kanton)
         {
-            this.kanton = kanton;
+            this.Kanton = kanton;
         }
 
         public override List<Student> Filtriraj(List<Student> studenti)

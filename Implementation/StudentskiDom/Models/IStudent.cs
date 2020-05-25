@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    interface IStudent
+    public interface IStudent
     {
         void uplatiDom(DateTime date);
     }

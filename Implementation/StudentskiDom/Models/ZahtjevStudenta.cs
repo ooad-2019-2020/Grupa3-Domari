@@ -7,13 +7,14 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevStudenta : Zahtjev
     {
-        private Student podnosilacZahtjeva;
+        public int ZahtjevStudentaId { get; set; }
+        public Student PodnosilacZahtjeva { get; set; }
 
-        public Student PodnosilacZahtjeva
-        {
-            get { return podnosilacZahtjeva; }
-            set { podnosilacZahtjeva = value; }
-        }
+        // Veze sa ostlalim klasama
+        public virtual Student Student { get; set; }
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
+        public virtual ZahtjevZaPremjestanje ZahtjevZaPremjestanje { get; set; }
+        public virtual Zahtjev Zahtjev { get; set; }
 
         public ZahtjevStudenta(Student podnosilacZahtjeva, DateTime datum) : base(datum)
         {

@@ -7,21 +7,13 @@ namespace StudentskiDom.Models
 {
     public class StavkaNarudzbe
     {
-        private string namirnica;
+        public int StavkaNarudzbeId { get; set; }
+        public string Namirnica { get; set; }
+        public double Kolicina { get; set; }
+        public int ZahtjevZaNabavkuNamirnicaId { get; set; }
 
-        public string Namirnica
-        {
-            get { return namirnica; }
-            set { namirnica = value; }
-        }
-
-        private double kolicina;
-
-        public double Kolicina
-        {
-            get { return kolicina; }
-            set { kolicina = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
 
         public StavkaNarudzbe(string namirnica, double kolicina)
         {

@@ -7,14 +7,12 @@ namespace StudentskiDom.Models
 {
     public class GodinaStudijaSort: Algoritam
     {
-        private bool desc;
-
-        public bool Desc { get { return desc; } set { desc = value; } }
+        public bool Desc { get; set; }
 
 
         public GodinaStudijaSort(bool desc)
         {
-            this.desc = desc;
+            this.Desc = desc;
         }
 
         public override List<Student> Sortiraj(List<Student> studenti)

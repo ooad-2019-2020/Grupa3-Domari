@@ -7,29 +7,14 @@ namespace StudentskiDom.Models
 {
     public class PrebivalisteInfo
     {
-        private string adresa;
+        public int PrebivalisteInfoId { get; set; }
+        public string Adresa { get; set; }
+        public string Kanton { get; set; }
+        public string Opcina { get; set; }
 
-        public string Adresa
-        {
-            get { return adresa; }
-            set { adresa = value; }
-        }
-
-        private string kanton;
-
-        public string Kanton
-        {
-            get { return kanton; }
-            set { kanton = value; }
-        }
-
-        private string opcina;
-
-        public string Opcina
-        {
-            get { return opcina; }
-            set { opcina = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
+        public virtual Student Student { get; set; }
 
         public PrebivalisteInfo(string adresa, string kanton, string opcina)
         {

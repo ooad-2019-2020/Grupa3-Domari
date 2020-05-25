@@ -7,26 +7,15 @@ namespace StudentskiDom.Models
 {
     public class Zahtjev
     {
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int ZahtjevId { get; set; }
+        public DateTime Datum { get; set; }
+        public bool Odobren { get; set; }
 
-        private DateTime datum;
-        public DateTime Datum
-        {
-            get { return datum; }
-            set { datum = value; }
-        }
-
-        private bool odobren;
-        public bool Odobren
-        {
-            get { return odobren; }
-            set { odobren = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
+        public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
+        public virtual ZahtjevZaPremjestanje ZahtjevZaPremjestanje { get; set; }
+        public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
 
         public Zahtjev(DateTime datum)
         {

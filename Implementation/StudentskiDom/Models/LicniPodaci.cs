@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentskiDom.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,77 +8,21 @@ namespace StudentskiDom.Models
 {
     public class LicniPodaci
     {
-        private string prezime;
+        public int LicniPodaciId { get; set; }
+        public string Prezime { get; set; }
+        public string Ime { get; set; }
+        public string MjestoRodjenja { get; set; }
+        public Pol Pol { get; set; }
+        public string Email { get; set; }
+        public long Jmbg { get; set; }
+        public DateTime DatumRodjenja { get; set; }
+        public int Mobitel { get; set; }
+        public String Slika { get; set; }
 
-        public string Prezime
-        {
-            get { return prezime; }
-            set { prezime = value; }
-        }
+        // Veze sa ostalim klasama
 
-        private string ime;
-
-        public string Ime
-        {
-            get { return ime; }
-            set { ime = value; }
-        }
-
-        private string mjestoRodjenja;
-
-        public string MjestoRodjenja
-        {
-            get { return mjestoRodjenja; }
-            set { mjestoRodjenja = value; }
-        }
-
-        private Pol pol;
-
-        public Pol Pol
-        {
-            get { return pol; }
-            set { pol = value; }
-        }
-
-        private string email;
-
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
-        private long jmbg;
-
-        public long Jmbg
-        {
-            get { return jmbg; }
-            set { jmbg = value; }
-        }
-
-        private DateTime datumRodjenja;
-
-        public DateTime DatumRodjenja
-        {
-            get { return datumRodjenja; }
-            set { datumRodjenja = value; }
-        }
-
-        private int mobitel;
-
-        public int Mobitel
-        {
-            get { return mobitel; }
-            set { mobitel = value; }
-        }
-
-        private string slika;
-
-        public String Slika
-        {
-            get { return slika; }
-            set { slika = value; }
-        }
+        public virtual Student Student { get; set; }
+        public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
 
         public LicniPodaci(string prezime, string ime, string mjestoRodjenja, Pol pol, string email,
             long jmbg, DateTime datumRodjenja, int mobitel, string slika)

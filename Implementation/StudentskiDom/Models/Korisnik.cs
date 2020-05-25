@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentskiDom.Models
 {
     public class Korisnik
     {
-        private string username;
+        public int KorisnikId { get; set; }
 
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
+        [Index(IsUnique=true)]
+        public string Username { get; set; }
 
-        private string password;
+        public string Password { get; set; }
 
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ICollection<Zahtjev> Zahtjevi { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Restoran Restoran { get; set; }
+        public virtual Uprava Uprava { get; set; }
 
         public Korisnik()
         {

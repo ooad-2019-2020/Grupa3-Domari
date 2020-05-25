@@ -7,45 +7,18 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevZaPremjestanje : ZahtjevStudenta
     {
-        private Paviljon trenutniPaviljon;
+        public int ZahtjevZaPremjestanjeId { get; set; }
+        public Paviljon TrenutniPaviljon { get; set; }
+        public Soba TrenutnaSoba { get; set; }
+        public Paviljon NoviPaviljon { get; set; }
+        public Soba NovaSoba { get; set; }
+        public string RazlogPremjestanja { get; set; }
 
-        public Paviljon TrenutniPaviljon
-        {
-            get { return trenutniPaviljon; }
-            set { trenutniPaviljon = value; }
-        }
-
-        private Soba trenutnaSoba;
-
-        public Soba TrenutnaSoba
-        {
-            get { return trenutnaSoba; }
-            set { trenutnaSoba = value; }
-        }
-
-        private Paviljon noviPaviljon;
-
-        public Paviljon NoviPaviljon
-        {
-            get { return noviPaviljon; }
-            set { noviPaviljon = value; }
-        }
-
-        private Soba novaSoba;
-
-        public Soba NovaSoba
-        {
-            get { return novaSoba; }
-            set { novaSoba = value; }
-        }
-
-        private string razlogPremjestanja;
-
-        public string RazlogPremjestanja
-        {
-            get { return razlogPremjestanja; }
-            set { razlogPremjestanja = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual Soba Soba1 { get; set; }
+        public virtual Soba Soba2 { get; set; }
+        public virtual Paviljon Paviljon { get; set; }
+        public virtual ZahtjevStudenta ZahtjevStudenta { get; set; }
 
         public ZahtjevZaPremjestanje(Paviljon trenutniPaviljon, Soba trenutnaSoba, Paviljon noviPaviljon, Soba novaSoba, 
             string razlogPremjestanja, Korisnik podnosilacZahtjeva, DateTime datum) : base((Student)podnosilacZahtjeva, datum)
