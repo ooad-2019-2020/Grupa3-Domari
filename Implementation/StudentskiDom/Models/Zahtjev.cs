@@ -7,25 +7,18 @@ namespace StudentskiDom.Models
 {
     public class Zahtjev
     {
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int ZahtjevId { get; set; }
+        public DateTime Datum { get; set; }
+        public bool Odobren { get; set; }
 
-        private DateTime datum;
-        public DateTime Datum
-        {
-            get { return datum; }
-            set { datum = value; }
-        }
+        // Veze sa ostalim klasama
+        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        public virtual ZahtjevStudenta ZahtjevStudenta { get; set; }
+        public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
 
-        private bool odobren;
-        public bool Odobren
+        public Zahtjev()
         {
-            get { return odobren; }
-            set { odobren = value; }
+
         }
 
         public Zahtjev(DateTime datum)
@@ -34,6 +27,9 @@ namespace StudentskiDom.Models
             Odobren = false;
         }
 
-        public void PosaljiZahtjev() { }
+        public void PosaljiZahtjev() 
+        {
+            throw new NotImplementedException();
+        }
     }
 }

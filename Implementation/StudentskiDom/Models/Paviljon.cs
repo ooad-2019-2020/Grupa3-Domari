@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,54 +8,41 @@ namespace StudentskiDom.Models
 {
     public class Paviljon
     {
-        private string naziv;
+        public int PaviljonId { get; set; }
+        public string Naziv { get; set; }
+        //public List<ISoba> Sobe { get; set; }
+        public int Kapacitet { get; set; }
+        public int BrojStudenata { get; set; }
 
-        public string Naziv
+        // Veze sa ostalim klasama
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
+        [InverseProperty("Paviljon1")]
+        public virtual ICollection<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje1 { get; set; }
+        [InverseProperty("Paviljon2")]
+        public virtual ICollection<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje2 { get; set; }
+        public virtual ICollection<Soba> Sobe { get; set; }
+
+        public Paviljon()
         {
-            get { return naziv; }
-            set { naziv = value; }
-        }
 
-        private List<ISoba> sobe;
-
-        public List<ISoba> Sobe
-        {
-            get { return sobe; }
-            set { sobe = value; }
-        }
-
-        private int kapacitet;
-
-        public int Kapacitet
-        {
-            get { return kapacitet; }
-            set { kapacitet = value; }
-        }
-
-        private int brojStudenata;
-
-        public int BrojStudenata
-        {
-            get { return brojStudenata; }
-            set { brojStudenata = value; }
         }
 
         public Paviljon(string naziv, List<ISoba> sobe, int kapacitet, int brojStudenata)
         {
             Naziv = naziv;
-            Sobe = sobe;
+            //Sobe = sobe;
             Kapacitet = kapacitet;
             BrojStudenata = brojStudenata;
         }
 
         public bool DaLiImaMjesta()
         {
-            return brojStudenata < kapacitet;
+            return BrojStudenata < Kapacitet;
         }
 
         public int BrojSlobodnihMjesta()
         {
-            return kapacitet - brojStudenata;
+            return Kapacitet - BrojStudenata;
         }
     }
 }

@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class Uprava
+    public class Uprava : Korisnik
     {
-        private Blagajna blagajna;
+        //public Blagajna Blagajna { get; set; }
 
-        public Blagajna Blagajna { get { return blagajna; } set { blagajna = value; } }
+        // Baza
+        public int KorisnikId { get; set; }
+
+        // Veze sa ostalim klasama
+        //public virtual Korisnik Korisnik { get; set; }
+        public virtual Blagajna Blagajna { get; set; }
 
         public Uprava()
         {

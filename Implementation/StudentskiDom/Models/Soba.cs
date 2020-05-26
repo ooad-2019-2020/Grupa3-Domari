@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,50 +8,48 @@ namespace StudentskiDom.Models
 {
     public class Soba : ISoba
     {
-        private int brojSobe;
+        public int SobaId { get; set; }
+        public int BrojSobe { get; set; }
+        public int Kapacitet { get; set; }
+        //public List<Student> Studenti { get; set; }
+        public int PaviljonId { get; set; }
 
-        public int BrojSobe
+        // Veze sa ostalim klasama
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual Paviljon Paviljon { get; set; }
+        [InverseProperty("Soba1")]
+        public virtual ICollection<ZahtjevZaPremjestanje> Soba1 { get; set; }
+        [InverseProperty("Soba2")]
+        public virtual ICollection<ZahtjevZaPremjestanje> Soba2 { get; set; }
+        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
+
+        public Soba(int brojSobe, int kapacitet)
         {
-            get { return brojSobe; }
-            set { brojSobe = value; }
-        }
-
-        private int kapacitet;
-
-        public int Kapacitet
-        {
-            get { return kapacitet; }
-            set { kapacitet = value; }
-        }
-
-        private List<Student> studenti;
-
-        public List<Student> Studenti
-        {
-            get { return studenti; }
-            set { studenti = value; }
+            BrojSobe = brojSobe;
+            Kapacitet = kapacitet;
         }
 
         public Soba(int brojSobe, int kapacitet, List<Student> studenti)
         {
             BrojSobe = brojSobe;
             Kapacitet = kapacitet;
-            Studenti = studenti;
+            //Studenti = studenti;
         }
 
         public void DodajStudentaUSobu(Student student)
         {
-            Studenti.Add(student);
+            //Studenti.Add(student);
         }
 
         public void IzbaciStudentaIzSobe(Student student)
         {
-            Studenti.Remove(student);
+            //Studenti.Remove(student);
         }
 
         public bool DaLiImaMjesta()
         {
-            return Studenti.Count < kapacitet;
+            //return Studenti.Count < Kapacitet;
+            return false;
         }
 
         public ISoba Clone()

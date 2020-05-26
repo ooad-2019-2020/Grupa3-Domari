@@ -5,22 +5,27 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class DnevniMeni:AzurirajMeni
+    public class DnevniMeni : AzurirajMeni
     {
-        private List<string> listaRucaka;
-        private List<string> listaVecera;
+        public int DnevniMeniId { get; set; }
+        //public List<string> ListaRucaka { get; set; }
+        //public List<string> ListaVecera { get; set; }
 
-        public List<string> ListaRucaka { get { return listaRucaka; } set { listaRucaka = value; } }
-        public List<string> ListaVecera { get { return listaVecera; } set { listaVecera = value; } }
+        // Veze sa ostalim klasama
+        public virtual Restoran Restoran { get; set; }
+        public virtual ICollection<Rucak> Rucak { get; set; }
+        public virtual ICollection<Vecera> Vecera { get; set; }
+
 
         public DnevniMeni()
         {
         }
 
+
         public DnevniMeni(List<string> listaRucaka, List<string> listaVecera)
         {
-            this.listaRucaka = listaRucaka;
-            this.listaVecera = listaVecera;
+            //this.ListaRucaka = listaRucaka;
+            //this.ListaVecera = listaVecera;
         }
 
         public void DodajRucak(string rucak)

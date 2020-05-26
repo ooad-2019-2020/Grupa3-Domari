@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,17 +8,25 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevRestorana : Zahtjev
     {
-        private Restoran podnosilacZahtjeva;
+        //public int ZahtjevRestoranaId { get; set; }
+        //public Restoran PodnosilacZahtjeva { get; set; }
+        
+        // Baza
+        public int RestoranId { get; set; }
 
-        public Restoran PodnosilacZahtjeva
+        // Veze sa ostlalim klasama
+        [ForeignKey("RestoranId")]
+        public virtual Restoran Restoran { get; set; }
+        //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
+
+        public ZahtjevRestorana()
         {
-            get { return podnosilacZahtjeva; }
-            set { podnosilacZahtjeva = value; }
+
         }
 
         public ZahtjevRestorana(Restoran podnosilacZahtjeva, DateTime datum) : base(datum)
         {
-            this.podnosilacZahtjeva = podnosilacZahtjeva;
+            //PodnosilacZahtjeva = podnosilacZahtjeva;
         }
     }
 }

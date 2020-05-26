@@ -1,27 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class Restoran : AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
+    public class Restoran : Korisnik, AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
-        private DnevniMeni dnevniMeni;
-        private int idTrenutnogStudenta;
+        // public int Id { get; set; }
+       
+        //public DnevniMeni DnevniMeni { get; set; }
+        //public int IdTrenutnogStudenta { get; set; }
 
-        public DnevniMeni DnevniMeni { get { return dnevniMeni; } set { dnevniMeni = value; } }
+        // Baza
+        public int DnevniMeniId { get; set; }
+        //public int StudentId { get; set; }
 
-        public int IdTrenutnogStudenta { get { return idTrenutnogStudenta; } set { idTrenutnogStudenta = value; } }
+        // Veze sa ostalim klasama
+        //public virtual Student Student { get; set; }
+        public virtual DnevniMeni DnevniMeni { get; set; }
+        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
+        //public virtual Korisnik Korisnik { get; set; }
 
         public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
         {
-
+            throw new NotImplementedException();
         }
 
         public Restoran()
         {
-
+            //IdTrenutnogStudenta = -1;
+            // Treba postaviti useranme i password za Restoran
         }
 
         public void DodajRucak(string rucak)

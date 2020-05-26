@@ -4,40 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentskiDom.Controllers
+namespace StudentskiDom.Models
 {
     public class ZahtjevZaUpis : Zahtjev
     {
-        private LicniPodaci licniPodaci;
+        //public LicniPodaci LicniPodaci { get; set; }
+        //public PrebivalisteInfo Prebivaliste { get; set; }
+        //public SkolovanjeInfo Skolovanje { get; set; }
 
-        public LicniPodaci LicniPodaci
+        // Baza
+        public int LicniPodaciId { get; set; }
+        public int PrebivalisteInfoId { get; set; }
+        public int SkolovanjeInfoId { get; set; }
+
+
+        // Veze sa ostalim klasama
+        //public virtual Zahtjev Zahtjev { get; set; }
+        public virtual LicniPodaci LicniPodaci { get; set; }
+        public virtual PrebivalisteInfo PrebivalisteInfo { get; set; }
+        public virtual SkolovanjeInfo SkolovanjeInfo { get; set; }
+
+        public ZahtjevZaUpis()
         {
-            get { return licniPodaci; }
-            set { licniPodaci = value; }
-        }
 
-        private PrebivalisteInfo prebivaliste;
-
-        public PrebivalisteInfo Prebivaliste
-        {
-            get { return prebivaliste; }
-            set { prebivaliste = value; }
-        }
-
-        private SkolovanjeInfo skolovanje;
-
-        public SkolovanjeInfo Skolovanje
-        {
-            get { return skolovanje; }
-            set { skolovanje = value; }
         }
 
         public ZahtjevZaUpis(LicniPodaci licniPodaci, PrebivalisteInfo prebivaliste, SkolovanjeInfo skolovanje, DateTime datum)
             : base(datum)
         {
-            LicniPodaci = licniPodaci;
-            Prebivaliste = prebivaliste;
-            Skolovanje = skolovanje;
+            //LicniPodaci = licniPodaci;
+            //Prebivaliste = prebivaliste;
+            //Skolovanje = skolovanje;
         }
     }
 }

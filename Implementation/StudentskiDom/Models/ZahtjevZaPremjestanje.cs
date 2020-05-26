@@ -7,53 +7,36 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevZaPremjestanje : ZahtjevStudenta
     {
-        private Paviljon trenutniPaviljon;
+        //public Paviljon TrenutniPaviljon { get; set; }
+        //public Soba TrenutnaSoba { get; set; }
+        //public Paviljon NoviPaviljon { get; set; }
+        //public Soba NovaSoba { get; set; }
+        public string RazlogPremjestanja { get; set; }
 
-        public Paviljon TrenutniPaviljon
+        // Baza
+        public int Soba1Id { get; set; }
+        public int Soba2Id { get; set; }
+        public int Paviljon1Id { get; set; }
+        public int Paviljon2Id { get; set; }
+
+        // Veze sa ostalim klasama
+        public virtual Soba Soba1 { get; set; }
+        public virtual Soba Soba2 { get; set; }
+        public virtual Paviljon Paviljon1 { get; set; }
+        public virtual Paviljon Paviljon2 { get; set; }
+
+        public ZahtjevZaPremjestanje()
         {
-            get { return trenutniPaviljon; }
-            set { trenutniPaviljon = value; }
-        }
 
-        private Soba trenutnaSoba;
-
-        public Soba TrenutnaSoba
-        {
-            get { return trenutnaSoba; }
-            set { trenutnaSoba = value; }
-        }
-
-        private Paviljon noviPaviljon;
-
-        public Paviljon NoviPaviljon
-        {
-            get { return noviPaviljon; }
-            set { noviPaviljon = value; }
-        }
-
-        private Soba novaSoba;
-
-        public Soba NovaSoba
-        {
-            get { return novaSoba; }
-            set { novaSoba = value; }
-        }
-
-        private string razlogPremjestanja;
-
-        public string RazlogPremjestanja
-        {
-            get { return razlogPremjestanja; }
-            set { razlogPremjestanja = value; }
         }
 
         public ZahtjevZaPremjestanje(Paviljon trenutniPaviljon, Soba trenutnaSoba, Paviljon noviPaviljon, Soba novaSoba, 
-            string razlogPremjestanja, Korisnik podnosilacZahtjeva, DateTime datum) : base(podnosilacZahtjeva, datum)
+            string razlogPremjestanja, Korisnik podnosilacZahtjeva, DateTime datum) : base((Student)podnosilacZahtjeva, datum)
         {
-            TrenutniPaviljon = trenutniPaviljon;
-            TrenutnaSoba = trenutnaSoba;
-            NoviPaviljon = noviPaviljon;
-            NovaSoba = novaSoba;
+            //TrenutniPaviljon = trenutniPaviljon;
+            //TrenutnaSoba = trenutnaSoba;
+            //NoviPaviljon = noviPaviljon;
+            //NovaSoba = novaSoba;
             RazlogPremjestanja = razlogPremjestanja;
         }
     }
