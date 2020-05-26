@@ -27,7 +27,7 @@ namespace StudentskiDom.Models
 
         public Restoran()
         {
-            IdTrenutnogStudenta = -1;
+            //IdTrenutnogStudenta = -1;
             // Treba postaviti useranme i password za Restoran
         }
 

@@ -20,7 +20,7 @@ namespace StudentskiDom.Models
 
         public ZahtjevRestorana(Restoran podnosilacZahtjeva, DateTime datum) : base(datum)
         {
-            PodnosilacZahtjeva = podnosilacZahtjeva;
+            //PodnosilacZahtjeva = podnosilacZahtjeva;
         }
     }
 }

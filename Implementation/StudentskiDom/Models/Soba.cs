@@ -24,22 +24,23 @@ namespace StudentskiDom.Models
         {
             BrojSobe = brojSobe;
             Kapacitet = kapacitet;
-            Studenti = studenti;
+            //Studenti = studenti;
         }
 
         public void DodajStudentaUSobu(Student student)
         {
-            Studenti.Add(student);
+            //Studenti.Add(student);
         }
 
         public void IzbaciStudentaIzSobe(Student student)
         {
-            Studenti.Remove(student);
+            //Studenti.Remove(student);
         }
 
         public bool DaLiImaMjesta()
         {
-            return Studenti.Count < Kapacitet;
+            //return Studenti.Count < Kapacitet;
+            return false;
         }
 
         public ISoba Clone()

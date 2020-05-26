@@ -21,7 +21,7 @@ namespace StudentskiDom.Models
         public Paviljon(string naziv, List<ISoba> sobe, int kapacitet, int brojStudenata)
         {
             Naziv = naziv;
-            Sobe = sobe;
+            //Sobe = sobe;
             Kapacitet = kapacitet;
             BrojStudenata = brojStudenata;
         }

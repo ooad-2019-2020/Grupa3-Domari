@@ -12,19 +12,20 @@ namespace StudentskiDom.Models
         //public List<string> ListaVecera { get; set; }
 
         // Veze sa ostalim klasama
-        public virtual Restoran Restoran { get; set; }
-        public virtual ICollection<Jelo> Rucak { get; set; }
-        public virtual ICollection<Jelo> Vecera { get; set; }
+        //public virtual Restoran Restoran { get; set; }
+        public virtual ICollection<Rucak> Rucak { get; set; }
+        public virtual ICollection<Vecera> Vecera { get; set; }
 
 
         public DnevniMeni()
         {
         }
 
+
         public DnevniMeni(List<string> listaRucaka, List<string> listaVecera)
         {
-            this.ListaRucaka = listaRucaka;
-            this.ListaVecera = listaVecera;
+            //this.ListaRucaka = listaRucaka;
+            //this.ListaVecera = listaVecera;
         }
 
         public void DodajRucak(string rucak)

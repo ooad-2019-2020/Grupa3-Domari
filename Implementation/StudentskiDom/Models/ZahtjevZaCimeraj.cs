@@ -34,8 +34,8 @@ namespace StudentskiDom.Models
         {
             Paviljon = paviljon;
             Soba = soba;
-            PrviCimer = prviCimer;
-            DrugiCimer = drugiCimer;
+            //PrviCimer = prviCimer;
+            //DrugiCimer = drugiCimer;
             DodatneNapomene = dodatneNapomene;
         }
     }
