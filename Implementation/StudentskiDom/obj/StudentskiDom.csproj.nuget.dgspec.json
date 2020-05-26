@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {}
+    "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {}
   },
   "projects": {
-    "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
+    "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+        "projectUniqueName": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
         "projectName": "StudentskiDom",
-        "projectPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
-        "packagesPath": "C:\\Users\\5440\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
+        "projectPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+        "packagesPath": "C:\\Users\\korisnik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\5440\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
