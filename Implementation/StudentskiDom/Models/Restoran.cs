@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,18 +9,21 @@ namespace StudentskiDom.Models
 {
     public class Restoran : Korisnik, AzurirajMeni, AzurirajStanjeBonova, PregledStanjaBonova
     {
-        public int RestoranId { get; set; }
+        // public int Id { get; set; }
+       
         //public DnevniMeni DnevniMeni { get; set; }
         //public int IdTrenutnogStudenta { get; set; }
 
         // Baza
         public int DnevniMeniId { get; set; }
-        public int StudentId { get; set; }
+        //public int StudentId { get; set; }
 
         // Veze sa ostalim klasama
-        public virtual Student Student { get; set; }
-        public virtual DnevniMeni Meni { get; set; }
-        public virtual Korisnik Korisnik { get; set; }
+        //public virtual Student Student { get; set; }
+        public virtual DnevniMeni DnevniMeni { get; set; }
+        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
+        //public virtual Korisnik Korisnik { get; set; }
 
         public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
         {

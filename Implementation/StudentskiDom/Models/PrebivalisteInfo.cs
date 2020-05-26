@@ -16,6 +16,10 @@ namespace StudentskiDom.Models
         public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
         public virtual Student Student { get; set; }
 
+        public PrebivalisteInfo()
+        {
+
+        }
         public PrebivalisteInfo(string adresa, string kanton, string opcina)
         {
             Adresa = adresa;

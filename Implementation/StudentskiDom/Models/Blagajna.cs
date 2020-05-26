@@ -12,11 +12,9 @@ namespace StudentskiDom.Models
         //public IStudent TrenutniStudent { get; set; }
         // Baza
         public int UpravaId { get; set; }
-        public int StudentId { get; set; }
 
         // Veze sa ostalim klasama
         public virtual Uprava Uprava { get; set; }
-        public virtual Student Student { get; set; }
 
         public Blagajna()
         {

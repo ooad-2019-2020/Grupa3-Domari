@@ -7,17 +7,24 @@ namespace StudentskiDom.Models
 {
     public class ZahtjevZaNabavkuNamirnica : ZahtjevRestorana
     {
-        public int ZahtjevZaNabavkuNamirnicaId { get; set; }
+        //public int ZahtjevZaNabavkuNamirnicaId { get; set; }
         //public List<string> ListNamirnica { get; set; }
         //public List<StavkaNarudzbe> Narudzba { get; set; }
 
         // Baza
-        public int ZahtjevRestoranaId { get; set; }
+
+        public int RestoranId { get; set; }
 
         // Veze sa ostalim klasama
         public virtual ICollection<StavkaNarudzbe> StavkeNadruzbe { get; set; }
         public virtual ICollection<Namirnica> Namirnice { get; set; }
-        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        public virtual Restoran Restoran { get; set; }
+        //public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+
+        public ZahtjevZaNabavkuNamirnica()
+        {
+
+        }
 
         public ZahtjevZaNabavkuNamirnica(List<string> listNamirnica, List<StavkaNarudzbe> narudzba, 
             Korisnik podnosilacZahtjeva, DateTime datum) : base((Restoran) podnosilacZahtjeva, datum)

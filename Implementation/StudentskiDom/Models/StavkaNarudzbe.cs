@@ -10,7 +10,6 @@ namespace StudentskiDom.Models
         public int StavkaNarudzbeId { get; set; }
         //public Namirnica Namirnica { get; set; }
         public double Kolicina { get; set; }
-        // public ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set;}
 
         // Baza
         public int ZahtjevZaNabavkuNamirnicaId { get; set; }
@@ -19,6 +18,11 @@ namespace StudentskiDom.Models
         // Veze sa ostalim klasama
         public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
         public virtual Namirnica Namirnica { get; set; }
+
+        public StavkaNarudzbe()
+        {
+
+        }
 
         public StavkaNarudzbe(string namirnica, double kolicina)
         {

@@ -9,13 +9,14 @@ namespace StudentskiDom.Models
 {
     public class Korisnik
     {
-        public int KorisnikId { get; set; }
+        public int Id { get; set; }
+
         [Index(IsUnique=true)]
         public string Username { get; set; }
         public string Password { get; set; }
 
         // Veze sa ostalim klasama
-        public virtual ICollection<Zahtjev> Zahtjevi { get; set; }
+        //public virtual ICollection<Zahtjev> Zahtjevi { get; set; }
         public virtual Student Student { get; set; }
         public virtual Restoran Restoran { get; set; }
         public virtual Uprava Uprava { get; set; }

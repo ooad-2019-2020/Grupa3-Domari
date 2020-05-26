@@ -2,17 +2,40 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>SD</RootNamespace>
+    <AssemblyName>SD</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200526112117_ManagementOut.cs" />
+    <Compile Remove="Migrations\20200526112117_ManagementOut.Designer.cs" />
+    <Compile Remove="Migrations\20200526112445_ManagementOut.cs" />
+    <Compile Remove="Migrations\20200526112445_ManagementOut.Designer.cs" />
+    <Compile Remove="Migrations\20200526132317_AlmostDone.cs" />
+    <Compile Remove="Migrations\20200526132317_AlmostDone.Designer.cs" />
+    <Compile Remove="Migrations\20200526132708_AlmostDone.cs" />
+    <Compile Remove="Migrations\20200526132708_AlmostDone.Designer.cs" />
+    <Compile Remove="Migrations\20200526133110_AlmostDone.cs" />
+    <Compile Remove="Migrations\20200526133110_AlmostDone.Designer.cs" />
+    <Compile Remove="Migrations\20200526133346_AlmostDone.cs" />
+    <Compile Remove="Migrations\20200526133346_AlmostDone.Designer.cs" />
+    <Compile Remove="Migrations\20200526141115_OneMoreZahtjevAddedToDB.cs" />
+    <Compile Remove="Migrations\20200526141115_OneMoreZahtjevAddedToDB.Designer.cs" />
+    <Compile Remove="Migrations\20200526141212_OneMoreZahtjevAddedToDB.cs" />
+    <Compile Remove="Migrations\20200526141212_OneMoreZahtjevAddedToDB.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
   </ItemGroup>
 

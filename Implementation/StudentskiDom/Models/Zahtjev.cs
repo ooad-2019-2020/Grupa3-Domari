@@ -12,10 +12,14 @@ namespace StudentskiDom.Models
         public bool Odobren { get; set; }
 
         // Veze sa ostalim klasama
-        public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
-        public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
-        public virtual ZahtjevZaPremjestanje ZahtjevZaPremjestanje { get; set; }
+        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        public virtual ZahtjevStudenta ZahtjevStudenta { get; set; }
         public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
+
+        public Zahtjev()
+        {
+
+        }
 
         public Zahtjev(DateTime datum)
         {

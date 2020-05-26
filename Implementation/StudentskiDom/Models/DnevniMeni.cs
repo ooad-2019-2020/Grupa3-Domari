@@ -12,7 +12,7 @@ namespace StudentskiDom.Models
         //public List<string> ListaVecera { get; set; }
 
         // Veze sa ostalim klasama
-        //public virtual Restoran Restoran { get; set; }
+        public virtual Restoran Restoran { get; set; }
         public virtual ICollection<Rucak> Rucak { get; set; }
         public virtual ICollection<Vecera> Vecera { get; set; }
 

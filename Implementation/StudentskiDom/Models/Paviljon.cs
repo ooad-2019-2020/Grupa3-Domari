@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,8 +16,16 @@ namespace StudentskiDom.Models
 
         // Veze sa ostalim klasama
         public virtual ZahtjevZaCimeraj ZahtjevZaCimeraj { get; set; }
-        public virtual ZahtjevZaPremjestanje ZahtjevZaPremjestanje { get; set; }
+        [InverseProperty("Paviljon1")]
+        public virtual ICollection<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje1 { get; set; }
+        [InverseProperty("Paviljon2")]
+        public virtual ICollection<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje2 { get; set; }
         public virtual ICollection<Soba> Sobe { get; set; }
+
+        public Paviljon()
+        {
+
+        }
 
         public Paviljon(string naziv, List<ISoba> sobe, int kapacitet, int brojStudenata)
         {

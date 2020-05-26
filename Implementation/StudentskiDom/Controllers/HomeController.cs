@@ -21,16 +21,6 @@ namespace StudentskiDom.Controllers
 
         public IActionResult Index()
         {
-            Response.WriteAsync("JA SAM EMIR");
-            Response.WriteAsync("E neka si");
-            Response.WriteAsync("Ma nisi");
-            Response.WriteAsync("Promjena 23.05.2020, 14:13");
-            Response.WriteAsync("Nadam se da sad radi");
-            Response.WriteAsync("Meni radi jedva");
-            Response.WriteAsync("Valjda.");
-            Response.WriteAsync("Izgleda da radi");
-            Response.WriteAsync("Nadam se");
-            Response.WriteAsync("Very good commit");
             return View();
         }
 
