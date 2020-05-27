@@ -417,3 +417,4 @@ C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\n
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.pdb
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Blagajna.cshtml.g.cs
