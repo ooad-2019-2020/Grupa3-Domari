@@ -29,12 +29,7 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
-        public IActionResult Cimeraj()
-        {
-            return View();
-        }
-
-        public IActionResult ObrazacZaUpis()
+        public IActionResult Login()
         {
             return View();
         }
