@@ -169,6 +169,21 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Cimeraj()
+        {
+            return View();
+        }
+
+        public IActionResult Student()
+        {
+            return View();
+        }
+
+        public IActionResult ZahtjevZaPremjestanje()
+        {
+            return View();
+        }
+
         private bool StudentExists(int id)
         {
             return _context.Student.Any(e => e.Id == id);
