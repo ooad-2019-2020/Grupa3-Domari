@@ -424,3 +424,12 @@ C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\n
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Uprava.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Restoran.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\DnevniMeni.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Blagajna.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Cimeraj.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\DnevniMeni.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\ObrazacZaUpis.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Restoran.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Student.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Uprava.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\PregledZahtjeva.cshtml.g.cs
