@@ -29,7 +29,7 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
-        public IActionResult Uprava()
+        public IActionResult Login()
         {
             return View();
         }
