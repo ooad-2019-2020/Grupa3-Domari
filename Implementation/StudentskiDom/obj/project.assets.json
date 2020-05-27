@@ -8634,20 +8634,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\korisnik\\.nuget\\packages\\": {}
+    "C:\\Users\\5440\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+      "projectUniqueName": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
       "projectName": "SD",
-      "projectPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
-      "packagesPath": "C:\\Users\\korisnik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\korisnik\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
+      "projectPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+      "packagesPath": "C:\\Users\\5440\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\korisnik\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\5440\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
