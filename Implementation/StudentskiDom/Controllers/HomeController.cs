@@ -34,6 +34,26 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
+        public IActionResult ObrazacZaUpis()
+        {
+            return View();
+        }
+
+        public IActionResult Cimeraj()
+        {
+            return View();
+        }
+
+        public IActionResult Uprava()
+        {
+            return View();
+        }
+
+        public IActionResult Student()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
