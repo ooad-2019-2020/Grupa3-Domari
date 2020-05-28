@@ -146,6 +146,7 @@ namespace SD.Controllers
 
         public IActionResult Blagajna()
         {
+            ViewBag.Budzet = 10000;
             return View();
         }
 

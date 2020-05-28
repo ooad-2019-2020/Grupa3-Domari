@@ -9,7 +9,6 @@ namespace StudentskiDom.Models
     {
         public bool Desc { get; set; }
 
-
         public GodinaStudijaSort(bool desc)
         {
             this.Desc = desc;
@@ -17,7 +16,16 @@ namespace StudentskiDom.Models
 
         public override List<Student> Sortiraj(List<Student> studenti)
         {
-            return studenti;
+            List<Student> sorted = new List<Student>();
+            if (!Desc)
+            {
+                sorted = studenti.OrderBy(student => student.SkolovanjeInfo.GodinaStudija).ToList();
+            }
+            else
+            {
+                sorted = studenti.OrderByDescending(student => student.SkolovanjeInfo.GodinaStudija).ToList();
+            }
+            return sorted;
         }
     }
 }

@@ -146,6 +146,13 @@ namespace SD.Controllers
 
         public IActionResult StudentskaKartica()
         {
+            ViewBag.Soba = 1;
+            ViewBag.Paviljon = 2;
+            ViewBag.Ime = "Tarik";
+            ViewBag.Prezime = "Mehulić";
+            ViewBag.Kanton = "SBK";
+            ViewBag.Fakultet = "ETF";
+            ViewBag.ID = 18349;
             return View();
         }
 
