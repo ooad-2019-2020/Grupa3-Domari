@@ -16,8 +16,15 @@ namespace StudentskiDom.Models
 
         public override List<Student> Filtriraj(List<Student> studenti)
         {
-            //implementovati
-            return studenti;
+            IEnumerable<Student> query = from student in studenti
+                                        where student.PrebivalisteInfo.Kanton.Equals(Kanton)
+                                        select student;
+            List<Student> students=new List<Student>();
+            foreach(Student student in query)
+            {
+                students.Add(student);
+            }
+            return students;
         }
     }
 }

@@ -39,6 +39,25 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
+     
+        [HttpPost]
+        public ActionResult LoginClick(IFormCollection forma)
+        {
+            string password = forma["fldPassword"];
+            string username = forma["fldUsername"];
+            if (username.ToLower().Equals("uprava"))
+            {
+                return RedirectToAction("Uprava", "Uprava");
+            }else if (username.ToLower().Equals("restoran"))
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }else if (username.ToLower().Equals("student"))
+            {
+                return RedirectToAction("Student", "Student");
+            }
+            return null;
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
