@@ -18,18 +18,18 @@
         <div class="row" style="height: 300px;margin-left: 0px;">
             <div class="col text-center" style="height: 110px;">
                 <h1 style="margin-top: 100px;">Dobro došao/la</h1>
-                <h1>IME I PREZIME</h1>
+                <h1>@ViewBag.ImePrezime</h1>
             </div>
             <div class="col text-center"><img style="width: 200px;height: 200px;margin-top: 50px;"></div>
         </div>
         <div class="row" style="height: 315px;">
             <div class="col text-center">
                 <h5 class="text-center" style="margin-top: 20px;margin-left: 40px;">Broj ručaka:</h5>
-                <h1 class="text-center border rounded-circle border-dark" style="margin-top: 50px;width: 150px;font-size: 70px;height: 150px;margin-left: 70px;padding-top: 20px;">25</h1>
+                <h1 class="text-center border rounded-circle border-dark" style="margin-top: 50px;width: 150px;font-size: 70px;height: 150px;margin-left: 70px;padding-top: 20px;">@ViewBag.BrojRucaka</h1>
             </div>
             <div class="col text-center" style="margin-left: 0px;">
                 <h5 style="margin-top: 20px;">Broj večera:</h5>
-                <h1 class="text-center border rounded-circle border-dark" style="margin-top: 50px;width: 150px;font-size: 70px;height: 150px;margin-left: 50px;padding-top: 20px;">25</h1>
+                <h1 class="text-center border rounded-circle border-dark" style="margin-top: 50px;width: 150px;font-size: 70px;height: 150px;margin-left: 50px;padding-top: 20px;">@ViewBag.BrojRucaka</h1>
             </div>
             <div class="col-6 text-center">
                 <div class="table-responsive border rounded border-dark shadow-lg">
@@ -42,23 +42,23 @@
                         <tbody>
                             <tr>
                                 <td class="text-left">Datum rođenja:</td>
-                                <td></td>
+                                <td>@ViewBag.DatumRodjenja</td>
                             </tr>
                             <tr>
                                 <td class="text-left">Mjesto rođenja:</td>
-                                <td></td>
+                                <td>@ViewBag.MjestoRodjenja</td>
                             </tr>
                             <tr>
                                 <td class="text-left">Fakultet:</td>
-                                <td></td>
+                                <td>@ViewBag.Fakultet</td>
                             </tr>
                             <tr>
                                 <td class="text-left">JMBG:</td>
-                                <td></td>
+                                <td>@ViewBag.JMBG</td>
                             </tr>
                             <tr>
                                 <td class="text-left">Broj sobe:</td>
-                                <td></td>
+                                <td>@ViewBag.BrojSobe</td>
                             </tr>
                         </tbody>
                     </table>

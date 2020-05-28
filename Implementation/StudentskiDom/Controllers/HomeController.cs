@@ -92,19 +92,6 @@ namespace StudentskiDom.Controllers
             return RedirectToAction("Login", "Home");
         }
 
-        private DateTime StringToDateTime(string datum)
-        {
-            string danString = datum.Substring(8, 2);
-            string mjesecString = datum.Substring(5, 2);
-            string godinaString = datum.Substring(0, 4);
-
-            int dan = Int32.Parse(danString);
-            int mjesec = Int32.Parse(mjesecString);
-            int godina = Int32.Parse(godinaString);
-
-            DateTime date = new DateTime(godina, mjesec, dan);
-            return date;
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
