@@ -11,97 +11,112 @@
 
 <body>
     <h1 class="text-center text-primary" style="font-style: normal;">Obrazac Za Upis</h1>
-    <div>
-        <div class="container text-left" style="width: 1000px;margin: 70px;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="table-responsive border rounded border-secondary shadow">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th class="table-secondary" style="width: 231px;">Lični podaci:</th>
-                                    <th class="table-secondary" style="width: 223px;"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="height: 80px;">
-                                    <td>&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="text" style="width: 200px;"></td>
-                                    <td>JMBG<input type="text" style="width: 200px;"></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td>&nbsp; Ime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="text" style="width: 200px;"></td>
-                                    <td>Datum rođenja<input type="date" style="width: 200px;"></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td>&nbsp; Mjesto rođenja&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="text" style="width: 200px;"></td>
-                                    <td><label>Mobitel</label><input type="tel" style="width: 200px;"></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td>
-                                        &nbsp; Pol&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="radio"><label>Muško&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label>
-                                        <input type="radio"><label>Žensko</label>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr style="height: 150px;">
-                                    <td><label>&nbsp; E-mail</label><input type="email" style="width: 200px;margin-left: 10px;"></td>
-                                    <td>
-                                        <label>Slika&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><img style="width: 120px;height: 120px;margin: 14px;"><button class="btn btn-primary bg-secondary" type="button"
-                                                                                                                                                                                                             style="font-size: 12px;height: 30px;">
-                                            Odabir datoteke
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    @using (Html.BeginForm("PosaljiPrijavuAction", "Home", FormMethod.Post))
+    {
+        <div>
+            <div class="container text-left" style="width: 1000px;margin: 70px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="table-responsive border rounded border-secondary shadow">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="table-secondary" style="width: 231px;">Lični podaci:</th>
+                                        <th class="table-secondary" style="width: 223px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height: 80px;">
+                                        <td>&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldPrezime" type="text" style="width: 200px;"></td>
+                                        <td>JMBG<input name="fldJmbg" type="text" style="width: 200px;"></td>
+                                    </tr>
+                                    <tr style="height: 80px;">
+                                        <td>&nbsp; Ime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldIme" type="text" style="width: 200px;"></td>
+                                        <td>Datum rođenja<input name="fldDatumRodjenja" type="date" style="width: 200px;"></td>
+                                    </tr>
+                                    <tr style="height: 80px;">
+                                        <td>&nbsp; Mjesto rođenja&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldMjestoRodjenja" type="text" style="width: 200px;"></td>
+                                        <td><label>Mobitel</label><input name="fldMobitel" type="tel" style="width: 200px;"></td>
+                                    </tr>
+                                    <tr style="height: 80px;">
+                                        <td>
+                                            &nbsp; Pol&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="pol" type="radio" value="musko"><label>Muško&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</label>
+                                            <input name="pol" type="radio" value="zensko"><label>Žensko</label>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="height: 150px;">
+                                        <td><label>&nbsp; E-mail</label><input name="fldEmail" type="email" style="width: 200px;margin-left: 10px;"></td>
+                                        <td>
+                                            <label>Slika&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><img name="imgStudent" style="width: 120px;height: 120px;margin: 14px;"><button class="btn btn-primary bg-secondary" type="button"
+                                                                                                                                                                                                                 style="font-size: 12px;height: 30px;">
+                                                Odabir datoteke
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="table-responsive border rounded border-secondary shadow">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="table-secondary" style="width: 235.1px;">Podaci o prebivalištu:</th>
-                                    <th class="table-secondary"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="height: 80px;">Adresa<input type="text" style="width: 200px;"></td>
-                                    <td style="height: 80px;">Kanton<select style="width: 200px;height: 30px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Općina</label><input type="text" style="width: 200px;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-md-6">
+                        <div class="table-responsive border rounded border-secondary shadow">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-secondary" style="width: 235.1px;">Podaci o prebivalištu:</th>
+                                        <th class="table-secondary"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="height: 80px;">Adresa<input name="fldAdresa" type="text" style="width: 200px;"></td>
+                                        <td style="height: 80px;">Kanton<select name="dlKanton" style="width: 200px;height: 30px;"><optgroup label="Kanton:"><option value="Unsko-sanski kanton" selected="">Unsko-sanski kanton</option><option value="Posavski kanton">Posavski kanton</option><option value="Tuzlanski kanton">Tuzlanski kanton</option>
+                                                                                                                                                             <option value="Zeničko-dobojski kanton">Zeničko-dobojski kanton</option><option value="Bosanski-podrinjski kanton">Bosanski-podrinjski kanton</option><option value="Srednjobosanski kanton">Srednjobosanski kanton</option>
+                                                                                                                                                             <option value="Hercegovačko-neretvanski kanton">Hercegovačko-neretvanski kanton</option><option value="Zapadnohercegovački kanton">Zapadnohercegovački kanton</option><option value="Kanton Sarajevo">Kanton Sarajevo</option>
+                                                                                                                                                             <option value="Kanton 10">Kanton 10</option></optgroup></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Općina</label><input name="fldOpcina" type="text" style="width: 200px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive border rounded border-secondary shadow" style="margin-top: 50px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-secondary" style="width: 235.1px;">Podaci o školovanju:</th>
+                                        <th class="table-secondary"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="height: 80px;">Fakultet<select name="dlFakultet" style="width: 200px;height: 30px;"><optgroup label="Fakultet"><option value="Elektrotehnički fakultet" selected="">Elektrotehnički fakultet</option>
+                                                                                                                                                                  <option value="Medicinski fakultet">Medicinski fakultet</option>
+                                                                                                                                                                  <option value="Mašinski fakultet">Mašinski fakultet</option>
+                                                                                                                                                                  <option value="Fakultet za kriminalistiku">Fakultet za kriminalistiku</option>
+                                                                                                                                                                  <option value="Građevinski fakultet">Građevinski fakultet</option>
+                                                                                                                                                                  <option value="Arhitektonski fakultet">Arhitektonski fakultet</option>
+                                                                                                                                                                  <option value="Filozofski fakultet">Filozofski fakultet</option>
+                                                                                                                                                                  <option value="Ekonomski fakultet">Ekonomski fakultet</option>
+                                                                                                                                                                  <option value="Prirodnomatematički fakultet">Prirordnomatematički fakultet</option>
+                                                                                                                                                                  <option value="Pravni fakultet">Pravni fakultet</option></optgroup></select></td>
+                                        <td style="height: 80px;">
+                                            Ciklus studija<select name="dlCiklusStudija" style="width: 200px;height: 30px;"><optgroup label="Ciklus studija"><option value="1" selected="">I ciklus</option><option value="2">II ciklus</option><option value="3">III ciklus</option></optgroup></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Broj indeksa</label><input name="fldBrojIndeksa" type="text" style="width: 200px;"></td>
+                                        <td><label>Godina studija</label><select name="dlGodinaStudija" style="width: 200px;height: 30px;"><optgroup label="Godina studija"><option value="1" selected="">Prva</option><option value="2">Druga</option><option value="3">Treća</option></optgroup></select></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><button class="btn btn-primary" type="submit" style="margin: 35px;width: 150px;margin-left: 170px;">Pošalji prijavu</button>
                     </div>
-                    <div class="table-responsive border rounded border-secondary shadow" style="margin-top: 50px;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="table-secondary" style="width: 235.1px;">Podaci o školovanju:</th>
-                                    <th class="table-secondary"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="height: 80px;">Fakultet<select style="width: 200px;height: 30px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></td>
-                                    <td style="height: 80px;">
-                                        Ciklus studija<select style="width: 200px;height: 30px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Broj indeksa</label><input type="text" style="width: 200px;"></td>
-                                    <td><label>Godina studija</label><select style="width: 200px;height: 30px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div><button class="btn btn-primary" type="button" style="margin: 35px;width: 150px;margin-left: 170px;">Pošalji prijavu</button>
                 </div>
             </div>
         </div>
-    </div>
+    }
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
