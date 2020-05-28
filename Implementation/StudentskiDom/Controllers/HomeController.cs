@@ -45,7 +45,7 @@ namespace StudentskiDom.Controllers
         [HttpPost]
         public ActionResult PosaljiPrijavuAction(IFormCollection forma)
         {
-            
+      
             string prezime = forma["fldPrezime"].ToString();
             string ime = forma["fldIme"].ToString();
             long jmbg = long.Parse(forma["fldJmbg"].ToString());
@@ -92,6 +92,40 @@ namespace StudentskiDom.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        [HttpPost]
+        public ActionResult LoginClick(IFormCollection forma)
+        {
+            string password = forma["fldPassword"];
+            string username = forma["fldUsername"];
+            if (username.ToLower().Equals("uprava"))
+            {
+                return RedirectToAction("Uprava", "Uprava");
+            }
+            else if (username.ToLower().Equals("restoran"))
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }
+            else if (username.ToLower().Equals("student"))
+            {
+                return RedirectToAction("Student", "Student");
+            }
+            return null;
+        }
+
+
+        private DateTime StringToDateTime(string datum)
+        {
+            string danString = datum.Substring(8, 2);
+            string mjesecString = datum.Substring(5, 2);
+            string godinaString = datum.Substring(0, 4);
+
+            int dan = Int32.Parse(danString);
+            int mjesec = Int32.Parse(mjesecString);
+            int godina = Int32.Parse(godinaString);
+
+            DateTime date = new DateTime(godina, mjesec, dan);
+            return date;
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
