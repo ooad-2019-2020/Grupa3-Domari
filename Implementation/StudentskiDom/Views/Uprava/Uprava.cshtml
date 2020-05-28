@@ -22,10 +22,10 @@
                 </div>
                 <div class="col align-self-center" style="height: 450px;">
                     <div class="btn-group-vertical btn-group-lg" role="group" style="height: 400px;width: 400px;">
-                        <button class="btn btn-primary border rounded" type="button" style="padding: 6px;margin: 15px;padding-left: 23;font-size: 20px;">Lista studenata</button><button class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">Smještajni kapacitet</button>
-                        <button class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">
+                        <button onclick="window.location.href='@Url.Action("ListaStudenata","Uprava")'" class="btn btn-primary border rounded" type="button" style="padding: 6px;margin: 15px;padding-left: 23;font-size: 20px;">Lista studenata</button><button class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">Smještajni kapacitet</button>
+                        <button onclick="window.location.href='@Url.Action("Blagajna","Uprava")'" class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">
                             Blagajna
-                        </button><button class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">Pregled zahtjeva</button>
+                        </button><button onclick="window.location.href='@Url.Action("PregledZahtjeva","Zahtjev")'" class="btn btn-primary border rounded" type="button" style="margin: 15px;font-size: 20px;">Pregled zahtjeva</button>
                     </div>
                 </div>
             </div>
