@@ -191,34 +191,42 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult Student()
+        public IActionResult Student(int id)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student = new Student();
+            Student student =_context.Korisnik.FirstOrDefault(k => k.Id == id) as Student;
+
+            student.Soba = _context.Soba.Find(student.SobaId);
+            student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+            student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+            student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
 
 
-            //ViewBag.ImePrezime = student.LicniPodaci.Ime+" "+student.LicniPodaci.Prezime;
-            //ViewBag.BrojRucaka = student.BrojRucaka;
-            //ViewBag.BrojVecera = student.BrojVecera;
-            //ViewBag.DatumRodjenja = student.LicniPodaci.DatumRodjenja.ToShortDateString();
-            //ViewBag.MjestoRodjenja = student.LicniPodaci.MjestoRodjenja;
-            //ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
-            //ViewBag.JMBG = student.LicniPodaci.Jmbg;
-            //ViewBag.BrojSobe = student.Soba.BrojSobe;
+
+
+
+            ViewBag.ImePrezime = student.LicniPodaci.Ime + " " + student.LicniPodaci.Prezime;
+            ViewBag.BrojRucaka = student.BrojRucaka;
+            ViewBag.BrojVecera = student.BrojVecera;
+            ViewBag.DatumRodjenja = student.LicniPodaci.DatumRodjenja.ToShortDateString();
+            ViewBag.MjestoRodjenja = student.LicniPodaci.MjestoRodjenja;
+            ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
+            ViewBag.JMBG = student.LicniPodaci.Jmbg;
+            ViewBag.BrojSobe = student.Soba.BrojSobe;
 
             //FALI GORE I SLIKA DA SE DOBAVI I DODA U CSHTML!!!
 
-            string ime = "Tarik";
-            string prezime = "Mehulić";
-            ViewBag.ImePrezime = ime + " " + prezime;
-            ViewBag.BrojRucaka = 15;
-            ViewBag.BrojVecera = 15;
-            DateTime datum = DateTime.Now;
-            ViewBag.DatumRodjenja = datum.ToShortDateString();
-            ViewBag.MjestoRodjenja = "Travnik";
-            ViewBag.Fakultet = "ETF";
-            ViewBag.JMBG = 123456789;
-            ViewBag.BrojSobe = 305;
+            //string ime = "Tarik";
+            //string prezime = "Mehulić";
+            //ViewBag.ImePrezime = ime + " " + prezime;
+            //ViewBag.BrojRucaka = 15;
+            //ViewBag.BrojVecera = 15;
+            //DateTime datum = DateTime.Now;
+            //ViewBag.DatumRodjenja = datum.ToShortDateString();
+            //ViewBag.MjestoRodjenja = "Travnik";
+            //ViewBag.Fakultet = "ETF";
+            //ViewBag.JMBG = 123456789;
+            //ViewBag.BrojSobe = 305;
 
             return View();
         }
