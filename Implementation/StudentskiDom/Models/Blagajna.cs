@@ -18,7 +18,7 @@ namespace StudentskiDom.Models
 
         public Blagajna()
         {
-            UcitajStanjeBudzeta();
+            //UcitajStanjeBudzeta();
         }
 
         private bool ProvjeriId(int id)

@@ -144,9 +144,10 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Blagajna()
+        public IActionResult Blagajna(int? id)
         {
-            ViewBag.Budzet = 10000;
+            Blagajna blagajna = _context.Blagajna.Find(1);
+            ViewBag.Blagajna = blagajna;
             return View();
         }
 

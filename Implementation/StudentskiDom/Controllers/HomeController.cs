@@ -34,6 +34,10 @@ namespace StudentskiDom.Controllers
 
         public IActionResult Login()
         {
+            //ova se prva pokrece
+
+
+
             return View();
         }
 
@@ -43,6 +47,7 @@ namespace StudentskiDom.Controllers
         }
 
         [HttpPost]
+       
         public ActionResult PosaljiPrijavuAction(IFormCollection forma)
         {
       
@@ -97,6 +102,11 @@ namespace StudentskiDom.Controllers
         {
             string password = forma["fldPassword"];
             string username = forma["fldUsername"];
+
+            if (username.ToLower().Equals("marco"))
+            {
+                return RedirectToAction("Student", "Student", new { id = 1 });
+            }
             if (username.ToLower().Equals("uprava"))
             {
                 return RedirectToAction("Uprava", "Uprava");
