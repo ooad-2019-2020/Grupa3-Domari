@@ -194,7 +194,7 @@ namespace SD.Controllers
         public IActionResult Student(int id)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student =_context.Korisnik.FirstOrDefault(k => k.Id == id) as Student;
+            Student student =_context.Korisnik.Find(id) as Student;
 
             student.Soba = _context.Soba.Find(student.SobaId);
             student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
@@ -233,6 +233,19 @@ namespace SD.Controllers
 
         public IActionResult ZahtjevZaPremjestanje()
         {
+            ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
+            foreach (Paviljon p in _context.Paviljon)
+            {
+                paviljoni.Add(p);
+            }
+            ViewBag.paviljoni = paviljoni;
+
+            ICollection<Soba> sobe = new Collection<Soba>();
+            foreach (Soba s in _context.Soba)
+            {
+                sobe.Add(s);
+            }
+            ViewBag.sobe = sobe;
             return View();
         }
 
@@ -259,6 +272,31 @@ namespace SD.Controllers
 
             _context.Add(zahtjevZaCimeraj);
             _context.SaveChanges();
+
+            return RedirectToAction("Student", "Student");
+        }
+
+        public IActionResult posaljiZahtjevZaPremjestanje(IFormCollection forma)
+        {
+            string trenutniPaviljon = forma["dlTrenutniPaviljon"];
+            string trenutnaSoba = forma["dlTrenutnaSoba"];
+            string noviPaviljon = forma["dlNoviPaviljon"];
+            string novaSoba = forma["dlNovaSoba"];
+            string dodatneNapomene = forma["fldNpomene"];
+
+            // Snimi zahtjev u bazu podataka
+            ZahtjevZaPremjestanje zahtjev = new ZahtjevZaPremjestanje();
+            zahtjev.Paviljon1Id = Int32.Parse(trenutniPaviljon);
+            zahtjev.Soba1Id = Int32.Parse(trenutnaSoba);
+            zahtjev.Paviljon2Id = Int32.Parse(noviPaviljon);
+            zahtjev.Soba2Id = Int32.Parse(novaSoba);
+            zahtjev.RazlogPremjestanja = dodatneNapomene;
+
+            zahtjev.StudentId = 1;
+
+            _context.Add(zahtjev);
+            _context.SaveChanges();
+
 
             return RedirectToAction("Student", "Student");
         }
