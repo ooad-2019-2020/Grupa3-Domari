@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -158,6 +160,26 @@ namespace SD.Controllers
 
         public IActionResult PregledZahtjeva()
         {
+            ICollection<Zahtjev> zahtjevi = new Collection<Zahtjev>();
+
+            foreach(Zahtjev z in _context.Zahtjev)
+            {
+                if(z is ZahtjevZaUpis)
+                {
+                    ZahtjevZaUpis zahtjevZaUpis = z as ZahtjevZaUpis;
+
+                    zahtjevZaUpis.PrebivalisteInfo = _context.PrebivalisteInfo.Where(p => p.PrebivalisteInfoId == zahtjevZaUpis.PrebivalisteInfoId).FirstOrDefault();
+                    zahtjevZaUpis.SkolovanjeInfo = _context.SkolovanjeInfo.Where(p => p.SkolovanjeInfoId == zahtjevZaUpis.SkolovanjeInfoId).FirstOrDefault();
+                    zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Where(p => p.LicniPodaciId == zahtjevZaUpis.LicniPodaciId).FirstOrDefault();
+
+                    zahtjevi.Add(z);
+                }
+
+                
+            }
+
+            ViewBag.Zahtjevi = zahtjevi;
+
             return View();
         }
 
