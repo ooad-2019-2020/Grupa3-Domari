@@ -8,7 +8,9 @@ namespace StudentskiDom.Models
     public abstract class Algoritam
     {
         public List<Student> TemplateMethod(List<Student> studenti) {
-            return studenti;
+            List<Student> students = Filtriraj(studenti);
+            students = Sortiraj(students);
+            return students;
         }
 
         public virtual List<Student> Sortiraj(List<Student> studenti)

@@ -30,7 +30,7 @@ namespace StudentskiDom.Models
 
         public void DodajRucak(string rucak)
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         public void DodajVeceru(string vecera)
