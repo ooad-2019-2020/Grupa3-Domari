@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TI1ovxiveZ8dc+N8XBXGtae/uxrf2eEvEyOxTKSJjw18J9PRAWU/W/DXdyuF9ccdPrYJjouBjD2Nm/SwYTo77Q==",
+  "dgSpecHash": "nyq0r9OJHKgRJL+y3RHH9gWfH17O69RitrZH7Q0ZbQm6osREM9wouGvGGIfDyaICSOuUb8lGeVh8Qa5IVZQAzw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnetcore.routing\\2.2.0\\microsoft.aspnetcore.routing.2.2.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.2.0\\microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.azure.amqp\\2.4.3\\microsoft.azure.amqp.2.4.3.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\2.9.4\\microsoft.codeanalysis.analyzers.2.9.4.nupkg.sha512",
@@ -157,6 +158,9 @@
     "C:\\Users\\Nedo\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\system.net.webheadercollection\\4.0.1\\system.net.webheadercollection.4.0.1.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\system.net.websockets\\4.0.0\\system.net.websockets.4.0.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\system.net.websockets.client\\4.0.2\\system.net.websockets.client.4.0.2.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.objectmodel\\4.3.0\\system.objectmodel.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",

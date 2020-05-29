@@ -479,8 +479,9 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\staticwebassets\SD.StaticWebAssets.xml
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.pdb
-C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\StudentskiDom.csproj.CoreCompileInputs.cache
-C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledCimeraj.cshtml.g.cs
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledPremjestanje.cshtml.g.cs
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledUpis.cshtml.g.cs
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\EntityFramework.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
@@ -491,6 +492,7 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Azure.Amqp.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
@@ -619,3 +621,5 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\StudentskiDom.csproj.CoreCompileInputs.cache
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
