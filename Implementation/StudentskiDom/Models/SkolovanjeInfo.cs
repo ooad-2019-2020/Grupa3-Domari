@@ -17,6 +17,10 @@ namespace StudentskiDom.Models
         public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
         public virtual Student Student { get; set; }
 
+        public SkolovanjeInfo()
+        {
+
+        }
         public SkolovanjeInfo(string fakultet, int brojIndeksa, int ciklusStudija, int godinaStudija)
         {
             Fakultet = fakultet;

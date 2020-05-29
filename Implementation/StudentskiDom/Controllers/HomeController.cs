@@ -76,7 +76,7 @@ namespace StudentskiDom.Controllers
             int brojIndeksa = Int32.Parse(forma["fldBrojIndeksa"].ToString());
             int godinaStudija = Int32.Parse(forma["dlGodinaStudija"].ToString());
 
-            SkolovanjeInfo skolovanjeInfo = new SkolovanjeInfo(fakultet, ciklusStudija, brojIndeksa, godinaStudija);
+            SkolovanjeInfo skolovanjeInfo = new SkolovanjeInfo(fakultet, brojIndeksa, ciklusStudija, godinaStudija);
             PrebivalisteInfo prebivalisteInfo = new PrebivalisteInfo(adresa, kanton, opcina);
             LicniPodaci licniPodaci = new LicniPodaci(prezime, ime, mjestoRodjenja, pol, email, jmbg, datumRodjenja, mobitel, "");
 
