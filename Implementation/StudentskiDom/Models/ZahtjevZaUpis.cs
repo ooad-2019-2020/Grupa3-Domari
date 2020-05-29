@@ -24,7 +24,7 @@ namespace StudentskiDom.Models
         public virtual PrebivalisteInfo PrebivalisteInfo { get; set; }
         public virtual SkolovanjeInfo SkolovanjeInfo { get; set; }
 
-        public ZahtjevZaUpis()
+        public ZahtjevZaUpis() : base(DateTime.Now)
         {
 
         }
