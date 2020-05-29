@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -171,6 +174,20 @@ namespace SD.Controllers
 
         public IActionResult Cimeraj()
         {
+            ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
+            foreach(Paviljon p in _context.Paviljon)
+            {
+                paviljoni.Add(p);
+            }
+            ViewBag.paviljoni = paviljoni;
+
+            ICollection<Soba> sobe = new Collection<Soba>();
+            foreach (Soba s in _context.Soba)
+            {
+                sobe.Add(s);
+            }
+            ViewBag.sobe = sobe;
+            
             return View();
         }
 
@@ -217,6 +234,33 @@ namespace SD.Controllers
         public IActionResult ZahtjevZaPremjestanje()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult posaljiCimeraj(IFormCollection forma)
+        {
+            string paviljon = forma["dlPaviljon"];
+            string soba = forma["dlSoba"];
+            string cimer1 = forma["fldCimer1"];
+            string cimer2 = forma["fldCimer2"];
+            string dodatneNapomene = forma["fldNpomene"];
+
+            // Snimi zahtjev u bazu podataka
+            ZahtjevZaCimeraj zahtjevZaCimeraj = new ZahtjevZaCimeraj();
+            zahtjevZaCimeraj.PaviljonId = Int32.Parse(paviljon);
+            zahtjevZaCimeraj.SobaId = Int32.Parse(soba);
+            if(cimer1 != null && !cimer1.Equals(""))
+                zahtjevZaCimeraj.Cimer1Id = Int32.Parse(cimer1);
+            if (cimer2 != null && !cimer2.Equals(""))
+                zahtjevZaCimeraj.Cimer2Id = Int32.Parse(cimer2);
+            zahtjevZaCimeraj.DodatneNapomene = dodatneNapomene;
+
+            zahtjevZaCimeraj.StudentId = 1;
+
+            _context.Add(zahtjevZaCimeraj);
+            _context.SaveChanges();
+
+            return RedirectToAction("Student", "Student");
         }
 
         private bool StudentExists(int id)

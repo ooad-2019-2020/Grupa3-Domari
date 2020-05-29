@@ -18,7 +18,8 @@ namespace StudentskiDom.Models
 
         public Zahtjev()
         {
-
+            Datum = DateTime.Now;
+            Odobren = false;
         }
 
         public Zahtjev(DateTime datum)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace StudentskiDom.Models
 
         public Paviljon()
         {
-
+            Sobe = new List<Soba>();
         }
 
         public Paviljon(string naziv, List<ISoba> sobe, int kapacitet, int brojStudenata)

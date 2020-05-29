@@ -183,6 +183,21 @@ namespace SD.Controllers
             return View();
         }
 
+        public IActionResult PregledUpis()
+        {
+            return View();
+        }
+
+        public IActionResult PregledPremjestanje()
+        {
+            return View();
+        }
+
+        public IActionResult PregledCimeraj()
+        {
+            return View();
+        }
+
         
 
         private bool ZahtjevExists(int id)
