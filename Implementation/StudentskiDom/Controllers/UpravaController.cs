@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
@@ -213,7 +217,43 @@ namespace SD.Controllers
         [Route("/uprava/{id}/listaStudenata")]
         public IActionResult ListaStudenata()
         {
+            List<Student> studenti = new List<Student>();
+
+            foreach(Korisnik k in _context.Korisnik.Where(k => k is Student)){
+                Student s = k as Student;
+                s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                s.Soba = _context.Soba.Find(s.SobaId);
+                s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+
+                studenti.Add(s);
+            }
+
+            ViewBag.ListaStudenata = studenti;
+
             return View();
+        }
+
+        protected void dlSortAction(object sender, EventArgs e)
+        {
+            // LAFO JA NEKI LISTENER POKUSAO STAVITI
+            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
+            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
+            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
+            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
+            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
+
+            List<Student> studenti = ViewBag.ListaStudenata;
+            
+            if(studenti.Count>1)
+                studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
+            else
+                studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
+            
+            ViewBag.ListaStudenata = studenti;
+            
+            RedirectToAction("ListaStudenata", "Uprava");
         }
 
         private bool UpravaExists(int id)

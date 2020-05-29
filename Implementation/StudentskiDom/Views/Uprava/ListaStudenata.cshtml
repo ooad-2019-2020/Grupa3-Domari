@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -15,7 +11,13 @@
 
 <body class="text-center">
     <h1 style="margin-top: 50px;">Lista studenata</h1>
-    <h4 style="margin-top: 50px;">Sortiraj po:</h4><select style="width: 300px;margin-top: 20px;"><optgroup label="Sortiraj po"><option value="12" selected="">Fakultet</option><option value="13">Kanton</option></optgroup></select>
+    <h4 style="margin-top: 50px;">Sortiraj po:</h4>
+        <select onchange="dlSortAction" style="width: 300px;margin-top: 20px;">
+            <optgroup label="Sortiraj po">
+                <option value="12" selected="">Fakultet</option>
+                <option value="13">Kanton</option>
+            </optgroup>
+        </select>
     <div class="table-responsive" style="margin-top: 50px;">
         <table class="table">
             <thead>
@@ -28,20 +30,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (var student in ViewBag.ListaStudenata)
+                {
                 <tr>
-                    <td>Nedim Hastor</td>
-                    <td>2</td>
-                    <td>207</td>
-                    <td>BPK</td>
-                    <td>ETF</td>
+                    <td>@student.LicniPodaci.Ime @student.LicniPodaci.Prezime</td>
+                    <td>@student.Soba.Paviljon.Naziv</td>
+                    <td>@student.Soba.BrojSobe</td>
+                    <td>@student.PrebivalisteInfo.Kanton</td>
+                    <td>@student.SkolovanjeInfo.Fakultet</td>
                 </tr>
-                <tr>
-                    <td>Tarik Mehulić</td>
-                    <td>4</td>
-                    <td>410</td>
-                    <td>SBK</td>
-                    <td>ETF</td>
-                </tr>
+                }
             </tbody>
         </table>
     </div>

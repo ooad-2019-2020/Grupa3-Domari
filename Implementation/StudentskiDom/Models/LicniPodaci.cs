@@ -26,6 +26,10 @@ namespace StudentskiDom.Models
         public virtual Student Student { get; set; }
         public virtual ZahtjevZaUpis ZahtjevZaUpis { get; set; }
 
+        public LicniPodaci()
+        {
+
+        }
         public LicniPodaci(string prezime, string ime, string mjestoRodjenja, Pol pol, string email,
             long jmbg, DateTime datumRodjenja, int mobitel, string slika)
         {

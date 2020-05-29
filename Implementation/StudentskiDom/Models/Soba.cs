@@ -48,8 +48,7 @@ namespace StudentskiDom.Models
 
         public bool DaLiImaMjesta()
         {
-            //return Studenti.Count < Kapacitet;
-            return false;
+            return Students.Count < Kapacitet;
         }
 
         public ISoba Clone()
