@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudentskiDom.Models;
@@ -143,19 +144,73 @@ namespace SD.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        public IActionResult Blagajna(int? id)
+    
+        [Route("/uprava/{id}/blagajna")]
+        public IActionResult Blagajna(int? StudentId)
         {
+            //naci blagajnu iz uprava id, a kao parametar nek se prima student
             Blagajna blagajna = _context.Blagajna.Find(1);
             ViewBag.Blagajna = blagajna;
-            return View();
+            if (StudentId == null)
+            {
+                return View();
+            }
+            else
+            {
+                Student student = _context.Korisnik.FirstOrDefault(k => k.Id == StudentId) as Student;
+                if (student == null)
+                {
+                    ViewBag.Ime = null;
+                    ViewBag.Prezime = null;
+                    ViewBag.Fakultet = null;
+                    ViewBag.Kanton = null;
+                    ViewBag.Soba = null;
+                    return View();
+                }
+                else
+                {
+                    student.Soba = _context.Soba.Find(student.SobaId);
+                    student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+                    student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    ViewBag.Ime = student.LicniPodaci.Ime;
+                    ViewBag.Prezime = student.LicniPodaci.Prezime;
+                    ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
+                    ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
+                    ViewBag.Soba = student.Soba.BrojSobe;
+                    return View();
+                }
+
+                
+            }
         }
 
+        [Route("/uprava/dashboard/{id}")]
         public IActionResult Uprava()
         {
+            //ovdje kreirati upravu
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ProvjeriID(IFormCollection forma)
+        {
+            int id= Int32.Parse(forma["fldStudentId"].ToString());
+            Korisnik student = null;
+            student = _context.Korisnik.Find(id);
+            if (student == null)
+            {
+                //error neki
+            }
+            else
+            {
+                return RedirectToAction("Blagajna", "Uprava", new { StudentId = id });
+            }
+            return RedirectToAction("Blagajna", "Uprava");
+          
+        }
+
+        [Route("/uprava/{id}/listaStudenata")]
         public IActionResult ListaStudenata()
         {
             return View();

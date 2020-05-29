@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Routing;
 using StudentskiDom.Models;
 
 namespace StudentskiDom.Controllers
@@ -22,16 +23,9 @@ namespace StudentskiDom.Controllers
 
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+       
+        [Route("~/")]
+        [Route("/Home")]
         public IActionResult Login()
         {
             //ova se prva pokrece
@@ -41,6 +35,7 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
+        [Route("/Home/obrazaczaupis")]
         public IActionResult ObrazacZaUpis()
         {
             return View();
@@ -103,23 +98,29 @@ namespace StudentskiDom.Controllers
             string password = forma["fldPassword"];
             string username = forma["fldUsername"];
 
-            if (username.ToLower().Equals("marco"))
-            {
-                return RedirectToAction("Student", "Student", new { id = 1 });
+            var Korisnik = _context.Korisnik.FirstOrDefault(k => k.Username.Equals(username) && k.Password.Equals(password));
+            if (Korisnik != null)
+            { 
+                if(Korisnik is Student)
+                {
+                   return RedirectToAction("Student", new RouteValueDictionary(new { controller = "Student", action = "Student", id = Korisnik.Id }));
+                }else if(Korisnik is Uprava)
+                {
+                   return RedirectToAction("Uprava", new RouteValueDictionary(new { controller = "Uprava", action = "Uprava", id = Korisnik.Id }));
+                }else if(Korisnik is Restoran)
+                {
+                   return RedirectToAction("Restoran", new RouteValueDictionary(new { controller = "Restoran", action = "Restoran", id = Korisnik.Id }));
+                }
+                else
+                {
+                   return RedirectToAction("Login", "Home");
+                }
             }
-            if (username.ToLower().Equals("uprava"))
+            else
             {
-                return RedirectToAction("Uprava", "Uprava");
+                return RedirectToAction("Login", "Home");
             }
-            else if (username.ToLower().Equals("restoran"))
-            {
-                return RedirectToAction("Restoran", "Restoran");
-            }
-            else if (username.ToLower().Equals("student"))
-            {
-                return RedirectToAction("Student", "Student");
-            }
-            return null;
+                  
         }
 
 

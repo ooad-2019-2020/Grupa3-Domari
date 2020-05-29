@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model StudentskiDom.Models.Student
+
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,11 +32,14 @@
             </div>
         </div>
     </div>
-    <div class="row" style="margin: 40px 0px 0px 0px;">
-        <div class="col" style="width: 200px;"><label class="col-form-label text-right" style="font-size: 24px;width: 300px;color: rgb(30,129,228);margin: 10px 50px;">ID Studenta:</label></div>
-        <div class="col" style="width: 450px;"><input class="border rounded" type="text" style="margin: 22px 0px;width: 350px;"></div>
-        <div class="col" style="width: 350px;"><button class="btn btn-primary" type="button" style="margin: 18px 0px 0px 0px;width: 300px;">Provjeri ID</button></div>
-    </div>
+    @using (Html.BeginForm("ProvjeriID", "Uprava", FormMethod.Post))
+    {
+        <div class="row" style="margin: 40px 0px 0px 0px;">
+            <div class="col" style="width: 200px;"><label class="col-form-label text-right" style="font-size: 24px;width: 300px;color: rgb(30,129,228);margin: 10px 50px;">ID Studenta:</label></div>
+            <div class="col" style="width: 450px;"><input name="fldStudentId" class="border rounded" type="text" style="margin: 22px 0px;width: 350px;"></div>
+            <div class="col" style="width: 350px;"><button class="btn btn-primary" type="submit" style="margin: 18px 0px 0px 0px;width: 300px;">Provjeri ID</button></div>
+        </div>
+    }
     <div class="container" style="width: 1100px;">
         <div class="row" style="width: 1100px;">
             <div class="col" style="width:500px">
@@ -47,23 +53,23 @@
                         <tbody style="width: 500px;">
                             <tr>
                                 <td style="width: 200px;color: rgb(248,250,251);">Ime:</td>
-                                <td>text</td>
+                                <td>@ViewBag.Ime</td>
                             </tr>
                             <tr>
                                 <td style="color: rgb(248,250,251);">Prezime:</td>
-                                <td>Text</td>
+                                <td>@ViewBag.Prezime</td>
                             </tr>
                             <tr>
                                 <td style="color: rgb(248,250,251);">Fakultet:</td>
-                                <td>Text</td>
+                                <td>@ViewBag.Fakultet</td>
                             </tr>
                             <tr>
                                 <td style="color: rgb(248,250,251);">Kanton:</td>
-                                <td>Text</td>
+                                <td>@ViewBag.Kanton</td>
                             </tr>
                             <tr>
                                 <td style="color: rgb(248,250,251);">Soba:</td>
-                                <td>Text</td>
+                                <td>@ViewBag.Soba</td>
                             </tr>
                         </tbody>
                     </table>
@@ -103,6 +109,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="width: 500px;height: 50px;margin-right: 10px;margin-left: 600px;">
+        <div class="btn-group" role="group" style="margin-top: 10px;"><button class="btn btn-primary" type="button" style="width: 248px;height: 38px;">Uplati dom za odabrani mjesec</button><button class="btn btn-primary" type="button" style="margin-left: 100px;height: 38px;">Gotovo</button></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

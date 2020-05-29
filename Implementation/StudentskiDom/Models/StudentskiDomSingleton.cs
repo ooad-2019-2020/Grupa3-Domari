@@ -36,11 +36,15 @@ namespace StudentskiDom.Models
         
         private StudentskiDomSingleton()
         {
-
+           
         }
 
         public static StudentskiDomSingleton getInstance()
         {
+            if (instance == null)
+            {
+                instance = new StudentskiDomSingleton();
+            }
             return instance;
         }
 

@@ -13,6 +13,8 @@ namespace SD.Controllers
     {
         private readonly StudentskiDomContext _context;
 
+        private Restoran model { get; set; }
+
         public RestoranController(StudentskiDomContext context)
         {
             _context = context;
@@ -151,17 +153,19 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Route("/restoran/{id}/dnevniMeni")]
         public IActionResult DnevniMeni()
         {
             return View();
         }
 
+        [Route("/restoran/dashboard/{id}")]
         public IActionResult Restoran()
         {
             return View();
         }
 
+        [Route("/restoran/{id}/zahtjevZaNabavkuNamirnica")]
         public IActionResult ZahtjevZaNabavkuNamirnica()
         {
             return View();

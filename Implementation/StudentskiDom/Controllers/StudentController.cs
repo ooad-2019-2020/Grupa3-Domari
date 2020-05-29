@@ -172,6 +172,7 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Route("/student/{id}/cimeraj")]
         public IActionResult Cimeraj()
         {
             ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
@@ -191,6 +192,7 @@ namespace SD.Controllers
             return View();
         }
 
+        [Route("/student/dashboard/{id}")]
         public IActionResult Student(int id)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
@@ -231,6 +233,7 @@ namespace SD.Controllers
             return View();
         }
 
+        [Route("/student/{id}/zahtjevzapremjestanje")]
         public IActionResult ZahtjevZaPremjestanje()
         {
             return View();
