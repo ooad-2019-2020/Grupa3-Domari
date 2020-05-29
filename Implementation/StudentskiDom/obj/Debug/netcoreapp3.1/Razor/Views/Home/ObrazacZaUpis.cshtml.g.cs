@@ -30,21 +30,87 @@ using StudentskiDom.Models;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e410ba33bd577e25e300ef3e44af039cd8b56ee", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_ObrazacZaUpis : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/lib/bootstrap/dist/css/bootstrapObrazacZaUpis.min.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/css/stylesObrazacZaUpis.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "12", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("selected", new global::Microsoft.AspNetCore.Html.HtmlString(""), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "13", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "14", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            WriteLiteral(@"<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset=""utf-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0, shrink-to-fit=no"">
-    <title>obrazacZaUpis</title>
-    <link rel=""stylesheet"" href=""~/lib/bootstrap/dist/css/bootstrapObrazacZaUpis.min.css"">
-    <link rel=""stylesheet"" href=""~/css/stylesObrazacZaUpis.css"">
-</head>
-
-<body>
+            WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e55936", async() => {
+                WriteLiteral("\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">\r\n    <title>obrazacZaUpis</title>\r\n    ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "435179206bd817713f19402cb3435b4a53d1b8e56366", async() => {
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral("\r\n    ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "435179206bd817713f19402cb3435b4a53d1b8e57545", async() => {
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral("\r\n");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e59432", async() => {
+                WriteLiteral(@"
     <h1 class=""text-center text-primary"" style=""font-style: normal;"">Obrazac Za Upis</h1>
     <div>
         <div class=""container text-left"" style=""width: 1000px;margin: 70px;"">
@@ -55,23 +121,23 @@ using StudentskiDom.Models;
                             <thead>
                                 <tr>
                                     <th class=""table-secondary"" style=""width: 231px;"">Lični podaci:</th>
-                                    <th class=""table-secondary"" style=""width");
-            WriteLiteral(@": 223px;""></th>
+                                    <th class=""table-secondary"" style=""width: 223px;""></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr style=""height: 80px;"">
-                                    <td>&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type=""text"" style=""width: 200px;""></td>
+                                    <td>&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n");
+                WriteLiteral(@"bsp; &nbsp; &nbsp;&nbsp;<input type=""text"" style=""width: 200px;""></td>
                                     <td>JMBG<input type=""text"" style=""width: 200px;""></td>
                                 </tr>
                                 <tr style=""height: 80px;"">
                                     <td>&nbsp; Ime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type=""text"" style=""width: 200px;""></td>
                                     <td>Datum rođenja<input type=""date"" style=""width: 200px;""></td>
-                              ");
-            WriteLiteral(@"  </tr>
+                                </tr>
                                 <tr style=""height: 80px;"">
                                     <td>&nbsp; Mjesto rođenja&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type=""text"" style=""width: 200px;""></td>
-                                    <td><label>Mobitel</label><input type=""tel"" style=""width: 200px;""></td>
+                                    <td><label>Mobitel</label><input type=""tel"" style");
+                WriteLiteral(@"=""width: 200px;""></td>
                                 </tr>
                                 <tr style=""height: 80px;"">
                                     <td>
@@ -79,20 +145,19 @@ using StudentskiDom.Models;
                                         <input type=""radio""><label>Žensko</label>
                                     </td>
                                     <td></td>
-               ");
-            WriteLiteral(@"                 </tr>
+                                </tr>
                                 <tr style=""height: 150px;"">
                                     <td><label>&nbsp; E-mail</label><input type=""email"" style=""width: 200px;margin-left: 10px;""></td>
                                     <td>
-                                        <label>Slika&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><img style=""width: 120px;height: 120px;margin: 14px;""><button class=""btn btn-primary bg-secondary"" type=""button""
+                                        <label>Slika&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb");
+                WriteLiteral(@"sp; &nbsp; &nbsp; &nbsp; &nbsp;</label><img style=""width: 120px;height: 120px;margin: 14px;""><button class=""btn btn-primary bg-secondary"" type=""button""
                                                                                                                                                                                                              style=""font-size: 12px;height: 30px;"">
                                             Odabir datoteke
                                         </button>
                                     </td>
                                 </tr>
                             </tbody>
-                        </ta");
-            WriteLiteral(@"ble>
+                        </table>
                     </div>
                 </div>
                 <div class=""col-md-6"">
@@ -100,17 +165,62 @@ using StudentskiDom.Models;
                         <table class=""table"">
                             <thead>
                                 <tr>
-                                    <th class=""table-secondary"" style=""width: 235.1px;"">Podaci o prebivalištu:</th>
+                                    <th class=""table-se");
+                WriteLiteral(@"condary"" style=""width: 235.1px;"">Podaci o prebivalištu:</th>
                                     <th class=""table-secondary""></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style=""height: 80px;"">Adresa<input type=""text"" style=""width: 200px;""></td>
-                                    <td style=""height: 80px;"">Kanton<select style=""width: 200px;height: 30px;""><optgroup label=""This is a group""><option value=""12""");
-            BeginWriteAttribute("selected", " selected=\"", 5026, "\"", 5037, 0);
-            EndWriteAttribute();
-            WriteLiteral(@">This is item 1</option><option value=""13"">This is item 2</option><option value=""14"">This is item 3</option></optgroup></select></td>
+                                    <td style=""height: 80px;"">Kanton<select style=""width: 200px;height: 30px;""><optgroup label=""This is a group"">");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e514571", async() => {
+                    WriteLiteral("This is item 1");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_3.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e515851", async() => {
+                    WriteLiteral("This is item 2");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_5.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_5);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e517044", async() => {
+                    WriteLiteral("This is item 3");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_6.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_6);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral(@"</optgroup></select></td>
                                 </tr>
                                 <tr>
                                     <td><label>Općina</label><input type=""text"" style=""width: 200px;""></td>
@@ -127,24 +237,155 @@ using StudentskiDom.Models;
                                 </tr>
                             </thead>
                             <tbody>
-                         ");
-            WriteLiteral("       <tr>\r\n                                    <td style=\"height: 80px;\">Fakultet<select style=\"width: 200px;height: 30px;\"><optgroup label=\"This is a group\"><option value=\"12\"");
-            BeginWriteAttribute("selected", " selected=\"", 6240, "\"", 6251, 0);
-            EndWriteAttribute();
-            WriteLiteral(@">This is item 1</option><option value=""13"">This is item 2</option><option value=""14"">This is item 3</option></optgroup></select></td>
-                                    <td style=""height: 80px;"">
-                                        Ciklus studija<select style=""width: 200px;height: 30px;""><optgroup label=""This is a group""><option value=""12""");
-            BeginWriteAttribute("selected", " selected=\"", 6600, "\"", 6611, 0);
-            EndWriteAttribute();
-            WriteLiteral(@">This is item 1</option><option value=""13"">This is item 2</option><option value=""14"">This is item 3</option></optgroup></select>
+                                <tr>
+                                    <td style=""height: 80px;"">Fakultet<select style=""width: 200");
+                WriteLiteral("px;height: 30px;\"><optgroup label=\"This is a group\">");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e519406", async() => {
+                    WriteLiteral("This is item 1");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_3.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e520686", async() => {
+                    WriteLiteral("This is item 2");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_5.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_5);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e521879", async() => {
+                    WriteLiteral("This is item 3");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_6.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_6);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral("</optgroup></select></td>\r\n                                    <td style=\"height: 80px;\">\r\n                                        Ciklus studija<select style=\"width: 200px;height: 30px;\"><optgroup label=\"This is a group\">");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e523339", async() => {
+                    WriteLiteral("This is item 1");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_3.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e524619", async() => {
+                    WriteLiteral("This is item 2");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_5.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_5);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e525812", async() => {
+                    WriteLiteral("This is item 3");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_6.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_6);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral(@"</optgroup></select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><label>Broj indeksa</label><input type=""text"" style=""width: 200px;""></td>
-                                    <td><label>Godina studija</label><select style=""width: 200px;height: 30px;""><optgroup label=""This is a group""><option value=""12""");
-            BeginWriteAttribute("selected", " selected=\"", 7141, "\"", 7152, 0);
-            EndWriteAttribute();
-            WriteLiteral(@">This is item 1</option><option value=""13"">This is item 2</option><option value=""14"">This is item 3</option></optgroup></select></td>
+                                    <td><label>Godina studija</label><select style=""width: 200px;height: 30px;""><optgroup label=""This is a group"">");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e527452", async() => {
+                    WriteLiteral("This is item 1");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_3.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e528732", async() => {
+                    WriteLiteral("This is item 2");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_5.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_5);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "435179206bd817713f19402cb3435b4a53d1b8e529925", async() => {
+                    WriteLiteral("This is item 3");
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper.Value = (string)__tagHelperAttribute_6.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_6);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral(@"</optgroup></select></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,9 +396,19 @@ using StudentskiDom.Models;
     </div>
     <script src=""assets/js/jquery.min.js""></script>
     <script src=""assets/bootstrap/js/bootstrap.min.js""></script>
-</body>
-
-</html>");
+");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n</html>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

@@ -30,21 +30,67 @@ using StudentskiDom.Models;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e410ba33bd577e25e300ef3e44af039cd8b56ee", @"/Views/_ViewImports.cshtml")]
     public class Views_Uprava_Blagajna : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/lib/bootstrap/dist/css/bootstrapBlagajnaLogin.min.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("background-color: #0c0b0d;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            WriteLiteral(@"<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset=""utf-8"">
-    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0, shrink-to-fit=no"">
-    <title>blagajnaview</title>
-    <link rel=""stylesheet"" href=""~/lib/bootstrap/dist/css/bootstrapBlagajnaLogin.min.css"">
-    <link rel=""stylesheet"" href=""assets/css/styles.css"">
-</head>
-
-<body style=""background-color: #0c0b0d;"">
+            WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61ecdb4873b82673c769eaeff9da5612084ea0ce4568", async() => {
+                WriteLiteral("\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\">\r\n    <title>blagajnaview</title>\r\n    ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "61ecdb4873b82673c769eaeff9da5612084ea0ce4997", async() => {
+                }
+                );
+                __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
+                __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
+                await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+                if (!__tagHelperExecutionContext.Output.IsContentModified)
+                {
+                    await __tagHelperExecutionContext.SetOutputContentAsync();
+                }
+                Write(__tagHelperExecutionContext.Output);
+                __tagHelperExecutionContext = __tagHelperScopeManager.End();
+                WriteLiteral("\r\n    <link rel=\"stylesheet\" href=\"assets/css/styles.css\">\r\n");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61ecdb4873b82673c769eaeff9da5612084ea0ce6948", async() => {
+                WriteLiteral(@"
     <div class=""container"" style=""margin: 60px 0px 0px 50px;"">
         <div class=""row"">
             <div class=""col"">
@@ -58,15 +104,15 @@ using StudentskiDom.Models;
                 </div>
                 <div class=""row"">
                     <div class=""col"">
-          ");
-            WriteLiteral(@"              <h1 class=""text-right"">100000</h1>
+                        <h1 class=""text-right"">100000</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class=""row"" style=""margin: 40px 0px 0px 0px;"">
-        <div class=""col"" style=""width: 200px;""><label class=""col-form-label text-right"" style=""font-size: 24px;width: 300px;color: rgb(30,129,228);margin: 10px 50px;"">ID Studenta:</label></div>
+        <div class=""col"" style=""width: 200px;""><label class=""col-form-label text-right"" style=""font-size: 24px;width: 300px;color: rgb(30,129,228);margin: 10px 50px;"">ID Studenta:</labe");
+                WriteLiteral(@"l></div>
         <div class=""col"" style=""width: 450px;""><input class=""border rounded"" type=""text"" style=""margin: 22px 0px;width: 350px;""></div>
         <div class=""col"" style=""width: 350px;""><button class=""btn btn-primary"" type=""button"" style=""margin: 18px 0px 0px 0px;width: 300px;"">Provjeri ID</button></div>
     </div>
@@ -74,14 +120,14 @@ using StudentskiDom.Models;
         <div class=""row"" style=""width: 1100px;"">
             <div class=""col"" style=""width:500px"">
                 <div class=""table-responsive table-borderless text-center text-body"" style=""width: 450px;margin: 40px;"">
-                    <table clas");
-            WriteLiteral(@"s=""table table-bordered table-sm"">
+                    <table class=""table table-bordered table-sm"">
                         <thead class=""border-secondary"" style=""color: rgb(30,129,228);font-size: 17px;"">
                             <tr>
                                 <th style=""color: rgb(18,124,230);font-size: 17px;"">Osnovni podaci</th>
                             </tr>
                         </thead>
-                        <tbody style=""width: 500px;"">
+                        <tbody style=""widt");
+                WriteLiteral(@"h: 500px;"">
                             <tr>
                                 <td style=""width: 200px;color: rgb(248,250,251);"">Ime:</td>
                                 <td>text</td>
@@ -94,8 +140,7 @@ using StudentskiDom.Models;
                                 <td style=""color: rgb(248,250,251);"">Fakultet:</td>
                                 <td>Text</td>
                             </tr>
-         ");
-            WriteLiteral(@"                   <tr>
+                            <tr>
                                 <td style=""color: rgb(248,250,251);"">Kanton:</td>
                                 <td>Text</td>
                             </tr>
@@ -103,7 +148,8 @@ using StudentskiDom.Models;
                                 <td style=""color: rgb(248,250,251);"">Soba:</td>
                                 <td>Text</td>
                             </tr>
-                        </tbody>
+     ");
+                WriteLiteral(@"                   </tbody>
                     </table>
                 </div>
             </div>
@@ -113,8 +159,7 @@ using StudentskiDom.Models;
                         <thead class=""border-secondary"" style=""color: rgb(30,129,228);font-size: 17px;"">
                             <tr>
                                 <th style=""color: rgb(18,124,230);font-size: 17px;"">Neuplaćeni mjeseci</th>
-                          ");
-            WriteLiteral(@"  </tr>
+                            </tr>
                         </thead>
                         <tbody style=""width: 500px;"">
                             <tr>
@@ -122,7 +167,8 @@ using StudentskiDom.Models;
                                 <td>text</td>
                             </tr>
                             <tr>
-                                <td style=""color: rgb(248,250,251);""></td>
+                                <td style=""color: rgb(2");
+                WriteLiteral(@"48,250,251);""></td>
                                 <td>text</td>
                             </tr>
                             <tr>
@@ -135,8 +181,7 @@ using StudentskiDom.Models;
                             </tr>
                             <tr>
                                 <td style=""color: rgb(248,250,251);""></td>
-                                <td");
-            WriteLiteral(@">text</td>
+                                <td>text</td>
                             </tr>
                         </tbody>
                     </table>
@@ -146,9 +191,20 @@ using StudentskiDom.Models;
     </div>
     <script src=""assets/js/jquery.min.js""></script>
     <script src=""assets/bootstrap/js/bootstrap.min.js""></script>
-</body>
-
-</html>");
+");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n</html>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

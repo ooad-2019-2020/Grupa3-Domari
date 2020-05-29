@@ -30,21 +30,54 @@ using StudentskiDom.Models;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8e410ba33bd577e25e300ef3e44af039cd8b56ee", @"/Views/_ViewImports.cshtml")]
     public class Views_Zahtjev_StudentskaKartica : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
+        #line hidden
+        #pragma warning disable 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        #pragma warning restore 0649
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            WriteLiteral(@"<!DOCTYPE html>
-<html>
-
-<head>
+            WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a919b482b46fd6c4726ca7aaf0f662548b17e01e3352", async() => {
+                WriteLiteral(@"
     <meta charset=""utf-8"">
     <meta name=""viewport"" content=""width=device-width, initial-scale=1.0, shrink-to-fit=no"">
     <title>studentskakarticaview</title>
     <link rel=""stylesheet"" href=""assets/bootstrap/css/bootstrap.min.css"">
     <link rel=""stylesheet"" href=""assets/css/styles.css"">
-</head>
-
-<body>
+");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a919b482b46fd6c4726ca7aaf0f662548b17e01e4632", async() => {
+                WriteLiteral(@"
     <div style=""width: 650px;height: 70px;margin: 47px;"">
         <h1 style=""font-size: 50px;font-family: cooper;width: 600px;"">PREGLED KARTICE</h1>
     </div>
@@ -55,14 +88,14 @@ using StudentskiDom.Models;
                     <div class=""row"">
                         <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 130px;"">STUDENTSKI DOM</label></div>
                     </div>
-                    <");
-            WriteLiteral(@"div class=""row"">
+                    <div class=""row"">
                         <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 155px;"">2019/2020</label></div>
                     </div>
                     <div class=""row"">
                         <div class=""col"">
                             <div class=""row"">
-                                <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 70px;"">Soba</label></div>
+                                <div class=");
+                WriteLiteral(@"""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 70px;"">Soba</label></div>
                             </div>
                             <div class=""row"">
                                 <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 83px;"">1</label></div>
@@ -72,14 +105,14 @@ using StudentskiDom.Models;
                             <div class=""row"">
                                 <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 70px;"">Paviljon</label></div>
                             </div>
-                            <div class=""r");
-            WriteLiteral(@"ow"">
+                            <div class=""row"">
                                 <div class=""col""><label class=""col-form-label"" style=""margin: 0px 0px 0px 90px;"">1</label></div>
                             </div>
                         </div>
                     </div>
                     <div class=""row"">
-                        <div class=""col"" style=""margin: 25px 0px 0px 0px;""><label class=""col-form-label"">Ime</label></div>
+                        <div class=""col"" style=""margin: 25px 0px 0px 0px;""><la");
+                WriteLiteral(@"bel class=""col-form-label"">Ime</label></div>
                     </div>
                     <div class=""row"">
                         <div class=""col""><label class=""col-form-label text-center border rounded border-secondary"" style=""width: 380px;height: 35px;font-size: 15px;"">TARIK</label></div>
@@ -88,15 +121,15 @@ using StudentskiDom.Models;
                         <div class=""col""><label class=""col-form-label"">Prezime</label></div>
                     </div>
                     <div class=""row"">
-                        <div class=""col""><label class=""col-form-label text-center border rounded border-secondary"" style=""width: 380px;height: 35px");
-            WriteLiteral(@";font-size: 15px;"">MEHULIĆ</label></div>
+                        <div class=""col""><label class=""col-form-label text-center border rounded border-secondary"" style=""width: 380px;height: 35px;font-size: 15px;"">MEHULIĆ</label></div>
                     </div>
                 </div>
             </div>
             <div class=""col-lg-6"" style=""margin: 0px 0px 0px 0px;"">
                 <div class=""container"" style=""width: 260px;"">
                     <div class=""row"">
-                        <div class=""col""><img style=""width: 200px;height: 160px;margin: 15px 0px 0px 10px;""></div>
+                        <div class=""col""><img style=""width: 200p");
+                WriteLiteral(@"x;height: 160px;margin: 15px 0px 0px 10px;""></div>
                     </div>
                     <div class=""row"">
                         <div class=""col"" style=""height: 38px;""><label class=""col-form-label text-center"" style=""width: 250px;margin: 0px 0px 0px -10px;"">ID</label></div>
@@ -105,13 +138,13 @@ using StudentskiDom.Models;
                         <div class=""col text-center"" style=""height: 38px;""><label class=""col-form-label border rounded border-secondary"" style=""width: 250px;margin: 0px 0px 0px -10px;height: 35px;"">Label</label></div>
                     </div>
                     <div class=""row"">
-                        <div cla");
-            WriteLiteral(@"ss=""col"">
+                        <div class=""col"">
                             <div class=""row"">
                                 <div class=""col""><label class=""col-form-label text-center"" style=""width: 95px;"">Fakultet</label></div>
                             </div>
                             <div class=""row"">
-                                <div class=""col""><label class=""col-form-label text-center border rounded border-secondary"" style=""width: 95px;"">Label</label></div>
+                                <div class=""col""><label class=""col-form-");
+                WriteLiteral(@"label text-center border rounded border-secondary"" style=""width: 95px;"">Label</label></div>
                             </div>
                         </div>
                         <div class=""col"">
@@ -121,8 +154,7 @@ using StudentskiDom.Models;
                             <div class=""row"">
                                 <div class=""col""><label class=""col-form-label text-center border rounded border-secondary"" style=""width: 95px;"">Label</label></div>
                             </div>
-      ");
-            WriteLiteral(@"                  </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,9 +162,19 @@ using StudentskiDom.Models;
     </div>
     <script src=""assets/js/jquery.min.js""></script>
     <script src=""assets/bootstrap/js/bootstrap.min.js""></script>
-</body>
-
-</html>");
+");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n\r\n</html>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
