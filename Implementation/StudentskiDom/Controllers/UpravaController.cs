@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using StudentskiDom.Models;
+using System.Configuration;
 
 namespace SD.Controllers
 {
@@ -158,6 +159,7 @@ namespace SD.Controllers
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
             Blagajna blagajna = _context.Blagajna.Find(1);
             ViewBag.Blagajna = blagajna;
+            ViewBag.mjeseci = new List<String>();
             if (StudentId == null)
             {
                 return View();
@@ -172,6 +174,7 @@ namespace SD.Controllers
                     ViewBag.Fakultet = null;
                     ViewBag.Kanton = null;
                     ViewBag.Soba = null;
+                    ViewBag.mjeseci = new List<String>();
                     return View();
                 }
                 else
@@ -185,6 +188,10 @@ namespace SD.Controllers
                     ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
                     ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
                     ViewBag.Soba = student.Soba.BrojSobe;
+
+                    // Trebaju biti mjeseci od studenta
+                    string[] mjeseci = { "Septembar", "Oktobar", "Novembar", "Decembar", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli" };
+                    ViewBag.mjeseci = mjeseci;
                     return View();
                 }
 
