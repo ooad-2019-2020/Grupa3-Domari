@@ -172,7 +172,6 @@ namespace SD.Controllers
             return View();
         }
 
-
         public IActionResult PregledZahtjeva()
         {
             ICollection<Zahtjev> zahtjevi = new Collection<Zahtjev>();
@@ -188,6 +187,35 @@ namespace SD.Controllers
                     zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaUpis.LicniPodaciId);
 
                     zahtjevi.Add(z);
+                }else if(z is ZahtjevZaCimeraj)
+                {
+                    ZahtjevZaCimeraj zahtjevZaCimeraj = z as ZahtjevZaCimeraj;
+
+                    zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
+                    zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
+                    zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+                    zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+
+                    zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+
+                    zahtjevZaCimeraj.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Student.LicniPodaciId);
+
+                    zahtjevi.Add(z);
+                }else if(z is ZahtjevZaPremjestanje)
+                {
+                    ZahtjevZaPremjestanje zahtjevZaPremjestanje = z as ZahtjevZaPremjestanje;
+
+                    zahtjevZaPremjestanje.Soba1 = _context.Soba.Find(zahtjevZaPremjestanje.Soba1Id);
+                    zahtjevZaPremjestanje.Soba2 = _context.Soba.Find(zahtjevZaPremjestanje.Soba2Id);
+
+                    zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
+                    zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
+
+                    zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+
+                    zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
+
+                    zahtjevi.Add(zahtjevZaPremjestanje);
                 }
 
                 
@@ -266,12 +294,82 @@ namespace SD.Controllers
             return RedirectToAction("PregledZahtjeva","Zahtjev");
         }
 
-        public IActionResult PregledPremjestanje()
+        public IActionResult PregledPremjestanje(int id)
         {
+            ZahtjevZaPremjestanje zahtjevZaPremjestanje = _context.ZahtjevZaPremjestanje.Find(id);
+
+            zahtjevZaPremjestanje.Soba1 = _context.Soba.Find(zahtjevZaPremjestanje.Soba1Id);
+            zahtjevZaPremjestanje.Soba2 = _context.Soba.Find(zahtjevZaPremjestanje.Soba2Id);
+            zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
+            zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
+
+            zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+
+            zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
+
+            ViewBag.ZahtjevZaPremjestanje = zahtjevZaPremjestanje;
+
             return View();
         }
 
-        public IActionResult PregledCimeraj()
+        public IActionResult OdobriPremjestanje(int id)
+        {
+            ZahtjevZaPremjestanje z = _context.ZahtjevZaPremjestanje.Find(id);
+
+            Student s = _context.Student.Find(z.Student.Id);
+
+            // Ostalo da implementiram
+
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
+        }
+
+        public IActionResult OdbijPremjestanje(int id)
+        {
+            Zahtjev zaBrisanje = _context.Zahtjev.Find(id);
+
+            _context.Zahtjev.Remove(zaBrisanje);
+            _context.SaveChanges();
+
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
+        }
+
+        public IActionResult PregledCimeraj(int id)
+        {
+            ZahtjevZaCimeraj zahtjevZaCimeraj = _context.ZahtjevZaCimeraj.Find(id);
+
+            zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
+            zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
+            zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+            zahtjevZaCimeraj.Cimer1.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Cimer1.LicniPodaciId);
+
+            zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+            zahtjevZaCimeraj.Cimer2.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Cimer2.LicniPodaciId);
+
+            zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+
+            zahtjevZaCimeraj.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Student.LicniPodaciId);
+
+            ViewBag.ZahtjevZaCimeraj = zahtjevZaCimeraj;
+
+            return View();
+        }
+
+        public IActionResult OdobriCimeraj(int id)
+        {
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
+        }
+
+        public IActionResult OdbijCimeraj(int id)
+        {
+            Zahtjev zaBrisanje = _context.Zahtjev.Find(id);
+
+            _context.Zahtjev.Remove(zaBrisanje);
+            _context.SaveChanges();
+
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
+        }
+
+        public IActionResult PregledNabavka(int id)
         {
             return View();
         }

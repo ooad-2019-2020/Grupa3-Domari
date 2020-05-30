@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    @using (Html.BeginForm("posaljiCimeraj", "Student", FormMethod.Post))
+    @using (Html.BeginForm("posaljiCimeraj", "Student", new { id = ViewBag.id }, FormMethod.Post))
     {
         <h1 class="text-center text-primary" style="font-style: normal;">Cimeraj</h1>
         <div>

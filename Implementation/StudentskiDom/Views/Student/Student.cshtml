@@ -67,10 +67,10 @@
         </div>
         <div class="row" style="height: 100px;">
             <div class="col text-center align-self-center">
-                <a class="text-primary">Podnesi zahtjev za premještanje</a>
+                <a href='@Url.Action("ZahtjevZaPremjestanje","Student", new { id = ViewBag.Id })' class="text-primary">Podnesi zahtjev za premještanje</a>
             </div>
             <div class="col align-self-center">
-                <a class="text-center text-primary">Popuni cimeraj</a>
+                <a href='@Url.Action("Cimeraj","Student", new { id = ViewBag.Id })' class="text-center text-primary">Popuni cimeraj</a>
             </div>
         </div>
     </div>

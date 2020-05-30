@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    @using (Html.BeginForm("posaljiZahtjevZaPremjestanje", "Student", FormMethod.Post))
+    @using (Html.BeginForm("posaljiZahtjevZaPremjestanje", "Student", new { id = ViewBag.id }, FormMethod.Post))
     {
         <h1 class="text-center text-primary" style="font-style: normal;">Zahtjev za premještanje</h1>
         <div>

@@ -18,7 +18,7 @@ namespace StudentskiDom.Models
         public DbSet<SkolovanjeInfo> SkolovanjeInfo { get; set; }
         public DbSet<ZahtjevZaUpis> ZahtjevZaUpis { get; set; }
         public DbSet<LicniPodaci> LicniPodaci { get; set; }
-        //public DbSet<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje { get; set; }
+        public DbSet<ZahtjevZaPremjestanje> ZahtjevZaPremjestanje { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Soba> Soba { get; set; }
         public DbSet<ZahtjevZaCimeraj> ZahtjevZaCimeraj { get; set; }
