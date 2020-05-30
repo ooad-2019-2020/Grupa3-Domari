@@ -24,8 +24,8 @@ namespace StudentskiDom.Controllers
         }
 
        
-        [Route("~/")]
-        [Route("/Home")]
+        //[Route("~/")]
+        //[Route("/Home")]
         public IActionResult Login()
         {
             //ova se prva pokrece
@@ -35,7 +35,7 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
-        [Route("/Home/obrazaczaupis")]
+        //[Route("/Home/obrazaczaupis")]
         public IActionResult ObrazacZaUpis()
         {
             return View();

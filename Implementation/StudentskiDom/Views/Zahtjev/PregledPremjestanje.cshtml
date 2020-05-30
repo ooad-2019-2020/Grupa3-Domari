@@ -20,19 +20,19 @@
                             <tbody>
                                 <tr style="height: 80px;">
                                     <td>Trenutni paviljon</td>
-                                    <td><label>LabelTrenutniPaviljon</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaPremjestanje.Paviljon1.Naziv</label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td>Trenutna soba</td>
-                                    <td><label>LabelTrenutnaSoba</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaPremjestanje.Soba1.BrojSobe</label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td>Novi paviljon<br><br></td>
-                                    <td><label>LabelNoviPaviljon</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaPremjestanje.Paviljon2.Naziv</label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td><label>Nova soba<br></label><br><br><br></td>
-                                    <td><label>LabelNovaSoba</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaPremjestanje.Soba1.BrojSobe</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -41,8 +41,8 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td style="width: 200px;"><button class="btn btn-primary" type="button" style="margin: 0px;width: 173px;margin-left: 0px;">Odobri premještanje</button></td>
-                                    <td><button class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button></td>
+                                    <td style="width: 200px;"><button onclick="window.location.href='@Url.Action("OdobriPremjestanje","Zahtjev", new { id = ViewBag.ZahtjevZaPremjestanje.ZahtjevId })'" class="btn btn-primary" type="button" style="margin: 0px;width: 173px;margin-left: 0px;">Odobri premještanje</button></td>
+                                    <td><button onclick="window.location.href='@Url.Action("OdbijPremjestanje","Zahtjev", new { id = ViewBag.ZahtjevZaPremjestanje.ZahtjevId })'" class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -56,7 +56,7 @@
                                     <td style="height: 80px;">Razlog premještanja</td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 264.4px;"><label>LabelRazlogPremjestanja</label></td>
+                                    <td style="height: 264.4px;"><label>@ViewBag.ZahtjevZaPremjestanje.RazlogPremjestanja</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -65,8 +65,8 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><button class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Pregled kartice</button></td>
-                                    <td><button class="btn btn-secondary" type="button" style="margin: 0px;width: 151px;margin-left: 0px;">Pregled podataka</button></td>
+                                    <td>Podnosilac zahtjeva:</td>
+                                    <td>@ViewBag.ZahtjevZaPremjestanje.Student.LicniPodaci.Prezime @ViewBag.ZahtjevZaPremjestanje.Student.LicniPodaci.Ime</td>
                                 </tr>
                             </tbody>
                         </table>

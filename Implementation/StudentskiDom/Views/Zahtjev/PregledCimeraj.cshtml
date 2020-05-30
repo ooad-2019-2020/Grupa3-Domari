@@ -20,19 +20,19 @@
                             <tbody>
                                 <tr style="height: 80px;">
                                     <td>Paviljon</td>
-                                    <td><label>LabelPaviljon</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaCimeraj.Paviljon.Naziv</label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td>Soba</td>
-                                    <td><label>LabelSoba</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaCimeraj.Soba.BrojSobe<label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td>Prvi cimer</td>
-                                    <td><label>LabelPrviCimer</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaCimeraj.Cimer1.LicniPodaci.Prezime @ViewBag.ZahtjevZaCimeraj.Cimer1.LicniPodaci.Ime</label></td>
                                 </tr>
                                 <tr style="height: 80px;">
                                     <td>Drugi cimer</td>
-                                    <td><label>LabelDrugiCimer</label></td>
+                                    <td><label>@ViewBag.ZahtjevZaCimeraj.Cimer2.LicniPodaci.Prezime @ViewBag.ZahtjevZaCimeraj.Cimer2.LicniPodaci.Ime</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -46,7 +46,7 @@
                                     <td style="height: 80px;">Dodatne napomene</td>
                                 </tr>
                                 <tr>
-                                    <td style="width: 469.6px;height: 239.4px;"><label>LabelDodatneNapomene</label></td>
+                                    <td style="width: 469.6px;height: 239.4px;"><label>@ViewBag.ZahtjevZaCimeraj.DodatneNapomene</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -62,8 +62,8 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td style="width: 200px;"><button class="btn btn-primary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odobri upis</button></td>
-                                                <td><button class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button></td>
+                                                <td style="width: 200px;"><button onclick="window.location.href='@Url.Action("OdobriCimeraj","Zahtjev")?id=' + @ViewBag.ZahtjevZaCimeraj.ZahtjevId" class="btn btn-primary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odobri zahtjev</button></td>
+                                                <td><button onclick="window.location.href='@Url.Action("OdbijCimeraj","Zahtjev")?id=' + @ViewBag.ZahtjevZaCimeraj.ZahtjevId" class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -74,8 +74,8 @@
                                     <table class="table">
                                         <tbody>
                                             <tr style="width: 427px;">
-                                                <td style="width: 240px;"><button class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Pregled kartice</button></td>
-                                                <td style="width: 240px;"><button class="btn btn-secondary" type="button" style="margin: 0px;width: 151px;margin-left: 0px;">Pregled podataka</button></td>
+                                                <td style="width: 240px;">Podnosilac zahtjeva:</td>
+                                                <td style="width: 240px;">@ViewBag.ZahtjevZaCimeraj.Student.LicniPodaci.Prezime @ViewBag.ZahtjevZaCimeraj.Student.LicniPodaci.Ime</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -149,7 +149,7 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
     
-        [Route("/uprava/{id}/blagajna")]
+        //[Route("/uprava/{id}/blagajna")]
         public IActionResult Blagajna(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
@@ -189,7 +189,7 @@ namespace SD.Controllers
             }
         }
 
-        [Route("/uprava/dashboard/{id}")]
+        //[Route("/uprava/dashboard/{id}")]
         public IActionResult Uprava()
         {
             //ovdje kreirati upravu
@@ -214,7 +214,7 @@ namespace SD.Controllers
           
         }
 
-        [Route("/uprava/{id}/listaStudenata")]
+        //[Route("/uprava/{id}/listaStudenata")]
         public IActionResult ListaStudenata()
         {
             List<Student> studenti = new List<Student>();

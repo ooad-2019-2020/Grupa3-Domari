@@ -172,8 +172,7 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("/student/{id}/cimeraj")]
-        public IActionResult Cimeraj()
+        public IActionResult Cimeraj(int id)
         {
             ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
             foreach(Paviljon p in _context.Paviljon)
@@ -188,15 +187,15 @@ namespace SD.Controllers
                 sobe.Add(s);
             }
             ViewBag.sobe = sobe;
+            ViewBag.id = id;
             
             return View();
         }
 
-        [Route("/student/dashboard/{id}")]
-        public IActionResult Student(int id)
+        public IActionResult Student(int ID)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student =_context.Korisnik.Find(id) as Student;
+            Student student =_context.Korisnik.Find(ID) as Student;
 
             student.Soba = _context.Soba.Find(student.SobaId);
             student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
@@ -204,9 +203,7 @@ namespace SD.Controllers
             student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
 
 
-
-
-
+            ViewBag.Id = ID;
             ViewBag.ImePrezime = student.LicniPodaci.Ime + " " + student.LicniPodaci.Prezime;
             ViewBag.BrojRucaka = student.BrojRucaka;
             ViewBag.BrojVecera = student.BrojVecera;
@@ -233,8 +230,8 @@ namespace SD.Controllers
             return View();
         }
 
-        [Route("/student/{id}/zahtjevzapremjestanje")]
-        public IActionResult ZahtjevZaPremjestanje()
+
+        public IActionResult ZahtjevZaPremjestanje(int id)
         {
             ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
             foreach (Paviljon p in _context.Paviljon)
@@ -249,11 +246,12 @@ namespace SD.Controllers
                 sobe.Add(s);
             }
             ViewBag.sobe = sobe;
+            ViewBag.id = id;
             return View();
         }
 
         [HttpPost]
-        public IActionResult posaljiCimeraj(IFormCollection forma)
+        public IActionResult posaljiCimeraj(IFormCollection forma, int id)
         {
             string paviljon = forma["dlPaviljon"];
             string soba = forma["dlSoba"];
@@ -271,15 +269,15 @@ namespace SD.Controllers
                 zahtjevZaCimeraj.Cimer2Id = Int32.Parse(cimer2);
             zahtjevZaCimeraj.DodatneNapomene = dodatneNapomene;
 
-            zahtjevZaCimeraj.StudentId = 1;
+            zahtjevZaCimeraj.StudentId = id;
 
             _context.Add(zahtjevZaCimeraj);
             _context.SaveChanges();
 
-            return RedirectToAction("Student", "Student");
+            return RedirectToAction("Student", "Student", new { ID = id });
         }
 
-        public IActionResult posaljiZahtjevZaPremjestanje(IFormCollection forma)
+        public IActionResult posaljiZahtjevZaPremjestanje(IFormCollection forma, int id)
         {
             string trenutniPaviljon = forma["dlTrenutniPaviljon"];
             string trenutnaSoba = forma["dlTrenutnaSoba"];
@@ -295,13 +293,13 @@ namespace SD.Controllers
             zahtjev.Soba2Id = Int32.Parse(novaSoba);
             zahtjev.RazlogPremjestanja = dodatneNapomene;
 
-            zahtjev.StudentId = 1;
+            zahtjev.StudentId = id;
 
             _context.Add(zahtjev);
             _context.SaveChanges();
 
 
-            return RedirectToAction("Student", "Student");
+            return RedirectToAction("Student", "Student", new { ID = id });
         }
 
         private bool StudentExists(int id)
