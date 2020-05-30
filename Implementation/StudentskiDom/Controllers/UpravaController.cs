@@ -17,6 +17,9 @@ namespace SD.Controllers
     public class UpravaController : Controller
     {
         private readonly StudentskiDomContext _context;
+        public static List<Student> studentiSoba;
+        public static List<Soba> sobe;
+        public static List<Paviljon> paviljoni;
 
         public UpravaController(StudentskiDomContext context)
         {
@@ -196,6 +199,30 @@ namespace SD.Controllers
             return View();
         }
 
+        public IActionResult SmjestajniKapacitet()
+        {
+            ViewBag.paviljoni = _context.Paviljon.ToList();
+            ViewBag.sobe = _context.Soba.ToList();
+
+            if (studentiSoba == null)
+            {
+                SetStudentsSoba(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
+            }
+            ViewBag.studentiSoba = studentiSoba;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DajKpacitet(IFormCollection forma)
+        {
+            int paviljonId = Int32.Parse(forma["dlPaviljon"]);
+            int sobaId = Int32.Parse(forma["dlSoba"]);
+
+            SetStudentsSoba(paviljonId, sobaId);
+
+            return RedirectToAction("SmjestajniKapacitet", "Uprava");
+        }
+
         [HttpPost]
         public ActionResult ProvjeriID(IFormCollection forma)
         {
@@ -227,7 +254,6 @@ namespace SD.Controllers
         [HttpPost]
         public IActionResult SortStudenti(IFormCollection forma)
         {
-            Debug.WriteLine("JOJOJOJOJSOJSODJSOJDSOJDOS" + "    " + forma["dlSort"]);
             if (forma["dlSort"].Equals("12"))
                 return RedirectToAction("ListaStudenataFakultetSort", "Uprava");
             else
@@ -236,7 +262,6 @@ namespace SD.Controllers
 
         public IActionResult ListaStudenataFakultetSort()
         {
-            Debug.WriteLine("Haj molim te");
             List<Student> studenti = GetStudents();
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
@@ -253,27 +278,6 @@ namespace SD.Controllers
             ViewBag.ListaStudenata = studenti;
 
             return View();
-        }
-
-        protected void dlSortAction(object sender, EventArgs e)
-        {
-            // LAFO JA NEKI LISTENER POKUSAO STAVITI
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-
-            List<Student> studenti = ViewBag.ListaStudenata;
-            
-            if(studenti.Count>1)
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
-            else
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
-            
-            ViewBag.ListaStudenata = studenti;
-            
-            RedirectToAction("ListaStudenata", "Uprava");
         }
 
         private bool UpravaExists(int id)
@@ -297,6 +301,34 @@ namespace SD.Controllers
             });
 
             return studenti;
+        }
+
+        private void SetStudentsSoba(int paviljonId, int sobaId)
+        {
+            List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
+            if (studentiSoba == null)
+                studentiSoba = new List<Student>();
+
+            studentiSoba.Clear();
+            korisnici.ForEach(k => {
+                Student s = k as Student;
+
+                if (s.SobaId == sobaId)
+                {
+                    s.Soba = _context.Soba.Find(s.SobaId);
+
+                    if (s.Soba.PaviljonId == paviljonId)
+                    {
+                        s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                        s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                        s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                        s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+
+                        studentiSoba.Add(s);
+                    }
+
+                }
+            });
         }
     }
 }

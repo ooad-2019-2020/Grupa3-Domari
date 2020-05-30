@@ -637,3 +637,4 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Uprava\ListaStudenataFakultetSort.cshtml.g.cs
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Uprava\ListaStudenataKantonSort.cshtml.g.cs
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Uprava\SmjestajniKapacitet.cshtml.g.cs
