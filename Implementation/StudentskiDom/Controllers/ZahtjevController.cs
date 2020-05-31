@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +13,16 @@ using StudentskiDom.Models;
 
 namespace SD.Controllers
 {
+    [Authorize(Roles ="Uprava")]
     public class ZahtjevController : Controller
     {
         private readonly StudentskiDomContext _context;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public ZahtjevController(StudentskiDomContext context)
+        public ZahtjevController(StudentskiDomContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            this.userManager = userManager;
         }
 
         // GET: Zahtjevs
@@ -240,7 +245,7 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult PrihvatiZahtjevZaUpis(int id)
+        public async Task<IActionResult> PrihvatiZahtjevZaUpis(int id)
         {
             Zahtjev z = _context.Zahtjev.Find(id);
 
@@ -254,7 +259,8 @@ namespace SD.Controllers
             Student student = new Student();
 
             student.Username = GenerisiUsernamePremaZahtjevu(zahtjevZaUpis);
-            student.Password = zahtjevZaUpis.LicniPodaci.Jmbg.ToString();
+            //student.Password = zahtjevZaUpis.LicniPodaci.Jmbg.ToString();
+            student.Password = student.Username + "123";
 
             student.BrojRucaka = 0;
             student.BrojVecera = 0;
@@ -264,12 +270,26 @@ namespace SD.Controllers
 
             student.Soba = NadjiSobu(student);
 
+            var user = new IdentityUser { UserName = student.Username };
+            var result = await userManager.CreateAsync(user, student.Password);
+            await userManager.AddToRoleAsync(user, "Student");
+
+
             _context.Student.Add(student);
             _context.SaveChanges();
+
+            
 
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
+        private async void DodajKorisnika(Student student)
+        {
+            var user = new IdentityUser { UserName = student.Username };
+            var result = await userManager.CreateAsync(user, student.Password);
+            await userManager.AddToRoleAsync(user, "Student");
+            //throw new NotImplementedException();
+        }
 
         public IActionResult OdbijZahtjev(int id)
         {

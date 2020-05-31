@@ -21,19 +21,7 @@ namespace StudentskiDom.Controllers
         private readonly StudentskiDomContext _context;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
-
-        //public HomeController(ILogger<HomeController> logger, StudentskiDomContext context)
-        //{
-        //    _logger = logger;
-        //    _context = context;
-
-        //}
-
-
-
-       
-        //[Route("~/")]
-        //[Route("/Home")]
+     
         [HttpGet]
         public IActionResult Login()
         {
@@ -41,7 +29,7 @@ namespace StudentskiDom.Controllers
             return View();
         }
 
-        [Route("/Home/obrazaczaupis")]
+       
         public IActionResult ObrazacZaUpis()
         {
             return View();
@@ -98,10 +86,11 @@ namespace StudentskiDom.Controllers
             return RedirectToAction("Login", "Home");
         }
 
-        public HomeController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager)
+        public HomeController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager, StudentskiDomContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _context = context;
         }
 
 
@@ -113,16 +102,30 @@ namespace StudentskiDom.Controllers
             {               
                var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
                 if (result.Succeeded)
-                {       
-                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    var user = await userManager.FindByNameAsync(model.Username);
+
+                    var roles = await userManager.GetRolesAsync(user);
+
+                    Korisnik korisnik = _context.Korisnik.FirstOrDefault(korisnik=>korisnik.Username==model.Username);
+
+                        /*NAPOMENA */
+                    /* Buduci da svaki tip korisnika ima samo jednu rolu, moguce je ovako testirati o kome se radi.
+                       U slucaju da dodje do promjene da korisnik ima vise rola, ovo je potrebno dodatno modifikovati */
+
+                    foreach (var role in roles)
                     {
-                        return Redirect(returnUrl);
+                        if (role == "Uprava")
+                        {
+                            return RedirectToAction("Uprava",new RouteValueDictionary(new { controller="Uprava", action="Uprava", id=korisnik.Id }));
+                        }else if(role == "Student")
+                        {
+                            return RedirectToAction("Student",new RouteValueDictionary(new { controller="Student", action="Student", id=korisnik.Id }));
+                        }else if(role == "Restoran")
+                        {
+                            return RedirectToAction("Restoran", "Restoran");
+                        }
                     }
-                    else
-                    {
-                        return RedirectToAction("Uprava", "Uprava");
-                    }
-                   
                 }
                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }           

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using StudentskiDom.Models;
 
 namespace SD.Controllers
 {
+    [Authorize(Roles = "Restoran")]
     public class RestoranController : Controller
     {
         private readonly StudentskiDomContext _context;
@@ -153,19 +155,19 @@ namespace SD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("/restoran/{id}/dnevniMeni")]
+        
         public IActionResult DnevniMeni()
         {
             return View();
         }
 
-        [Route("/restoran/dashboard/{id}")]
+        
         public IActionResult Restoran()
         {
             return View();
         }
 
-        [Route("/restoran/{id}/zahtjevZaNabavkuNamirnica")]
+        
         public IActionResult ZahtjevZaNabavkuNamirnica()
         {
             return View();

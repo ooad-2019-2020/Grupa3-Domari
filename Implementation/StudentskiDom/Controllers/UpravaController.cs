@@ -15,10 +15,14 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SD.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "Uprava")]
     public class UpravaController : Controller
     {
         private readonly StudentskiDomContext _context;
+        public static List<Student> studentiSoba;
+        public static List<Soba> sobe;
+        public static List<Paviljon> paviljoni;
 
         public UpravaController(StudentskiDomContext context)
         {
@@ -150,13 +154,14 @@ namespace SD.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-    
-        [Route("/uprava/{id}/blagajna")]
+
+
         public IActionResult Blagajna(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
             Blagajna blagajna = _context.Blagajna.Find(1);
             ViewBag.Blagajna = blagajna;
+            ViewBag.mjeseci = new List<String>();
             if (StudentId == null)
             {
                 return View();
@@ -171,6 +176,7 @@ namespace SD.Controllers
                     ViewBag.Fakultet = null;
                     ViewBag.Kanton = null;
                     ViewBag.Soba = null;
+                    ViewBag.mjeseci = new List<String>();
                     return View();
                 }
                 else
@@ -184,19 +190,48 @@ namespace SD.Controllers
                     ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
                     ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
                     ViewBag.Soba = student.Soba.BrojSobe;
+
+                    // Trebaju biti mjeseci od studenta
+                    string[] mjeseci = { "Septembar", "Oktobar", "Novembar", "Decembar", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli" };
+                    ViewBag.mjeseci = mjeseci;
                     return View();
                 }
-
-                
             }
         }
 
-        //[Route("/uprava/dashboard/{id}")]
-        public IActionResult Uprava()
+
+        public IActionResult Uprava(int? id)
         {
             //ovdje kreirati upravu
+            Uprava uprava = _context.Uprava.Find(id);
+            uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
             return View();
         }
+
+        public IActionResult SmjestajniKapacitet()
+        {
+            ViewBag.paviljoni = _context.Paviljon.ToList();
+            ViewBag.sobe = _context.Soba.ToList();
+
+            if (studentiSoba == null)
+            {
+                SetStudentsSoba(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
+            }
+            ViewBag.studentiSoba = studentiSoba;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DajKpacitet(IFormCollection forma)
+        {
+            int paviljonId = Int32.Parse(forma["dlPaviljon"]);
+            int sobaId = Int32.Parse(forma["dlSoba"]);
+
+            SetStudentsSoba(paviljonId, sobaId);
+
+            return RedirectToAction("SmjestajniKapacitet", "Uprava");
+        }
+
 
         [HttpPost]
         public ActionResult ProvjeriID(IFormCollection forma)
@@ -216,12 +251,55 @@ namespace SD.Controllers
           
         }
 
-        [Route("/uprava/{id}/listaStudenata")]
+
         public IActionResult ListaStudenata()
         {
-            List<Student> studenti = new List<Student>();
+            List<Student> studenti = GetStudents();
 
-            foreach(Korisnik k in _context.Korisnik.Where(k => k is Student)){
+            ViewBag.ListaStudenata = studenti;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SortStudenti(IFormCollection forma)
+        {
+            if (forma["dlSort"].Equals("12"))
+                return RedirectToAction("ListaStudenataFakultetSort", "Uprava");
+            else
+                return RedirectToAction("ListaStudenataKantonSort", "Uprava");
+        }
+
+        public IActionResult ListaStudenataFakultetSort()
+        {
+            List<Student> studenti = GetStudents();
+
+            studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
+            ViewBag.ListaStudenata = studenti;
+
+            return View();
+        }
+
+        public IActionResult ListaStudenataKantonSort()
+        {
+            List<Student> studenti = GetStudents();
+
+            studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
+            ViewBag.ListaStudenata = studenti;
+
+            return View();
+        }
+
+        private bool UpravaExists(int id)
+        {
+            return _context.Uprava.Any(e => e.Id == id);
+        }
+
+        private List<Student> GetStudents()
+        {
+            List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
+            List<Student> studenti = new List<Student>();
+            korisnici.ForEach(k => {
                 Student s = k as Student;
                 s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
                 s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
@@ -230,11 +308,37 @@ namespace SD.Controllers
                 s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
 
                 studenti.Add(s);
-            }
+            });
 
-            ViewBag.ListaStudenata = studenti;
+            return studenti;
+        }
 
-            return View();
+        private void SetStudentsSoba(int paviljonId, int sobaId)
+        {
+            List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
+            if (studentiSoba == null)
+                studentiSoba = new List<Student>();
+
+            studentiSoba.Clear();
+            korisnici.ForEach(k => {
+                Student s = k as Student;
+
+                if (s.SobaId == sobaId)
+                {
+                    s.Soba = _context.Soba.Find(s.SobaId);
+
+                    if (s.Soba.PaviljonId == paviljonId)
+                    {
+                        s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                        s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                        s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                        s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+
+                        studentiSoba.Add(s);
+                    }
+
+                }
+            });
         }
 
         protected void dlSortAction(object sender, EventArgs e)
@@ -257,10 +361,6 @@ namespace SD.Controllers
             
             RedirectToAction("ListaStudenata", "Uprava");
         }
-
-        private bool UpravaExists(int id)
-        {
-            return _context.Uprava.Any(e => e.Id == id);
-        }
+        
     }
 }
