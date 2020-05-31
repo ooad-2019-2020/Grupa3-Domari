@@ -395,7 +395,6 @@ C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\n
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.Views.pdb
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.dll
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.pdb
-C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Home\ObrazacZaUpis.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
@@ -626,3 +625,16 @@ C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\n
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledCimeraj.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledPremjestanje.cshtml.g.cs
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledUpis.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Azure.Amqp.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledNabavka.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs

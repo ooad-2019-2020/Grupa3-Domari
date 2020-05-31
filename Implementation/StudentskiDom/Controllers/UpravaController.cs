@@ -11,9 +11,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using StudentskiDom.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SD.Controllers
 {
+    [Authorize]
     public class UpravaController : Controller
     {
         private readonly StudentskiDomContext _context;
@@ -189,7 +191,7 @@ namespace SD.Controllers
             }
         }
 
-        [Route("/uprava/dashboard/{id}")]
+        //[Route("/uprava/dashboard/{id}")]
         public IActionResult Uprava()
         {
             //ovdje kreirati upravu

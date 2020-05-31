@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
 {
-    public class StudentskiDomContext : DbContext
+    public class StudentskiDomContext : IdentityDbContext
     {
         public StudentskiDomContext(DbContextOptions<StudentskiDomContext> options): base(options)
         {
@@ -60,6 +61,9 @@ namespace StudentskiDom.Models
             //modelBuilder.Entity<ZahtjevRestorana>().ToTable("ZahtjevRestorana");
             modelBuilder.Entity<Namirnica>().ToTable("Namirnica");
 
+
+            //dodano ovo za identity
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

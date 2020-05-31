@@ -8,30 +8,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
 using StudentskiDom.Models;
+using StudentskiDom.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudentskiDom.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly StudentskiDomContext _context;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public HomeController(ILogger<HomeController> logger, StudentskiDomContext context)
-        {
-            _logger = logger;
-            _context = context;
+        //public HomeController(ILogger<HomeController> logger, StudentskiDomContext context)
+        //{
+        //    _logger = logger;
+        //    _context = context;
 
-        }
+        //}
+
+
 
        
-        [Route("~/")]
-        [Route("/Home")]
+        //[Route("~/")]
+        //[Route("/Home")]
+        [HttpGet]
         public IActionResult Login()
         {
             //ova se prva pokrece
-
-
-
             return View();
         }
 
@@ -92,35 +98,42 @@ namespace StudentskiDom.Controllers
             return RedirectToAction("Login", "Home");
         }
 
-        [HttpPost]
-        public ActionResult LoginClick(IFormCollection forma)
+        public HomeController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager)
         {
-            string password = forma["fldPassword"];
-            string username = forma["fldUsername"];
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
 
-            var Korisnik = _context.Korisnik.FirstOrDefault(k => k.Username.Equals(username) && k.Password.Equals(password));
-            if (Korisnik != null)
-            { 
-                if(Korisnik is Student)
-                {
-                   return RedirectToAction("Student", new RouteValueDictionary(new { controller = "Student", action = "Student", id = Korisnik.Id }));
-                }else if(Korisnik is Uprava)
-                {
-                   return RedirectToAction("Uprava", new RouteValueDictionary(new { controller = "Uprava", action = "Uprava", id = Korisnik.Id }));
-                }else if(Korisnik is Restoran)
-                {
-                   return RedirectToAction("Restoran", new RouteValueDictionary(new { controller = "Restoran", action = "Restoran", id = Korisnik.Id }));
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {               
+               var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+                if (result.Succeeded)
+                {       
+                    if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Uprava", "Uprava");
+                    }
+                   
                 }
-                else
-                {
-                   return RedirectToAction("Login", "Home");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Home");
-            }
-                  
+               ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }           
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Home");
         }
 
 
