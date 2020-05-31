@@ -85,24 +85,16 @@
                         </thead>
                         <tbody style="width: 500px;">
                             <tr>
-                                <td style="width: 200px;color: rgb(248,250,251);"></td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td style="color: rgb(248,250,251);"></td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td style="color: rgb(248,250,251);"></td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td style="color: rgb(248,250,251);"></td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td style="color: rgb(248,250,251);"></td>
-                                <td>text</td>
+                                <td style="width: 200px;color: rgb(248,250,251);">
+                                    <select name="dlSort" style="width: 300px;margin-top: 20px;">
+                                        <optgroup label="Odaberite mjesec">
+                                            @foreach (var mjesec in ViewBag.mjeseci)
+                                            {
+                                                <option value=@mjesec >@mjesec</option>
+                                            }
+                                        </optgroup>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
