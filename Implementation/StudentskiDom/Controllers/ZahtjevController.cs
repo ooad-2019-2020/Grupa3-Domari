@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -264,6 +265,7 @@ namespace SD.Controllers
 
             student.BrojRucaka = 0;
             student.BrojVecera = 0;
+            
             student.LicniPodaci = zahtjevZaUpis.LicniPodaci;
             student.PrebivalisteInfo = zahtjevZaUpis.PrebivalisteInfo;
             student.SkolovanjeInfo = zahtjevZaUpis.SkolovanjeInfo;
@@ -275,8 +277,8 @@ namespace SD.Controllers
             await userManager.AddToRoleAsync(user, "Student");
 
 
-            _context.Student.Add(student);
-            _context.SaveChanges();
+            await _context.Student.AddAsync(student);
+            await _context.SaveChangesAsync();
 
             
 
@@ -293,20 +295,17 @@ namespace SD.Controllers
 
         public IActionResult OdbijZahtjev(int id)
         {
-            Zahtjev zaBrisanje = _context.Zahtjev.Find(id);
+            ZahtjevZaUpis zaBrisanje = _context.ZahtjevZaUpis.Find(id);
 
             _context.Zahtjev.Remove(zaBrisanje);
 
-            PrebivalisteInfo zaBrisanjeP = new PrebivalisteInfo();
-            zaBrisanjeP.PrebivalisteInfoId = zaBrisanjeP.PrebivalisteInfoId;
+            PrebivalisteInfo zaBrisanjeP = _context.PrebivalisteInfo.Find(zaBrisanje.PrebivalisteInfoId);
             _context.PrebivalisteInfo.Remove(zaBrisanjeP);
 
-            SkolovanjeInfo zaBrisanjeS = new SkolovanjeInfo("",0,0,0);
-            zaBrisanjeS.SkolovanjeInfoId = zaBrisanjeS.SkolovanjeInfoId;
+            SkolovanjeInfo zaBrisanjeS = _context.SkolovanjeInfo.Find(zaBrisanje.SkolovanjeInfoId);
             _context.SkolovanjeInfo.Remove(zaBrisanjeS);
 
-            LicniPodaci zaBrisanjeL = new LicniPodaci();
-            zaBrisanjeL.LicniPodaciId = zaBrisanjeL.LicniPodaciId;
+            LicniPodaci zaBrisanjeL = _context.LicniPodaci.Find(zaBrisanje.LicniPodaciId);
             _context.LicniPodaci.Remove(zaBrisanjeL);
 
             _context.SaveChanges();
@@ -336,9 +335,22 @@ namespace SD.Controllers
         {
             ZahtjevZaPremjestanje z = _context.ZahtjevZaPremjestanje.Find(id);
 
-            Student s = _context.Student.Find(z.Student.Id);
+            Student s = _context.Student.Find(z.StudentId);
 
-            // Ostalo da implementiram
+            Soba soba = _context.Soba.Find(z.Soba2Id);
+
+            List<Student> studentiUSobi = _context.Student.Where(s => s.SobaId == z.Soba2Id).ToList();
+
+            if(studentiUSobi.Count >= soba.Kapacitet)
+            {
+                throw new Exception("Nema mjesta u sobi u koju student želi da se premjeti");
+            }
+
+            _context.Zahtjev.Remove(z);
+
+            s.SobaId = z.Soba2Id;
+            _context.Student.Update(s);
+            _context.SaveChanges();
 
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
@@ -376,6 +388,96 @@ namespace SD.Controllers
 
         public IActionResult OdobriCimeraj(int id)
         {
+            ZahtjevZaCimeraj zahtjevZaCimeraj = _context.ZahtjevZaCimeraj.Find(id);
+
+            ZahtjevZaCimeraj zahtjevPrvogCimera = _context.ZahtjevZaCimeraj.FirstOrDefault(z => z.StudentId == zahtjevZaCimeraj.Cimer1Id); ;
+            ZahtjevZaCimeraj zahtjevDrugogCimera = _context.ZahtjevZaCimeraj.FirstOrDefault(z => z.StudentId == zahtjevZaCimeraj.Cimer2Id);
+
+            int potrebnoMjesta = 3;
+
+            if (zahtjevZaCimeraj.Cimer1Id == 0)
+            {
+                zahtjevPrvogCimera = zahtjevDrugogCimera;
+                zahtjevDrugogCimera = null;
+                potrebnoMjesta--;
+            }
+
+            if (zahtjevZaCimeraj.Cimer2Id == 0)
+            {
+                potrebnoMjesta--;
+            }
+
+            if (potrebnoMjesta == 1)
+            {
+                throw new Exception("Student nije naveo cimere");
+            }
+
+            if (zahtjevPrvogCimera == null || zahtjevZaCimeraj.Cimer2Id != 0 && zahtjevDrugogCimera == null)
+            {
+                throw new Exception("Svi cimeri moraju postati zahtjev za cimeraj");
+            }
+
+            if (potrebnoMjesta == 2)
+            {
+                if (zahtjevPrvogCimera.Cimer1Id == zahtjevZaCimeraj.StudentId || zahtjevPrvogCimera.Cimer2Id == zahtjevZaCimeraj.StudentId)
+                {
+                    provjeriSobe(zahtjevZaCimeraj, zahtjevPrvogCimera);
+                }
+                else
+                {
+                    throw new Exception("Svi cimeri moraju poslati zahtjev za cimeraj");
+                }
+            }
+            else
+            {
+                if((zahtjevZaCimeraj.StudentId == zahtjevPrvogCimera.Cimer1Id || zahtjevZaCimeraj.StudentId == zahtjevPrvogCimera.Cimer2Id) &&
+                    (zahtjevZaCimeraj.StudentId == zahtjevDrugogCimera.Cimer1Id || zahtjevZaCimeraj.StudentId == zahtjevDrugogCimera.Cimer2Id))
+                {
+                    provjeriSobe(zahtjevZaCimeraj, zahtjevPrvogCimera);
+                    provjeriSobe(zahtjevZaCimeraj, zahtjevDrugogCimera);
+                }
+                else
+                {
+                    throw new Exception("Svi cimeri moraju poslati zahtjev za cimeraj");
+                }
+            }
+
+            Soba soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
+
+            List<Student> studentiUSobi = _context.Student.Where(s => s.SobaId == soba.SobaId).ToList();
+
+            if (studentiUSobi.Count + potrebnoMjesta > soba.Kapacitet)
+            {
+                throw new Exception("Nema dovoljno mjesta u sobi u koju student sa cimerima želi da bude");
+            }
+
+            Student student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+            student.SobaId = soba.SobaId;
+            _context.Student.Update(student);
+
+            if (zahtjevZaCimeraj.Cimer1Id != 0)
+            {
+                Student student1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+                student1.SobaId = soba.SobaId;
+                _context.Student.Update(student1);
+            }
+
+            if (zahtjevZaCimeraj.Cimer2Id != 0)
+            {
+                Student student2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+                student2.SobaId = soba.SobaId;
+                _context.Student.Update(student2);
+            }
+
+            _context.Zahtjev.Remove(zahtjevZaCimeraj);
+            _context.Zahtjev.Remove(zahtjevPrvogCimera);
+            if(zahtjevDrugogCimera == null)
+            {
+                _context.Zahtjev.Remove(zahtjevDrugogCimera);
+            }
+
+            _context.SaveChanges();
+
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
@@ -392,6 +494,14 @@ namespace SD.Controllers
         public IActionResult PregledNabavka(int id)
         {
             return View();
+        }
+
+        private void provjeriSobe(ZahtjevZaCimeraj zahtjevZaCimeraj, ZahtjevZaCimeraj zahtjevPrvogCimera)
+        {
+            if(zahtjevZaCimeraj.PaviljonId != zahtjevPrvogCimera.PaviljonId || zahtjevZaCimeraj.SobaId != zahtjevPrvogCimera.SobaId)
+            {
+                throw new Exception("Sobe moraju biti iste u svim zahtjevima");
+            }
         }
 
         private Soba NadjiSobu(Student student)
@@ -417,11 +527,32 @@ namespace SD.Controllers
         {
             string korijen = z.LicniPodaci.Ime.Substring(0, 1).ToLower() + z.LicniPodaci.Prezime.ToLower();
 
+            StringBuilder builder = new StringBuilder(korijen);
+
+            for(int i=0; i<builder.Length; i++)
+            {
+                if (builder[i] == 'č' || builder[i] == 'ć')
+                {
+                    builder[i] = 'c';
+                }else if(builder[i] == 'š')
+                {
+                    builder[i] = 's';
+                }else if(builder[i] == 'ž')
+                {
+                    builder[i] = 'z';
+                }else if(builder[i] == 'đ')
+                {
+                    builder[i] = 'd';
+                }
+            }
+
+            korijen = builder.ToString();
+
             List<Student> studenti = _context.Student.ToList();
 
 
-            int i = 1;
-            string username = korijen + i;
+            int k = 1;
+            string username = korijen + k;
 
             while (true)
             {
@@ -441,8 +572,8 @@ namespace SD.Controllers
                 }
                 else
                 {
-                    i++;
-                    username = korijen + i;
+                    k++;
+                    username = korijen + k;
                 }
             }
 
