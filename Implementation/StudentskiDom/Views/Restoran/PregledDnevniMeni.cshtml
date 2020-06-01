@@ -46,28 +46,10 @@
         </div>
     </div>
     <div style="height: 200px;margin: 40px 0px 0px 0px;">
-        @using (Html.BeginForm("DodajRucakVeceru", "Restoran", FormMethod.Post))
-        {
-            <div class="row" style="width: 1100px;margin: 20px;">
-                <div class="col">
-                    <select name="dlJelo" style="height: 34px;width: 170px;margin: 0px 0px 0px -20px;">
-                        <optgroup label="Izaberite jelo">
-                            @foreach (Rucak r in ViewBag.jela)
-                            {
-                                <option value=@r.Naziv>@r.Naziv</option>
-                            }
-                        </optgroup>
-                    </select>
-                </div>
-                <div class="col"><button class="btn btn-primary" type="submit" name="dodaj" value="rucak" style="margin: 0px 0px 0px 0px;width: 120px;">Dodaj ručak</button></div>
-                <div class="col"><button class="btn btn-primary" type="submit" name="dodaj" value="vecera" style="margin: 0px 0px 0px 0px;width: 120px;">Dodaj večeru</button></div>
-                <div class="col"><button class="btn btn-primary" onclick="window.location.href='@Url.Action("IzbaciRucak", "Restoran")'" type="button" style="margin: 0px 0px 0px 0px;width: 120px;">Izbaci ručak</button></div>
-                <div class="col"><button class="btn btn-primary" onclick="window.location.href='@Url.Action("IzbaciVeceru", "Restoran")'" type="button" style="margin: 0px 0px 0px 0px;width: 120px;">Izbaci večeru</button></div>
-                <div class="col"><button class="btn btn-primary" onclick="window.location.href='@Url.Action("IzbaciSve", "Restoran")'" type="button" style="margin: 0px 0px 0px 0px;width: 120px;">Izbaci sve</button></div>
-                <div class="col"><button class="btn btn-primary" onclick="window.location.href='@Url.Action("Restoran", "Restoran")'" type="button" style="margin: 0px 0px 0px 0px;width: 120px;">Gotovo</button></div>
-            </div>
-        }
+        <div class="row" style="width: 1000px;margin: 20px;">
+            <div class="col"><button class="btn btn-primary" onclick="window.location.href='@Url.Action("Restoran", "Restoran")'" type="button" style="margin: 0px 0px 0px 430px;width: 200px;">Gotovo</button></div>
         </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

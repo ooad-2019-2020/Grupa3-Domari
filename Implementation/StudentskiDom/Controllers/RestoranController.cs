@@ -161,10 +161,81 @@ namespace SD.Controllers
         
         public IActionResult DnevniMeni()
         {
+            ViewBag.jela = _context.Rucak.Where(r => r.DnevniMeniId == 2);
+            ViewBag.rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1);
+            ViewBag.vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1);
             return View();
         }
 
-        
+        public IActionResult PregledDnevniMeni()
+        {
+            ViewBag.rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1);
+            ViewBag.vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DodajRucakVeceru(IFormCollection forma, string dodaj)
+        {
+            if (dodaj.Equals("rucak"))
+            {
+                return DodajRucak(forma["dlJelo"]);
+            }
+            else if(dodaj.Equals("vecera"))
+            {
+                return DodajVeceru(forma["dlJelo"]); 
+            }
+
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+        public IActionResult DodajRucak(string jelo)
+        {
+            Rucak rucak = new Rucak(jelo, 1);
+            _context.Rucak.Add(rucak);
+            _context.SaveChanges();
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+        public IActionResult DodajVeceru(string jelo)
+        {
+            Vecera vecera = new Vecera(jelo, 1);
+            _context.Vecera.Add(vecera);
+            _context.SaveChanges();
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+        public IActionResult IzbaciRucak()
+        {
+            Rucak rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1).ToList().FindLast(r => r.RucakId > 0);
+            if (rucak != null)
+            {
+                _context.Rucak.Remove(rucak);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+        public IActionResult IzbaciVeceru()
+        {
+            Vecera vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1).ToList().FindLast(v => v.VeceraId > 0);
+            if (vecera != null)
+            {
+                _context.Vecera.Remove(vecera);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+        public IActionResult IzbaciSve()
+        {
+            _context.Rucak.RemoveRange(_context.Rucak.Where(r => r.DnevniMeniId == 1));
+            _context.Vecera.RemoveRange(_context.Vecera.Where(v => v.DnevniMeniId == 1));
+            _context.SaveChanges();
+            return RedirectToAction("DnevniMeni", "Restoran");
+        }
+
+
         public IActionResult Restoran(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student

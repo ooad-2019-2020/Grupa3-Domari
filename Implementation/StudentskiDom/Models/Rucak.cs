@@ -15,10 +15,10 @@ namespace StudentskiDom.Models
         // Veze sa ostalim klasama
         public virtual DnevniMeni DnevniMeni { get; set; }
 
-        public Rucak(int rucakId, string naziv)
+        public Rucak(string naziv, int dnevniMeniId)
         {
-            RucakId = rucakId;
             Naziv = naziv;
+            DnevniMeniId = dnevniMeniId;
         }
 
     }

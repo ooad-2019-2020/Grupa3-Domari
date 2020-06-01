@@ -672,3 +672,4 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledNabavka.cshtml.g.cs
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledPremjestanje.cshtml.g.cs
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledUpis.cshtml.g.cs
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Restoran\PregledDnevniMeni.cshtml.g.cs
