@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using StudentskiDom.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Identity;
 
 namespace SD.Controllers
 {
@@ -23,6 +24,7 @@ namespace SD.Controllers
         public static List<Student> studentiSoba;
         public static List<Soba> sobe;
         public static List<Paviljon> paviljoni;
+        public static int IdTrenutnogStudenta = -1;
 
         public UpravaController(StudentskiDomContext context)
         {
@@ -191,12 +193,27 @@ namespace SD.Controllers
                     ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
                     ViewBag.Soba = student.Soba.BrojSobe;
 
-                    // Trebaju biti mjeseci od studenta
+                    // Trebaju biti mjeseci od studenta !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     string[] mjeseci = { "Septembar", "Oktobar", "Novembar", "Decembar", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli" };
                     ViewBag.mjeseci = mjeseci;
                     return View();
                 }
             }
+        }
+
+        [HttpPost]
+        public IActionResult UplatiMjesec(IFormCollection forma)
+        {
+            string mjesec = forma["dlMjesec"];
+            if(IdTrenutnogStudenta!=-1 && !mjesec.Equals(""))
+            {
+                // Ovdje treba studentu sa idom IdTrenutnogStudenta izbaciti neplaceni mjesec mjesec
+                // I azurirati budzet !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }
+
+            Debug.WriteLine("Hocel nekad nesta da se desi - "  + mjesec + " - " + IdTrenutnogStudenta);
+
+            return RedirectToAction("Blagajna", "Uprava");
         }
 
 
@@ -236,16 +253,23 @@ namespace SD.Controllers
         [HttpPost]
         public ActionResult ProvjeriID(IFormCollection forma)
         {
-            int id= Int32.Parse(forma["fldStudentId"].ToString());
+            if (forma["fldStudentId"].Equals(""))
+            {
+                IdTrenutnogStudenta = -1;
+                return RedirectToAction("Blagajna", "Uprava");
+            }
+            
+            
+            IdTrenutnogStudenta = Int32.Parse(forma["fldStudentId"].ToString());
             Korisnik student = null;
-            student = _context.Korisnik.Find(id);
+            student = _context.Korisnik.Find(IdTrenutnogStudenta);
             if (student == null)
             {
                 //error neki
             }
             else
             {
-                return RedirectToAction("Blagajna", "Uprava", new { StudentId = id });
+                return RedirectToAction("Blagajna", "Uprava", new { StudentId = IdTrenutnogStudenta });
             }
             return RedirectToAction("Blagajna", "Uprava");
           

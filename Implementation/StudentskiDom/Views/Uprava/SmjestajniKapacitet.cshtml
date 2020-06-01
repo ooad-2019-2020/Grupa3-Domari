@@ -18,7 +18,7 @@
             <optgroup label="Izaberite paviljon">
                 @foreach (var paviljon in ViewBag.paviljoni)
                 {
-                    <option value="@paviljon.PaviljonId" selected="">@paviljon.Naziv</option>
+                    <option value="@paviljon.PaviljonId" >@paviljon.Naziv</option>
                 }
             </optgroup>
         </select>
@@ -27,7 +27,7 @@
             <optgroup label="Izaberite sobu">
                 @foreach (var sobe in ViewBag.sobe)
                 {
-                    <option value="@sobe.SobaId" selected="">@sobe.BrojSobe</option>
+                    <option value="@sobe.SobaId" >@sobe.BrojSobe</option>
                 }
             </optgroup>
         </select>
