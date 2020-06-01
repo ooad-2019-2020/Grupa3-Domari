@@ -285,7 +285,7 @@ namespace SD.Controllers
             string trenutnaSoba = forma["dlTrenutnaSoba"];
             string noviPaviljon = forma["dlNoviPaviljon"];
             string novaSoba = forma["dlNovaSoba"];
-            string dodatneNapomene = forma["fldNpomene"];
+            string dodatneNapomene = forma["fldNapomene"];
 
             // Snimi zahtjev u bazu podataka
             ZahtjevZaPremjestanje zahtjev = new ZahtjevZaPremjestanje();
