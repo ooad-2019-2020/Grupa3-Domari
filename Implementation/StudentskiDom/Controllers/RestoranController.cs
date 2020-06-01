@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.EntityFrameworkCore;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
 {
-    [Authorize(Roles = "Restoran")]
+    //[Authorize(Roles = "Restoran")]
     public class RestoranController : Controller
     {
         private readonly StudentskiDomContext _context;
+        public static int IdTrenutnogStudenta = -1;
 
         private Restoran model { get; set; }
 
@@ -162,12 +165,99 @@ namespace SD.Controllers
         }
 
         
-        public IActionResult Restoran()
+        public IActionResult Restoran(int? StudentId)
         {
-            return View();
+            //naci blagajnu iz uprava id, a kao parametar nek se prima student
+            if (StudentId == null)
+            {
+                ViewBag.Ime = "Ime";
+                ViewBag.Prezime = "Prezime";
+                ViewBag.BrojRucaka = 0;
+                ViewBag.BrojVecera = 0;
+                return View();
+            }
+            else
+            {
+                Student student = _context.Korisnik.FirstOrDefault(k => k.Id == StudentId) as Student;
+                if (student == null)
+                {
+                    ViewBag.Ime = "Ime";
+                    ViewBag.Prezime = "Prezime";
+                    ViewBag.BrojRucaka = 0;
+                    ViewBag.BrojVecera = 0;
+                    return View();
+                }
+                else
+                {
+                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    ViewBag.Ime = student.LicniPodaci.Ime;
+                    ViewBag.Prezime = student.LicniPodaci.Prezime;
+                    ViewBag.BrojRucaka = student.BrojRucaka;
+                    ViewBag.BrojVecera = student.BrojVecera;
+
+                    return View();
+                }
+            }
         }
 
-        
+        public ActionResult SkiniRucak()
+        {
+            if(IdTrenutnogStudenta==-1)
+                return RedirectToAction("Restoran", "Restoran");
+
+            Student student = _context.Korisnik.Find(IdTrenutnogStudenta) as Student;
+            if (student.BrojRucaka == 0)
+                throw new Exception("Nedovoljno bonova");
+            student.BrojRucaka = student.BrojRucaka - 1;
+
+            _context.Student.Update(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Restoran", "Restoran", new { StudentId = IdTrenutnogStudenta });
+        }
+
+        public ActionResult SkiniVeceru()
+        {
+            if (IdTrenutnogStudenta == -1)
+                return RedirectToAction("Restoran", "Restoran");
+
+            Student student = _context.Korisnik.Find(IdTrenutnogStudenta) as Student;
+            if (student.BrojVecera == 0)
+                throw new Exception("Nedovoljno bonova");
+            student.BrojVecera = student.BrojVecera - 1;
+
+            _context.Student.Update(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Restoran", "Restoran", new { StudentId = IdTrenutnogStudenta });
+        }
+
+        [HttpPost]
+        public ActionResult ProvjeriID(IFormCollection forma)
+        {
+            if (forma["fldStudentId"].Equals(""))
+            {
+                IdTrenutnogStudenta = -1;
+                return RedirectToAction("Restoran", "Restoran");
+            }
+
+
+            IdTrenutnogStudenta = Int32.Parse(forma["fldStudentId"].ToString());
+            Korisnik student = null;
+            student = _context.Korisnik.Find(IdTrenutnogStudenta);
+            if (student == null)
+            {
+                //error neki
+            }
+            else
+            {
+                return RedirectToAction("Restoran", "Restoran", new { StudentId = IdTrenutnogStudenta });
+            }
+            return RedirectToAction("Restoran", "Restoran");
+
+        }
+
+
         public IActionResult ZahtjevZaNabavkuNamirnica()
         {
             return View();
