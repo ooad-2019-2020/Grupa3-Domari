@@ -28,8 +28,8 @@ namespace StudentskiDom.Models
         public virtual SkolovanjeInfo SkolovanjeInfo { get; set; }
         //public virtual Restoran Restoran { get; set; }
         public virtual Soba Soba { get; set; }
-
         public virtual ZahtjevStudenta ZahtjevStudenta { get; set; }
+        public virtual ICollection<Mjesec> Mjesec { get; set; }
 
         [InverseProperty("Cimer1")]
         public virtual ICollection<ZahtjevZaCimeraj> ZahtjevZaCimeraj1 { get; set; }
