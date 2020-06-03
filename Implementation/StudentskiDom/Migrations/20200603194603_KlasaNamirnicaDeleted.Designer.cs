@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentskiDom.Models;
 
 namespace StudentskiDom.Migrations
 {
     [DbContext(typeof(StudentskiDomContext))]
-    partial class StudentskiDomContextModelSnapshot : ModelSnapshot
+    [Migration("20200603194603_KlasaNamirnicaDeleted")]
+    partial class KlasaNamirnicaDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,26 +321,6 @@ namespace StudentskiDom.Migrations
                     b.HasKey("LicniPodaciId");
 
                     b.ToTable("LicniPodaci");
-                });
-
-            modelBuilder.Entity("StudentskiDom.Models.Mjesec", b =>
-                {
-                    b.Property<int>("MjesecId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Naziv")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MjesecId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Mjesec");
                 });
 
             modelBuilder.Entity("StudentskiDom.Models.Paviljon", b =>
@@ -795,15 +777,6 @@ namespace StudentskiDom.Migrations
                     b.HasOne("StudentskiDom.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
-                });
-
-            modelBuilder.Entity("StudentskiDom.Models.Mjesec", b =>
-                {
-                    b.HasOne("StudentskiDom.Models.Student", "Student")
-                        .WithMany("Mjesec")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("StudentskiDom.Models.Rucak", b =>

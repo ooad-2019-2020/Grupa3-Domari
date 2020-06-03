@@ -17,7 +17,6 @@ namespace StudentskiDom.Models
 
         // Veze sa ostalim klasama
         public virtual ICollection<StavkaNarudzbe> StavkeNadruzbe { get; set; }
-        public virtual ICollection<Namirnica> Namirnice { get; set; }
         public virtual Restoran Restoran { get; set; }
         //public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
 

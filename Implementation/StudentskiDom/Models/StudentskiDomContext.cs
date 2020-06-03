@@ -34,7 +34,6 @@ namespace StudentskiDom.Models
         public DbSet<Vecera> Vecera { get; set; }
         public DbSet<ZahtjevStudenta> ZahtjevStudenta { get; set; }
         public DbSet<ZahtjevRestorana> ZahtjevRestorana { get; set; }
-        public DbSet<Namirnica> Namirnica { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,7 +58,6 @@ namespace StudentskiDom.Models
             modelBuilder.Entity<Vecera>().ToTable("Vecera");
             //modelBuilder.Entity<ZahtjevStudenta>().ToTable("ZahtjevStudenta");
             //modelBuilder.Entity<ZahtjevRestorana>().ToTable("ZahtjevRestorana");
-            modelBuilder.Entity<Namirnica>().ToTable("Namirnica");
 
 
             //dodano ovo za identity
