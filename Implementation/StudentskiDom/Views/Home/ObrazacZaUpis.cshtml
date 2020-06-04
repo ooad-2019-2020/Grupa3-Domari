@@ -11,7 +11,7 @@
 
 <body>
     <h1 class="text-center text-primary" style="font-style: normal;">Obrazac Za Upis</h1>
-    @using (Html.BeginForm("PosaljiPrijavuAction", "Home", FormMethod.Post))
+    @using (Html.BeginForm("PosaljiPrijavuAction", "Home", FormMethod.Post, new {  enctype = "multipart/form-data"  } ))
     {
         <div>
             <div class="container text-left" style="width: 1000px;margin: 70px;">
@@ -56,7 +56,9 @@
                                                 <div class="controls">
                                                     <input id="uploadImage" type="file" name="file" tabindex="13" onchange="PreviewImage();" />
                                                 </div>                                               
-                                                <sub style="color: red;">Slika mora biti u 'jpeg' ili 'jpg' formatu!</sub>
+                                                <sub style="color: red;">Slika mora biti u</sub>
+                                                <br/>
+                                                <sub style ="color: red;">'jpeg', 'jpg' ili 'png' formatu!</sub>
                                             </div>
                                         </td>
                                     </tr>

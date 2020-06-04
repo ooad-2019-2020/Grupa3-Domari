@@ -165,6 +165,8 @@ namespace SD.Controllers
             ViewBag.Paviljon = "?";
             ViewBag.Ime = zahtjevZaUpis.LicniPodaci.Ime;
             ViewBag.Prezime = zahtjevZaUpis.LicniPodaci.Prezime;
+            ViewBag.Slika = zahtjevZaUpis.LicniPodaci.Slika;
+   
 
             string fakultet = DajSkracenicuZaFakultet(zahtjevZaUpis.SkolovanjeInfo.Fakultet);
             ViewBag.Fakultet = fakultet;
@@ -276,11 +278,15 @@ namespace SD.Controllers
             var result = await userManager.CreateAsync(user, student.Password);
             await userManager.AddToRoleAsync(user, "Student");
 
-
-            await _context.Student.AddAsync(student);
-            await _context.SaveChangesAsync();
-
-            
+            try
+            {
+                await _context.Student.AddAsync(student);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                return RedirectToAction("PregledZahtjeva", "Zahtjev");
+            }
 
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
