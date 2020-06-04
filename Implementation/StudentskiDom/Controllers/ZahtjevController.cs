@@ -224,6 +224,16 @@ namespace SD.Controllers
                     zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
 
                     zahtjevi.Add(zahtjevZaPremjestanje);
+                }else if(z is ZahtjevZaNabavkuNamirnica)
+                {
+                    ZahtjevZaNabavkuNamirnica zahtjevZaNabavkuNamirnica = z as ZahtjevZaNabavkuNamirnica;
+
+                    if(z.ZahtjevId == 39)
+                    {
+                        continue;
+                    }
+
+                    zahtjevi.Add(zahtjevZaNabavkuNamirnica);
                 }
 
                 
@@ -499,7 +509,43 @@ namespace SD.Controllers
 
         public IActionResult PregledNabavka(int id)
         {
+            ZahtjevZaNabavkuNamirnica zahtjevZaNabavkuNamirnica = _context.ZahtjevZaNabavkuNamirnica.Find(id);
+
+            zahtjevZaNabavkuNamirnica.StavkeNadruzbe = _context.StavkaNarudzbe.Where(sn => sn.ZahtjevZaNabavkuNamirnicaId == zahtjevZaNabavkuNamirnica.ZahtjevId).ToList();
+
+            ViewBag.ZahtjevZaNabavkuNamirnica = zahtjevZaNabavkuNamirnica;
+
             return View();
+        }
+
+        public IActionResult OdobriNamirnice(int id)
+        {
+            ZahtjevZaNabavkuNamirnica zahtjevZaNabavkuNamirnica = _context.ZahtjevZaNabavkuNamirnica.Find(id);
+
+            foreach (StavkaNarudzbe sn in _context.StavkaNarudzbe.Where(sn => sn.ZahtjevZaNabavkuNamirnicaId == zahtjevZaNabavkuNamirnica.ZahtjevId).ToList())
+            {
+                _context.StavkaNarudzbe.Remove(sn);
+            }
+
+            _context.ZahtjevZaNabavkuNamirnica.Remove(zahtjevZaNabavkuNamirnica);
+            _context.SaveChanges();
+
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
+        }
+
+        public IActionResult OdbijNamirnice(int id)
+        {
+            ZahtjevZaNabavkuNamirnica zahtjevZaNabavkuNamirnica = _context.ZahtjevZaNabavkuNamirnica.Find(id);
+
+            foreach(StavkaNarudzbe sn in _context.StavkaNarudzbe.Where(sn => sn.ZahtjevZaNabavkuNamirnicaId == zahtjevZaNabavkuNamirnica.ZahtjevId).ToList())
+            {
+                _context.StavkaNarudzbe.Remove(sn);
+            }
+
+            _context.ZahtjevZaNabavkuNamirnica.Remove(zahtjevZaNabavkuNamirnica);
+            _context.SaveChanges();
+
+            return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
         private void provjeriSobe(ZahtjevZaCimeraj zahtjevZaCimeraj, ZahtjevZaCimeraj zahtjevPrvogCimera)
