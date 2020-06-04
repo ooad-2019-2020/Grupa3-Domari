@@ -187,15 +187,13 @@ namespace SD.Controllers
                     student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
                     student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
                     student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    student.Mjesec = _context.Mjesec.Where(m => m.StudentId==student.Id).ToList();
                     ViewBag.Ime = student.LicniPodaci.Ime;
                     ViewBag.Prezime = student.LicniPodaci.Prezime;
                     ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
                     ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
                     ViewBag.Soba = student.Soba.BrojSobe;
-
-                    // Trebaju biti mjeseci od studenta !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    string[] mjeseci = { "Septembar", "Oktobar", "Novembar", "Decembar", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli" };
-                    ViewBag.mjeseci = mjeseci;
+                    ViewBag.mjeseci = student.Mjesec;
                     return View();
                 }
             }
@@ -207,8 +205,18 @@ namespace SD.Controllers
             string mjesec = forma["dlMjesec"];
             if(IdTrenutnogStudenta!=-1 && !mjesec.Equals(""))
             {
-                // Ovdje treba studentu sa idom IdTrenutnogStudenta izbaciti neplaceni mjesec mjesec
-                // I azurirati budzet !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
+                _context.Mjesec.Remove(m);
+
+                int dodajUBudzet = 158;
+                if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
+                    dodajUBudzet /= 2;
+
+                Blagajna blagajna = _context.Blagajna.FirstOrDefault();
+                blagajna.StanjeBudgeta += dodajUBudzet;
+
+                _context.Blagajna.Update(blagajna);
+                _context.SaveChanges();
             }
 
             Debug.WriteLine("Hocel nekad nesta da se desi - "  + mjesec + " - " + IdTrenutnogStudenta);

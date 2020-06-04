@@ -91,9 +91,9 @@
         color: rgb(248,250,251);">
                                         <select name="dlMjesec" style="width: 300px;margin-top: 20px;">
                                             <optgroup label="Odaberite mjesec">
-                                                @foreach (var mjesec in ViewBag.mjeseci)
+                                                @foreach (Mjesec m in ViewBag.mjeseci)
                                                 {
-                                                    <option value=@mjesec>@mjesec</option>
+                                                    <option value=@m.MjesecId>@m.Naziv</option>
                                                 }
                                             </optgroup>
                                         </select>
