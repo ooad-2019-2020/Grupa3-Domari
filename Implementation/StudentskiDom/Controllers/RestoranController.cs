@@ -249,6 +249,7 @@ namespace SD.Controllers
                 ViewBag.Prezime = "Prezime";
                 ViewBag.BrojRucaka = 0;
                 ViewBag.BrojVecera = 0;
+                ViewBag.Slika = "blank.jpg";
                 return View();
             }
             else
@@ -260,6 +261,7 @@ namespace SD.Controllers
                     ViewBag.Prezime = "Prezime";
                     ViewBag.BrojRucaka = 0;
                     ViewBag.BrojVecera = 0;
+                    ViewBag.Slika = "blank.jpg";
                     return View();
                 }
                 else
@@ -269,6 +271,7 @@ namespace SD.Controllers
                     ViewBag.Prezime = student.LicniPodaci.Prezime;
                     ViewBag.BrojRucaka = student.BrojRucaka;
                     ViewBag.BrojVecera = student.BrojVecera;
+                    ViewBag.Slika = student.LicniPodaci.Slika;
 
                     return View();
                 }

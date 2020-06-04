@@ -214,20 +214,7 @@ namespace SD.Controllers
             ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
             ViewBag.JMBG = student.LicniPodaci.Jmbg;
             ViewBag.BrojSobe = student.Soba.BrojSobe;
-
-            //FALI GORE I SLIKA DA SE DOBAVI I DODA U CSHTML!!!
-
-            //string ime = "Tarik";
-            //string prezime = "Mehulić";
-            //ViewBag.ImePrezime = ime + " " + prezime;
-            //ViewBag.BrojRucaka = 15;
-            //ViewBag.BrojVecera = 15;
-            //DateTime datum = DateTime.Now;
-            //ViewBag.DatumRodjenja = datum.ToShortDateString();
-            //ViewBag.MjestoRodjenja = "Travnik";
-            //ViewBag.Fakultet = "ETF";
-            //ViewBag.JMBG = 123456789;
-            //ViewBag.BrojSobe = 305;
+            ViewBag.Slika = student.LicniPodaci.Slika;
 
             return View();
         }
