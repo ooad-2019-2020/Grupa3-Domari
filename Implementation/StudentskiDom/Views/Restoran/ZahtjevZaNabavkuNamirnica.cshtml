@@ -18,27 +18,39 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr style="height: 80px;">
-                                    <td>Namirnica</td>
-                                    <td style="width: 250px;"><select style="width: 225px;height: 30px;"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td><label>Količina<br></label></td>
-                                    <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><input type="number" style="width: 250px;"></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td><br><br></td>
-                                    <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><button class="btn btn-secondary" type="button" style="width: 100px;">&gt;&gt;</button></td>
-                                </tr>
-                                <tr style="height: 80px;">
-                                    <td style="height: 55px;"><br><button class="btn btn-secondary" type="button" style="width: 150px;margin-top: -40px;margin-left: 20px;">Izbaci sve iz liste</button><br><br></td>
-                                    <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><button class="btn btn-secondary d-xl-flex justify-content-xl-start" type="button" style="width: 100px;padding-left: 38px;">&lt;&lt;</button></td>
-                                </tr>
-                                <tr style="height: 150px;">
-                                    <td class="d-xl-flex justify-content-xl-start"><button class="btn btn-primary" type="button" style="margin: 20px;width: 150px;">Pošalji zahtjev</button></td>
-                                    <td style="width: 250px;"><button class="btn btn-secondary" type="button" style="margin: 20px;width: 150px;">Odbaci zahtjev</button></td>
-                                </tr>
-                            </tbody>
+                                @using (Html.BeginForm("DodajStavkuNarudzbe", "Restoran", FormMethod.Post))
+                                {
+                                    <tr style="height: 80px;">
+                                        <td>Namirnica</td>
+                                        <td style="width: 250px;">
+                                            <select name="dlStavkeNarudzbe" style="width: 225px;height: 30px;">
+                                                <optgroup label="Izaberite namirnicu">
+                                                    @foreach (StavkaNarudzbe sn in ViewBag.Namirnice)
+                                                    {
+                                                        <option value=@sn.StavkaNarudzbeId>@sn.Namirnica (@sn.MjernaJedinica)</option>
+                                                    }
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 80px;">
+                                        <td><label>Količina<br></label></td>
+                                        <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><input type="number" name="fldKolicina" style="width: 250px;"></td>
+                                    </tr>
+                                    <tr style="height: 80px;">
+                                        <td><br><br></td>
+                                        <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><button class="btn btn-secondary" type="submit" style="width: 100px;">&gt;&gt;</button></td>
+                                    </tr>
+                                }
+                                    <tr style="height: 80px;">
+                                        <td style="height: 55px;"><br><button class="btn btn-secondary" onclick="window.location.href='@Url.Action("ObrisiStavkeNarudzbe", "Restoran")'" type="button" style="width: 150px;margin-top: -40px;margin-left: 20px;">Izbaci sve iz liste</button><br><br></td>
+                                        <td class="d-xl-flex justify-content-xl-end" style="width: 250px;"><button onclick="window.location.href='@Url.Action("ObrisiStavkuNarudzbe", "Restoran")'" class="btn btn-secondary d-xl-flex justify-content-xl-start" type="button" style="width: 100px;padding-left: 38px;">&lt;&lt;</button></td>
+                                    </tr>
+                                    <tr style="height: 150px;">
+                                        <td class="d-xl-flex justify-content-xl-start"><button onclick="window.location.href='@Url.Action("PosaljiZahtjevZaNabavkuNamirnica", "Restoran")'" class="btn btn-primary" type="button" style="margin: 20px;width: 150px;">Pošalji zahtjev</button></td>
+                                        <td style="width: 250px;"><button onclick="window.location.href='@Url.Action("OdbaciZahtjevZaNabavkuNamirnica", "Restoran")'" class="btn btn-secondary" type="button" style="margin: 20px;width: 150px;">Odbaci zahtjev</button></td>
+                                    </tr>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -52,10 +64,10 @@
                                 <tr>
                                     <td>
                                         <ul class="list-group">
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
+                                            @foreach (StavkaNarudzbe sn in ViewBag.Stavke)
+                                            {
+                                                <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">@sn.Namirnica</span><span class="d-xl-flex justify-content-xl-end">@sn.Kolicina @sn.MjernaJedinica</span></li>
+                                            }
                                         </ul>
                                     </td>
                                 </tr>

@@ -13,11 +13,8 @@ namespace StudentskiDom.Models
 
         // Baza
 
-        public int RestoranId { get; set; }
-
         // Veze sa ostalim klasama
         public virtual ICollection<StavkaNarudzbe> StavkeNadruzbe { get; set; }
-        public virtual Restoran Restoran { get; set; }
         //public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
 
         public ZahtjevZaNabavkuNamirnica()

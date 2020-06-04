@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,9 @@ namespace SD.Controllers
     {
         private readonly StudentskiDomContext _context;
         public static int IdTrenutnogStudenta = -1;
+
+        public static List<StavkaNarudzbe> StavkeNarudzbe = new List<StavkaNarudzbe>();
+        public static List<StavkaNarudzbe> Namirnice;
 
         private Restoran model { get; set; }
 
@@ -331,7 +335,66 @@ namespace SD.Controllers
 
         public IActionResult ZahtjevZaNabavkuNamirnica()
         {
+            if(Namirnice==null)
+                Namirnice = _context.StavkaNarudzbe.Where(sn => sn.ZahtjevZaNabavkuNamirnicaId==39).ToList();
+            ViewBag.Namirnice = Namirnice;
+            ViewBag.Stavke = StavkeNarudzbe;
             return View();
+        }
+
+        public IActionResult DodajStavkuNarudzbe(IFormCollection forma)
+        {
+            if (!string.IsNullOrEmpty(forma["fldKolicina"]))
+            {
+                StavkaNarudzbe sn = _context.StavkaNarudzbe.Find(Int32.Parse(forma["dlStavkeNarudzbe"]));
+                sn.Kolicina = Int32.Parse(forma["fldKolicina"]);
+                sn.StavkaNarudzbeId = 0;
+
+                StavkeNarudzbe.Add(sn);
+            }
+
+            return RedirectToAction("ZahtjevZaNabavkuNamirnica", "Restoran");
+        }
+
+        public IActionResult ObrisiStavkuNarudzbe(IFormCollection forma)
+        {
+            if(StavkeNarudzbe.Count != 0)
+                StavkeNarudzbe.RemoveAt(StavkeNarudzbe.Count() - 1);
+            
+            return RedirectToAction("ZahtjevZaNabavkuNamirnica", "Restoran");
+        }
+
+        public IActionResult PosaljiZahtjevZaNabavkuNamirnica()
+        {
+            ZahtjevZaNabavkuNamirnica zahtjev = new ZahtjevZaNabavkuNamirnica();
+            // Mozda bolje ovdje staviti ovo model, ali ne znam jel fino implementirano
+            zahtjev.RestoranId = _context.Korisnik.FirstOrDefault(k => k is Restoran).Id;
+            //zahtjev.StavkeNadruzbe = StavkeNarudzbe;
+                
+            _context.ZahtjevZaNabavkuNamirnica.Add(zahtjev);
+            _context.SaveChanges();
+            foreach (StavkaNarudzbe sn in StavkeNarudzbe)
+            {
+                sn.ZahtjevZaNabavkuNamirnica = zahtjev;
+                sn.ZahtjevZaNabavkuNamirnicaId = zahtjev.ZahtjevId;
+                _context.StavkaNarudzbe.Add(sn);
+            }
+            //_context.ZahtjevZaNabavkuNamirnica.Add(zahtjev);
+            _context.SaveChanges();
+
+            return RedirectToAction("Restoran", "Restoran");
+        }
+
+        public IActionResult OdbaciZahtjevZaNabavkuNamirnica()
+        {
+            StavkeNarudzbe.Clear();
+            return RedirectToAction("Restoran", "Restoran");
+        }
+
+        public IActionResult ObrisiStavkeNarudzbe()
+        {
+            StavkeNarudzbe.Clear();
+            return RedirectToAction("ZahtjevZaNabavkuNamirnica", "Restoran");
         }
 
         private bool RestoranExists(int id)
