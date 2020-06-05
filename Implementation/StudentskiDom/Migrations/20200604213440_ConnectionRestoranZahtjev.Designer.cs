@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentskiDom.Models;
 
 namespace StudentskiDom.Migrations
 {
     [DbContext(typeof(StudentskiDomContext))]
-    partial class StudentskiDomContextModelSnapshot : ModelSnapshot
+    [Migration("20200604213440_ConnectionRestoranZahtjev")]
+    partial class ConnectionRestoranZahtjev
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

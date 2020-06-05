@@ -10,6 +10,7 @@ namespace StudentskiDom.Models
         public int StavkaNarudzbeId { get; set; }
         public String Namirnica { get; set; }
         public double Kolicina { get; set; }
+        public string MjernaJedinica { get; set; }
 
         // Baza
         public int ZahtjevZaNabavkuNamirnicaId { get; set; }

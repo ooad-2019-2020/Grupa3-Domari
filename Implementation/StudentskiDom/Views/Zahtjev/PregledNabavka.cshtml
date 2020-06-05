@@ -24,10 +24,11 @@
                                 <tr>
                                     <td>
                                         <ul class="list-group">
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
-                                            <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">List Group Item 1</span><span class="d-xl-flex justify-content-xl-end">List Group Item 1</span></li>
+                                            @foreach (StavkaNarudzbe sn in ViewBag.ZahtjevZaNabavkuNamirnica.StavkeNadruzbe)
+                                            {
+                                                <li class="list-group-item"><span class="d-xl-flex justify-content-xl-start">@sn.Namirnica</span><span class="d-xl-flex justify-content-xl-end">@sn.Kolicina @sn.MjernaJedinica</span></li>
+                                            }
+
                                         </ul>
                                     </td>
                                 </tr>
@@ -43,11 +44,11 @@
                                     <td style="height: 80px;"></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center" style="height: 100px;"><button class="btn btn-primary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odobri nabavku</button></td>
+                                    <td class="text-center" style="height: 100px;"><button onclick="window.location.href='@Url.Action("OdobriNamirnice", "Zahtjev", new { id = ViewBag.ZahtjevZaNabavkuNamirnica.ZahtjevId })'" class="btn btn-primary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odobri nabavku</button></td>
                                 </tr>
                                 <tr style="height: 150px;">
                                     <td class="text-center">
-                                        <div class="btn-group" role="group"></div><button class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button>
+                                        <div class="btn-group" role="group"></div><button onclick="window.location.href='@Url.Action("OdbijNamirnice", "Zahtjev", new { id = ViewBag.ZahtjevZaNabavkuNamirnica.ZahtjevId })'" class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Odbij zahtjev</button>
                                     </td>
                                 </tr>
                             </tbody>

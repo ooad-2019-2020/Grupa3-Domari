@@ -21,7 +21,7 @@ namespace StudentskiDom.Models
         // Veze sa ostalim klasama
         //public virtual Student Student { get; set; }
         public virtual DnevniMeni DnevniMeni { get; set; }
-        public virtual ZahtjevRestorana ZahtjevRestorana { get; set; }
+        public virtual ICollection<ZahtjevRestorana> ZahtjevRestorana { get; set; }
         //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
         //public virtual Korisnik Korisnik { get; set; }
 

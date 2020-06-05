@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentskiDom.Models;
 
 namespace StudentskiDom.Migrations
 {
     [DbContext(typeof(StudentskiDomContext))]
-    partial class StudentskiDomContextModelSnapshot : ModelSnapshot
+    [Migration("20200604212012_DeleteResotranId")]
+    partial class DeleteResotranId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -609,7 +611,9 @@ namespace StudentskiDom.Migrations
                     b.Property<int>("RestoranId")
                         .HasColumnType("int");
 
-                    b.HasIndex("RestoranId");
+                    b.HasIndex("RestoranId")
+                        .IsUnique()
+                        .HasFilter("[RestoranId] IS NOT NULL");
 
                     b.HasDiscriminator().HasValue("ZahtjevRestorana");
                 });
@@ -906,8 +910,8 @@ namespace StudentskiDom.Migrations
             modelBuilder.Entity("StudentskiDom.Models.ZahtjevRestorana", b =>
                 {
                     b.HasOne("StudentskiDom.Models.Restoran", "Restoran")
-                        .WithMany("ZahtjevRestorana")
-                        .HasForeignKey("RestoranId")
+                        .WithOne("ZahtjevRestorana")
+                        .HasForeignKey("StudentskiDom.Models.ZahtjevRestorana", "RestoranId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

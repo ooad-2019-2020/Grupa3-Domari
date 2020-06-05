@@ -42,7 +42,7 @@ namespace StudentskiDom.Migrations
                     StavkaNarudzbeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Kolicina = table.Column<double>(nullable: false),
-                    ZahtjevZaNabavkuNamirnicaId = table.Column<int>(nullable: false),
+                    ZahtjevZaNabavkuNamirnicaId = table.Column<int>(nullable: true),
                     NamirnicaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
