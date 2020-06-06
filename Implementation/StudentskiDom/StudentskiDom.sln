@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentskiDom", "StudentskiDom.csproj", "{5733E72E-331B-4742-95F3-AF4ED6660A55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentskiDomAPI", "..\StudentskiDomAPI\StudentskiDomAPI.csproj", "{9D9665F9-0A8F-4802-9B2B-3A5A20EEAE0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5733E72E-331B-4742-95F3-AF4ED6660A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5733E72E-331B-4742-95F3-AF4ED6660A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5733E72E-331B-4742-95F3-AF4ED6660A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9665F9-0A8F-4802-9B2B-3A5A20EEAE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9665F9-0A8F-4802-9B2B-3A5A20EEAE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9665F9-0A8F-4802-9B2B-3A5A20EEAE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9665F9-0A8F-4802-9B2B-3A5A20EEAE0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

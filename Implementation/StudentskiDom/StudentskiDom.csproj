@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SD</RootNamespace>
     <AssemblyName>SD</AssemblyName>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

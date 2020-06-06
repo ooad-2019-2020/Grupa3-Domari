@@ -13,13 +13,17 @@ using Microsoft.VisualBasic;
 using StudentskiDom.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Identity;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace SD.Controllers
 {
-
+    
     [Authorize(Roles = "Uprava")]
     public class UpravaController : Controller
     {
+        private readonly string apiUrl = "https://studentskidomapi2020.azurewebsites.net";
         private readonly StudentskiDomContext _context;
         public static List<Student> studentiSoba;
         public static List<Soba> sobe;
@@ -284,9 +288,9 @@ namespace SD.Controllers
         }
 
 
-        public IActionResult ListaStudenata()
+        public async Task<IActionResult> ListaStudenata()
         {
-            List<Student> studenti = GetStudents();
+            List<Student> studenti = await GetStudentsAsync();
 
             ViewBag.ListaStudenata = studenti;
 
@@ -302,9 +306,9 @@ namespace SD.Controllers
                 return RedirectToAction("ListaStudenataKantonSort", "Uprava");
         }
 
-        public IActionResult ListaStudenataFakultetSort()
+        public async Task<IActionResult> ListaStudenataFakultetSort()
         {
-            List<Student> studenti = GetStudents();
+            List<Student> studenti = await GetStudentsAsync();
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
             ViewBag.ListaStudenata = studenti;
@@ -312,9 +316,9 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult ListaStudenataKantonSort()
+        public async Task<IActionResult> ListaStudenataKantonSortAsync()
         {
-            List<Student> studenti = GetStudents();
+            List<Student> studenti = await GetStudentsAsync();
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
             ViewBag.ListaStudenata = studenti;
@@ -327,20 +331,48 @@ namespace SD.Controllers
             return _context.Uprava.Any(e => e.Id == id);
         }
 
-        private List<Student> GetStudents()
+        private async Task<List<Student>> GetStudentsAsync()
         {
-            List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
-            List<Student> studenti = new List<Student>();
-            korisnici.ForEach(k => {
-                Student s = k as Student;
-                s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
-                s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
-                s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
-                s.Soba = _context.Soba.Find(s.SobaId);
-                s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+            //List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
+            //List<Student> studenti = new List<Student>();
+            //korisnici.ForEach(k => {
+            //    Student s = k as Student;
+            //    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+            //    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+            //    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+            //    s.Soba = _context.Soba.Find(s.SobaId);
+            //    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
 
-                studenti.Add(s);
-            });
+            //    studenti.Add(s);
+            //});
+            List<Student> studenti = new List<Student>();
+            
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("Uspješan");
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    studenti = JsonConvert.DeserializeObject<List<Student>>(response);
+                }
+                Debug.WriteLine(studenti.Count);
+                foreach(Student s in studenti)
+                {
+                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                    s.Soba = _context.Soba.Find(s.SobaId);
+                    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                }
+            }
 
             return studenti;
         }
