@@ -259,7 +259,7 @@ namespace SD.Controllers
         {
             Uprava uprava = _context.Uprava.Find(id);
             uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
-            UpravaId = (int)id;
+            UpravaId = (int) id;
             ViewBag.id = id;
             return View();
         }
@@ -268,6 +268,7 @@ namespace SD.Controllers
         {
             ViewBag.paviljoni = _context.Paviljon.ToList();
             ViewBag.sobe = _context.Soba.ToList();
+            ViewBag.id = UpravaId;
             if (studentiSoba == null)
             {
                 await SetStudentsSobaAsync(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
@@ -340,6 +341,7 @@ namespace SD.Controllers
             List<Student> studenti = await GetStudentsAsync();
 
             ViewBag.ListaStudenata = studenti;
+            ViewBag.id = UpravaId;
 
             return View();
         }
@@ -359,6 +361,7 @@ namespace SD.Controllers
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
             ViewBag.ListaStudenata = studenti;
+            ViewBag.id = UpravaId;
 
             return View();
         }
@@ -369,6 +372,7 @@ namespace SD.Controllers
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
             ViewBag.ListaStudenata = studenti;
+            ViewBag.id = UpravaId;
 
             return View();
         }

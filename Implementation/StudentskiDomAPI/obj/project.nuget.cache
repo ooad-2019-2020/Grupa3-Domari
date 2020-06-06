@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CUr5E2vh0/uJEOxlVr764vhS3//lcI1cORWhS3qESFoTyxK1h70CzpbnPG8tayPYSqAkNqgtdspRicRjzFb58Q==",
+  "dgSpecHash": "qmQx4jqa4Maedy8YczSMxebYNt+P7U1s3UI6bIKE3J71PdgK0LncqiRLmUSnOYrXyE+dH3zoEbYx2CUmpkdbMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nedo\\.nuget\\packages\\documentformat.openxml\\2.11.0\\documentformat.openxml.2.11.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",
@@ -159,6 +160,7 @@
     "C:\\Users\\Nedo\\.nuget\\packages\\system.io.compression.zipfile\\4.3.0\\system.io.compression.zipfile.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
