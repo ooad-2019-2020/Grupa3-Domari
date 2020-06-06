@@ -29,6 +29,7 @@ namespace SD.Controllers
         public static List<Soba> sobe;
         public static List<Paviljon> paviljoni;
         public static int IdTrenutnogStudenta = -1;
+        public static int UpravaId = 2;
 
         public UpravaController(StudentskiDomContext context)
         {
@@ -258,6 +259,8 @@ namespace SD.Controllers
         {
             Uprava uprava = _context.Uprava.Find(id);
             uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
+            UpravaId = (int)id;
+            ViewBag.id = id;
             return View();
         }
 
