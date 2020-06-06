@@ -207,6 +207,7 @@ namespace SD.Controllers
 
             ViewBag.Id = ID;
             ViewBag.ImePrezime = student.LicniPodaci.Ime + " " + student.LicniPodaci.Prezime;
+            ViewBag.Pol = student.LicniPodaci.Pol.ToString();
             ViewBag.BrojRucaka = student.BrojRucaka;
             ViewBag.BrojVecera = student.BrojVecera;
             ViewBag.DatumRodjenja = student.LicniPodaci.DatumRodjenja.ToShortDateString();

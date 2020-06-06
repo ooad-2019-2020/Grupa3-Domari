@@ -548,6 +548,19 @@ namespace SD.Controllers
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
+        public IActionResult PregledPodataka(int id)
+        {
+            ZahtjevZaUpis zahtjevZaUpis = _context.ZahtjevZaUpis.Find(id);
+
+            zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.FirstOrDefault(lp => lp.LicniPodaciId == zahtjevZaUpis.LicniPodaciId);
+
+            ViewBag.Id = id;
+            ViewBag.Username = GenerisiUsernamePremaZahtjevu(zahtjevZaUpis);
+            ViewBag.Password = ViewBag.Username + "123";
+
+            return View();
+        }
+
         private void provjeriSobe(ZahtjevZaCimeraj zahtjevZaCimeraj, ZahtjevZaCimeraj zahtjevPrvogCimera)
         {
             if(zahtjevZaCimeraj.PaviljonId != zahtjevPrvogCimera.PaviljonId || zahtjevZaCimeraj.SobaId != zahtjevPrvogCimera.SobaId)

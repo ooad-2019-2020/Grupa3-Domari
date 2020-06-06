@@ -736,3 +736,4 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledUpis.cshtml.g.cs
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledZahtjeva.cshtml.g.cs
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\StudentskaKartica.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledPodataka.cshtml.g.cs

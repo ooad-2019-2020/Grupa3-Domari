@@ -17,7 +17,15 @@
     <div class="container border rounded border-dark">
         <div class="row" style="height: 300px;margin-left: 0px;">
             <div class="col text-center" style="height: 110px;">
-                <h1 style="margin-top: 100px;">Dobro došao/la</h1>
+                @if ((ViewBag.Pol).Equals("Musko"))
+                {
+                    <h1 style="margin-top: 100px;">Dobro došao</h1>
+                }
+                else
+                {
+                    <h1 style="margin-top: 100px;">Dobro došla</h1>
+                }
+
                 <h1>@ViewBag.ImePrezime</h1>
             </div>
             <div class="col text-center"><img src="~/images/@ViewBag.Slika" style="width: 200px;height: 200px;margin-top: 50px;"></div>
@@ -40,6 +48,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td class="text-left">ID:</td>
+                                <td>@ViewBag.Id</td>
+                            </tr>
                             <tr>
                                 <td class="text-left">Datum rođenja:</td>
                                 <td>@ViewBag.DatumRodjenja</td>
@@ -65,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="height: 100px;">
+        <div class="row" style="height: 150px;">
             <div class="col text-center align-self-center">
                 <a href='@Url.Action("ZahtjevZaPremjestanje","Student", new { id = ViewBag.Id })' class="text-primary">Podnesi zahtjev za premještanje</a>
             </div>

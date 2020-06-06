@@ -103,7 +103,7 @@
                             <tbody>
                                 <tr>
                                     <td><button onclick="window.location.href='@Url.Action("StudentskaKartica","Zahtjev")?id=' + @(ViewBag.ZahtjevZaUpis.ZahtjevId)" class="btn btn-secondary" type="button" style="margin: 0px;width: 150px;margin-left: 0px;">Pregled kartice</button></td>
-                                    <td><button class="btn btn-secondary" type="button" style="margin: 0px;width: 151px;margin-left: 0px;">Pregled podataka</button></td>
+                                    <td><button onclick="window.location.href='@Url.Action("PregledPodataka","Zahtjev")?id=' + @(ViewBag.ZahtjevZaUpis.ZahtjevId)" id="btnclick" class="btn btn-secondary" type="button" style="margin: 0px;width: 151px;margin-left: 0px;">Pregled podataka</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -112,6 +112,7 @@
             </div>
         </div>
     </div>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
