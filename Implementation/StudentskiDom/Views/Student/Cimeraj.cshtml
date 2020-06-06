@@ -30,7 +30,7 @@
                                                 <optgroup label="Izaberite paviljon">
                                                     @foreach (var paviljon in ViewBag.paviljoni)
                                                     {
-                                                        <option value="@paviljon.PaviljonId" selected="">@paviljon.Naziv</option>
+                                                        <option value="@paviljon.PaviljonId" >@paviljon.Naziv</option>
                                                     }
                                                 </optgroup>
                                             </td>
@@ -41,19 +41,19 @@
                                                 <optgroup label="Izaberite sobu">
                                                     @foreach (var sobe in ViewBag.sobe)
                                                     {
-                                                        <option value="@sobe.SobaId" selected="">@sobe.BrojSobe</option>
+                                                        <option value="@sobe.SobaId" >@sobe.BrojSobe</option>
                                                     }
                                                 </optgroup>
                                             </select>
                                         </td>
                                     </tr>
                                     <tr style="height: 80px;">
-                                        <td>Prvi cimer</td>
-                                        <td><input name="fldCimer1" type="text" style="width: 250px;"></td>
+                                        <td>ID prvog cimera</td>
+                                        <td><input name="fldCimer1" type="number" style="width: 250px;"></td>
                                     </tr>
                                     <tr style="height: 80px;">
-                                        <td>Drugi cimer</td>
-                                        <td><input name="fldCimer2" type="text" style="width: 250px;"></td>
+                                        <td>ID drugog cimera</td>
+                                        <td><input name="fldCimer2" type="number" style="width: 250px;"></td>
                                     </tr>
                                     <tr style="height: 150px;">
                                         <td></td>
@@ -75,7 +75,7 @@
                                     </tr>
                                     <tr style="height: 150px;">
                                         <td>
-                                            <div class="btn-group" role="group"><button class="btn btn-secondary" type="button" style="margin: 50px;">Odbaci zahtjev</button></div>
+                                            <div class="btn-group" role="group"><button onclick="window.location.href='@Url.Action("Student", "Student", new { ViewBag.id })'" class="btn btn-secondary" type="button" style="margin: 50px;">Odbaci zahtjev</button></div>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ix/Z7R03RLn27GmBS7RgCa/1mwpSL36PPx9psvds0nusbRVEuDJSOCToX4TT4yzvZca4Dn7enIqYUZ+dNH1sNw==",
+  "dgSpecHash": "CUr5E2vh0/uJEOxlVr764vhS3//lcI1cORWhS3qESFoTyxK1h70CzpbnPG8tayPYSqAkNqgtdspRicRjzFb58Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+  "projectFilePath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nedo\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
