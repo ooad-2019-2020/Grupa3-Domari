@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
@@ -19,6 +22,7 @@ namespace SD.Controllers
     {
         private readonly StudentskiDomContext _context;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly string apiUrl = "https://studentskidomapi2020.azurewebsites.net";
 
         public ZahtjevController(StudentskiDomContext context, UserManager<IdentityUser> userManager)
         {
@@ -180,7 +184,7 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult PregledZahtjeva()
+        public async Task<IActionResult> PregledZahtjevaAsync()
         {
             ICollection<Zahtjev> zahtjevi = new Collection<Zahtjev>();
 
@@ -201,10 +205,15 @@ namespace SD.Controllers
 
                     zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
                     zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
-                    zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
-                    zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+                    //zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+                    //zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
 
-                    zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+                    //zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+
+                    zahtjevZaCimeraj.Cimer1 = await GetStudentAsync(zahtjevZaCimeraj.Cimer1Id);
+                    zahtjevZaCimeraj.Cimer2 = await GetStudentAsync(zahtjevZaCimeraj.Cimer2Id);
+
+                    zahtjevZaCimeraj.Student = await GetStudentAsync(zahtjevZaCimeraj.StudentId);
 
                     zahtjevZaCimeraj.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Student.LicniPodaciId);
 
@@ -219,7 +228,8 @@ namespace SD.Controllers
                     zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
                     zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
 
-                    zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+                    //zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+                    zahtjevZaPremjestanje.Student= await GetStudentAsync(zahtjevZaPremjestanje.StudentId);
 
                     zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
 
@@ -288,27 +298,35 @@ namespace SD.Controllers
             var result = await userManager.CreateAsync(user, student.Password);
             await userManager.AddToRoleAsync(user, "Student");
 
-            try
+            using (var client = new HttpClient())
             {
-                await _context.Student.AddAsync(student);
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                return RedirectToAction("PregledZahtjeva", "Zahtjev");
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(student,Formatting.Indented,
+                    new JsonSerializerSettings()
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });
+
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+                HttpResponseMessage Res = await client.PostAsync("api/student/", stringContent);
+
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+                    Debug.WriteLine("ez");
+                }
             }
 
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
-        private async void DodajKorisnika(Student student)
-        {
-            var user = new IdentityUser { UserName = student.Username };
-            var result = await userManager.CreateAsync(user, student.Password);
-            await userManager.AddToRoleAsync(user, "Student");
-            //throw new NotImplementedException();
-        }
-
+        
         public IActionResult OdbijZahtjev(int id)
         {
             ZahtjevZaUpis zaBrisanje = _context.ZahtjevZaUpis.Find(id);
@@ -329,7 +347,7 @@ namespace SD.Controllers
             return RedirectToAction("PregledZahtjeva","Zahtjev");
         }
 
-        public IActionResult PregledPremjestanje(int id)
+        public async Task<IActionResult> PregledPremjestanjeAsync(int id)
         {
             ZahtjevZaPremjestanje zahtjevZaPremjestanje = _context.ZahtjevZaPremjestanje.Find(id);
 
@@ -338,7 +356,8 @@ namespace SD.Controllers
             zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
             zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
 
-            zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+            //zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+            zahtjevZaPremjestanje.Student= await GetStudentAsync(zahtjevZaPremjestanje.StudentId);
 
             zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
 
@@ -347,11 +366,12 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult OdobriPremjestanje(int id)
+        public async Task<IActionResult> OdobriPremjestanjeAsync(int id)
         {
             ZahtjevZaPremjestanje z = _context.ZahtjevZaPremjestanje.Find(id);
 
-            Student s = _context.Student.Find(z.StudentId);
+            //Student s = _context.Student.Find(z.StudentId);
+            Student s= await GetStudentAsync(z.StudentId);
 
             Soba soba = _context.Soba.Find(z.Soba2Id);
 
@@ -381,16 +401,18 @@ namespace SD.Controllers
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }
 
-        public IActionResult PregledCimeraj(int id)
+        public async Task<IActionResult> PregledCimerajAsync(int id)
         {
             ZahtjevZaCimeraj zahtjevZaCimeraj = _context.ZahtjevZaCimeraj.Find(id);
 
             zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
             zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
-            zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+            //zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+            zahtjevZaCimeraj.Cimer1= await GetStudentAsync(zahtjevZaCimeraj.Cimer1Id);
             zahtjevZaCimeraj.Cimer1.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Cimer1.LicniPodaciId);
 
-            zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+            //zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+            zahtjevZaCimeraj.Cimer2 = await GetStudentAsync(zahtjevZaCimeraj.Cimer2Id);
             zahtjevZaCimeraj.Cimer2.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Cimer2.LicniPodaciId);
 
             zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
@@ -402,7 +424,7 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult OdobriCimeraj(int id)
+        public async Task<IActionResult> OdobriCimerajAsync(int id)
         {
             ZahtjevZaCimeraj zahtjevZaCimeraj = _context.ZahtjevZaCimeraj.Find(id);
 
@@ -473,14 +495,15 @@ namespace SD.Controllers
 
             if (zahtjevZaCimeraj.Cimer1Id != 0)
             {
-                Student student1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+                Student student1 = await GetStudentAsync(zahtjevZaCimeraj.Cimer1Id);
                 student1.SobaId = soba.SobaId;
                 _context.Student.Update(student1);
             }
 
             if (zahtjevZaCimeraj.Cimer2Id != 0)
             {
-                Student student2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+                //Student student2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+                Student student2 = await GetStudentAsync(zahtjevZaCimeraj.Cimer2Id);
                 student2.SobaId = soba.SobaId;
                 _context.Student.Update(student2);
             }
@@ -714,6 +737,34 @@ namespace SD.Controllers
         private bool ZahtjevExists(int id)
         {
             return _context.Zahtjev.Any(e => e.ZahtjevId == id);
+        }
+
+        private async Task<Student> GetStudentAsync(int id)
+        {
+            Student s = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + id);
+
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    s = JsonConvert.DeserializeObject<Student>(response);
+                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                    s.Soba = _context.Soba.Find(s.SobaId);
+                    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                }
+            }
+            return s;
         }
     }
 }

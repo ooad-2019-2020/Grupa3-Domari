@@ -162,10 +162,12 @@ namespace SD.Controllers
         }
 
 
-        public IActionResult Blagajna(int? StudentId)
+        public async Task<IActionResult> BlagajnaAsync(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
-            Blagajna blagajna = _context.Blagajna.Find(1);
+   
+            Blagajna blagajna = _context.Blagajna.Find(1);           
+
             ViewBag.Blagajna = blagajna;
             ViewBag.mjeseci = new List<String>();
             if (StudentId == null)
@@ -174,8 +176,31 @@ namespace SD.Controllers
             }
             else
             {
-                Student student = _context.Korisnik.FirstOrDefault(k => k.Id == StudentId) as Student;
-                if (student == null)
+                Student s=new Student();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(apiUrl);
+                    client.DefaultRequestHeaders.Clear();
+
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage Res = await client.GetAsync("api/student/" + StudentId);
+
+
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        var response = Res.Content.ReadAsStringAsync().Result;
+
+                        s = JsonConvert.DeserializeObject<Student>(response);
+                        s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                        s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                        s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                        s.Soba = _context.Soba.Find(s.SobaId);
+                        s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                    }
+                }
+
+                if (s == null)
                 {
                     ViewBag.Ime = null;
                     ViewBag.Prezime = null;
@@ -187,17 +212,17 @@ namespace SD.Controllers
                 }
                 else
                 {
-                    student.Soba = _context.Soba.Find(student.SobaId);
-                    student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
-                    student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
-                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
-                    student.Mjesec = _context.Mjesec.Where(m => m.StudentId==student.Id).ToList();
-                    ViewBag.Ime = student.LicniPodaci.Ime;
-                    ViewBag.Prezime = student.LicniPodaci.Prezime;
-                    ViewBag.Fakultet = student.SkolovanjeInfo.Fakultet;
-                    ViewBag.Kanton = student.PrebivalisteInfo.Kanton;
-                    ViewBag.Soba = student.Soba.BrojSobe;
-                    ViewBag.mjeseci = student.Mjesec;
+                    s.Soba = _context.Soba.Find(s.SobaId);
+                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                    s.Mjesec = _context.Mjesec.Where(m => m.StudentId== s.Id).ToList();
+                    ViewBag.Ime = s.LicniPodaci.Ime;
+                    ViewBag.Prezime = s.LicniPodaci.Prezime;
+                    ViewBag.Fakultet = s.SkolovanjeInfo.Fakultet;
+                    ViewBag.Kanton = s.PrebivalisteInfo.Kanton;
+                    ViewBag.Soba = s.Soba.BrojSobe;
+                    ViewBag.mjeseci = s.Mjesec;
                     return View();
                 }
             }
@@ -231,7 +256,6 @@ namespace SD.Controllers
 
         public IActionResult Uprava(int? id)
         {
-            //ovdje kreirati upravu
             Uprava uprava = _context.Uprava.Find(id);
             uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
             return View();
@@ -241,29 +265,26 @@ namespace SD.Controllers
         {
             ViewBag.paviljoni = _context.Paviljon.ToList();
             ViewBag.sobe = _context.Soba.ToList();
-
             if (studentiSoba == null)
             {
-                SetStudentsSoba(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
+                _ = SetStudentsSobaAsync(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
             }
             ViewBag.studentiSoba = studentiSoba;
             return View();
         }
 
         [HttpPost]
-        public IActionResult DajKpacitet(IFormCollection forma)
+        public async Task<IActionResult> DajKpacitetAsync(IFormCollection forma)
         {
             int paviljonId = Int32.Parse(forma["dlPaviljon"]);
             int sobaId = Int32.Parse(forma["dlSoba"]);
-
-            SetStudentsSoba(paviljonId, sobaId);
-
+            await SetStudentsSobaAsync(paviljonId, sobaId);
             return RedirectToAction("SmjestajniKapacitet", "Uprava");
         }
 
 
         [HttpPost]
-        public ActionResult ProvjeriID(IFormCollection forma)
+        public async Task<ActionResult> ProvjeriIDAsync(IFormCollection forma)
         {
             if (forma["fldStudentId"].Equals(""))
             {
@@ -273,8 +294,31 @@ namespace SD.Controllers
             
             
             IdTrenutnogStudenta = Int32.Parse(forma["fldStudentId"].ToString());
-            Korisnik student = null;
-            student = _context.Korisnik.Find(IdTrenutnogStudenta);
+           
+            Student student = new Student();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + IdTrenutnogStudenta);
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    student = JsonConvert.DeserializeObject<Student>(response);
+                    student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+                    student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    student.Soba = _context.Soba.Find(student.SobaId);
+                    student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                }
+            }
+
             if (student == null)
             {
                 //error neki
@@ -333,18 +377,7 @@ namespace SD.Controllers
 
         private async Task<List<Student>> GetStudentsAsync()
         {
-            //List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
-            //List<Student> studenti = new List<Student>();
-            //korisnici.ForEach(k => {
-            //    Student s = k as Student;
-            //    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
-            //    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
-            //    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
-            //    s.Soba = _context.Soba.Find(s.SobaId);
-            //    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
-
-            //    studenti.Add(s);
-            //});
+            
             List<Student> studenti = new List<Student>();
             
             using(var client = new HttpClient())
@@ -358,35 +391,34 @@ namespace SD.Controllers
 
                 if (Res.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("Uspješan");
                     var response = Res.Content.ReadAsStringAsync().Result;
-
                     studenti = JsonConvert.DeserializeObject<List<Student>>(response);
-                }
-                Debug.WriteLine(studenti.Count);
-                foreach(Student s in studenti)
-                {
-                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
-                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
-                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
-                    s.Soba = _context.Soba.Find(s.SobaId);
-                    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
-                }
+                    foreach (Student s in studenti)
+                    {
+                        s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                        s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                        s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                        s.Soba = _context.Soba.Find(s.SobaId);
+                        s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                    }
+                }                
             }
-
             return studenti;
         }
 
-        private void SetStudentsSoba(int paviljonId, int sobaId)
+        private async Task SetStudentsSobaAsync(int paviljonId, int sobaId)
         {
-            List<Korisnik> korisnici = _context.Korisnik.Where(k => k is Student).ToList();
+
+            List<Student> studenti = await GetStudentsAsync();
             if (studentiSoba == null)
+            {
                 studentiSoba = new List<Student>();
-
+            }
+                
             studentiSoba.Clear();
-            korisnici.ForEach(k => {
-                Student s = k as Student;
 
+            foreach(Student s in studenti)
+            {
                 if (s.SobaId == sobaId)
                 {
                     s.Soba = _context.Soba.Find(s.SobaId);
@@ -400,31 +432,8 @@ namespace SD.Controllers
 
                         studentiSoba.Add(s);
                     }
-
                 }
-            });
-        }
-
-        protected void dlSortAction(object sender, EventArgs e)
-        {
-            // LAFO JA NEKI LISTENER POKUSAO STAVITI
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-
-            List<Student> studenti = ViewBag.ListaStudenata;
-            
-            if(studenti.Count>1)
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
-            else
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
-            
-            ViewBag.ListaStudenata = studenti;
-            
-            RedirectToAction("ListaStudenata", "Uprava");
-        }
-        
+            }
+        }              
     }
 }
