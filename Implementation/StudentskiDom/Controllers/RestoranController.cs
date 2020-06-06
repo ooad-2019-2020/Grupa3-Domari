@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -9,14 +11,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
 {
-    //[Authorize(Roles = "Restoran")]
+    [Authorize(Roles = "Restoran")]
     public class RestoranController : Controller
     {
         private readonly StudentskiDomContext _context;
+        private readonly string apiUrl = "https://studentskidomapi2020.azurewebsites.net";
         public static int IdTrenutnogStudenta = -1;
 
         public static List<StavkaNarudzbe> StavkeNarudzbe = new List<StavkaNarudzbe>();
@@ -240,9 +244,9 @@ namespace SD.Controllers
         }
 
 
-        public IActionResult Restoran(int? StudentId)
+        public async Task<IActionResult> RestoranAsync(int? StudentId)
         {
-            //naci blagajnu iz uprava id, a kao parametar nek se prima student
+  
             if (StudentId == null)
             {
                 ViewBag.Ime = "Ime";
@@ -254,7 +258,28 @@ namespace SD.Controllers
             }
             else
             {
-                Student student = _context.Korisnik.FirstOrDefault(k => k.Id == StudentId) as Student;
+                Student student = new Student();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(apiUrl);
+                    client.DefaultRequestHeaders.Clear();
+
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage Res = await client.GetAsync("api/student/" + StudentId);
+
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        var response = Res.Content.ReadAsStringAsync().Result;
+
+                        student = JsonConvert.DeserializeObject<Student>(response);
+                        student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+                        student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+                        student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                        student.Soba = _context.Soba.Find(student.SobaId);
+                        student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                    }
+                }
                 if (student == null)
                 {
                     ViewBag.Ime = "Ime";
@@ -278,12 +303,33 @@ namespace SD.Controllers
             }
         }
 
-        public ActionResult SkiniRucak()
+        public async Task<ActionResult> SkiniRucakAsync()
         {
             if(IdTrenutnogStudenta==-1)
                 return RedirectToAction("Restoran", "Restoran");
 
-            Student student = _context.Korisnik.Find(IdTrenutnogStudenta) as Student;
+            Student student = new Student();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + IdTrenutnogStudenta);
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    student = JsonConvert.DeserializeObject<Student>(response);
+                    student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+                    student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    student.Soba = _context.Soba.Find(student.SobaId);
+                    student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                }
+            }
             if (student.BrojRucaka == 0)
                 throw new Exception("Nedovoljno bonova");
             student.BrojRucaka = student.BrojRucaka - 1;
@@ -294,12 +340,33 @@ namespace SD.Controllers
             return RedirectToAction("Restoran", "Restoran", new { StudentId = IdTrenutnogStudenta });
         }
 
-        public ActionResult SkiniVeceru()
+        public async Task<ActionResult> SkiniVeceruAsync()
         {
             if (IdTrenutnogStudenta == -1)
                 return RedirectToAction("Restoran", "Restoran");
 
-            Student student = _context.Korisnik.Find(IdTrenutnogStudenta) as Student;
+            Student student = new Student();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + IdTrenutnogStudenta);
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    student = JsonConvert.DeserializeObject<Student>(response);
+                    student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+                    student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+                    student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+                    student.Soba = _context.Soba.Find(student.SobaId);
+                    student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                }
+            }
             if (student.BrojVecera == 0)
                 throw new Exception("Nedovoljno bonova");
             student.BrojVecera = student.BrojVecera - 1;

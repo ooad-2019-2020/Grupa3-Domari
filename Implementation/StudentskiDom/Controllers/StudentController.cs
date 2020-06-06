@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
@@ -17,6 +20,7 @@ namespace SD.Controllers
     public class StudentController : Controller
     {
         private readonly StudentskiDomContext _context;
+        private readonly string apiUrl = "https://studentskidomapi2020.azurewebsites.net";
 
         public StudentController(StudentskiDomContext context)
         {
@@ -176,33 +180,24 @@ namespace SD.Controllers
 
         public IActionResult Cimeraj(int id)
         {
-            ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
-            foreach(Paviljon p in _context.Paviljon)
-            {
-                paviljoni.Add(p);
-            }
-            ViewBag.paviljoni = paviljoni;
-
-            ICollection<Soba> sobe = new Collection<Soba>();
-            foreach (Soba s in _context.Soba)
-            {
-                sobe.Add(s);
-            }
-            ViewBag.sobe = sobe;
+            ViewBag.paviljoni = _context.Paviljon;
+            ViewBag.sobe = _context.Soba.Where(s => s.PaviljonId==1);
             ViewBag.id = id;
             
             return View();
         }
 
-        public IActionResult Student(int ID)
+        public async Task<IActionResult> StudentAsync(int ID)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student =_context.Korisnik.Find(ID) as Student;
+            Student student =await GetStudentAsync(ID);
 
-            student.Soba = _context.Soba.Find(student.SobaId);
-            student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
-            student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
-            student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+
+
+            //student.Soba = _context.Soba.Find(student.SobaId);
+            //student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+            //student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+            //student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
 
 
             ViewBag.Id = ID;
@@ -223,19 +218,8 @@ namespace SD.Controllers
 
         public IActionResult ZahtjevZaPremjestanje(int id)
         {
-            ICollection<Paviljon> paviljoni = new Collection<Paviljon>();
-            foreach (Paviljon p in _context.Paviljon)
-            {
-                paviljoni.Add(p);
-            }
-            ViewBag.paviljoni = paviljoni;
-
-            ICollection<Soba> sobe = new Collection<Soba>();
-            foreach (Soba s in _context.Soba)
-            {
-                sobe.Add(s);
-            }
-            ViewBag.sobe = sobe;
+            ViewBag.paviljoni = _context.Paviljon;
+            ViewBag.sobe = _context.Soba.Where(s => s.PaviljonId == 1);
             ViewBag.id = id;
             return View();
         }
@@ -249,14 +233,16 @@ namespace SD.Controllers
             string cimer2 = forma["fldCimer2"];
             string dodatneNapomene = forma["fldNpomene"];
 
+            if (string.IsNullOrEmpty(cimer1) || string.IsNullOrEmpty(cimer2) || 
+                _context.Student.Find(Int32.Parse(cimer1))==null || _context.Student.Find(Int32.Parse(cimer2)) == null)
+                return RedirectToAction("Cimeraj", "Student", new { id });
+
             // Snimi zahtjev u bazu podataka
             ZahtjevZaCimeraj zahtjevZaCimeraj = new ZahtjevZaCimeraj();
             zahtjevZaCimeraj.PaviljonId = Int32.Parse(paviljon);
             zahtjevZaCimeraj.SobaId = Int32.Parse(soba);
-            if(cimer1 != null && !cimer1.Equals(""))
-                zahtjevZaCimeraj.Cimer1Id = Int32.Parse(cimer1);
-            if (cimer2 != null && !cimer2.Equals(""))
-                zahtjevZaCimeraj.Cimer2Id = Int32.Parse(cimer2);
+            zahtjevZaCimeraj.Cimer1Id = Int32.Parse(cimer1);
+            zahtjevZaCimeraj.Cimer2Id = Int32.Parse(cimer2);
             zahtjevZaCimeraj.DodatneNapomene = dodatneNapomene;
 
             zahtjevZaCimeraj.StudentId = id;
@@ -295,6 +281,34 @@ namespace SD.Controllers
         private bool StudentExists(int id)
         {
             return _context.Student.Any(e => e.Id == id);
+        }
+
+        private async Task<Student> GetStudentAsync(int id)
+        {
+            Student s = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + id);
+
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    s = JsonConvert.DeserializeObject<Student>(response);
+                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                    s.Soba = _context.Soba.Find(s.SobaId);
+                    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                }
+            }
+            return s;
         }
     }
 }
