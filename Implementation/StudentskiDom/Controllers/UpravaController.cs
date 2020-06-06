@@ -29,6 +29,7 @@ namespace SD.Controllers
         public static List<Soba> sobe;
         public static List<Paviljon> paviljoni;
         public static int IdTrenutnogStudenta = -1;
+        public static int UpravaId = 2;
 
         public UpravaController(StudentskiDomContext context)
         {
@@ -234,6 +235,8 @@ namespace SD.Controllers
             //ovdje kreirati upravu
             Uprava uprava = _context.Uprava.Find(id);
             uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
+            UpravaId = (int) id;
+            ViewBag.id = id;
             return View();
         }
 
@@ -241,6 +244,7 @@ namespace SD.Controllers
         {
             ViewBag.paviljoni = _context.Paviljon.ToList();
             ViewBag.sobe = _context.Soba.ToList();
+            ViewBag.id = UpravaId;
 
             if (studentiSoba == null)
             {
@@ -312,6 +316,7 @@ namespace SD.Controllers
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
             ViewBag.ListaStudenata = studenti;
+            ViewBag.id = UpravaId;
 
             return View();
         }
@@ -322,6 +327,7 @@ namespace SD.Controllers
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
             ViewBag.ListaStudenata = studenti;
+            ViewBag.id = UpravaId;
 
             return View();
         }
@@ -403,27 +409,6 @@ namespace SD.Controllers
 
                 }
             });
-        }
-
-        protected void dlSortAction(object sender, EventArgs e)
-        {
-            // LAFO JA NEKI LISTENER POKUSAO STAVITI
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-            // NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! NE RADI ! 
-
-            List<Student> studenti = ViewBag.ListaStudenata;
-            
-            if(studenti.Count>1)
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
-            else
-                studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
-            
-            ViewBag.ListaStudenata = studenti;
-            
-            RedirectToAction("ListaStudenata", "Uprava");
         }
         
     }

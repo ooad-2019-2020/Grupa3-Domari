@@ -26,7 +26,7 @@
                                                 <optgroup label="Trenutni paviljon">
                                                     @foreach (Paviljon p in ViewBag.paviljoni)
                                                     {
-                                                        <option value="@p.PaviljonId" selected="">@p.Naziv</option>
+                                                        <option value="@p.PaviljonId">@p.Naziv</option>
                                                     }
                                                 </optgroup>
                                             </select>
@@ -38,7 +38,7 @@
                                                 <optgroup label="Trenutna soba">
                                                     @foreach (Soba s in ViewBag.sobe)
                                                     {
-                                                        <option value="@s.SobaId" selected="">@s.BrojSobe</option>
+                                                        <option value="@s.SobaId">@s.BrojSobe</option>
                                                     }
                                                 </optgroup>
                                             </select>
@@ -50,7 +50,7 @@
                                                 <optgroup label="Novi paviljon">
                                                     @foreach (Paviljon p in ViewBag.paviljoni)
                                                     {
-                                                        <option value="@p.PaviljonId" selected="">@p.Naziv</option>
+                                                        <option value="@p.PaviljonId">@p.Naziv</option>
                                                     }
                                                 </optgroup>
                                             </select>
@@ -62,7 +62,7 @@
                                                 <optgroup label="Nova Soba">
                                                     @foreach (Soba s in ViewBag.sobe)
                                                     {
-                                                        <option value="@s.SobaId" selected="">@s.BrojSobe</option>
+                                                        <option value="@s.SobaId">@s.BrojSobe</option>
                                                     }
                                                 </optgroup>
                                             </select>
@@ -88,7 +88,7 @@
                                     </tr>
                                     <tr style="height: 150px;">
                                         <td>
-                                            <div class="btn-group" role="group"><button class="btn btn-secondary" type="button" style="margin: 50px;">Odbaci zahtjev</button></div>
+                                            <div class="btn-group" role="group"><button onclick="window.location.href='@Url.Action("Student", "Student", new { ViewBag.id })'" class="btn btn-secondary" type="button" style="margin: 50px;">Odbaci zahtjev</button></div>
                                         </td>
                                     </tr>
                                 </tbody>
