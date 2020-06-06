@@ -264,13 +264,13 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult SmjestajniKapacitet()
+        public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
             ViewBag.paviljoni = _context.Paviljon.ToList();
             ViewBag.sobe = _context.Soba.ToList();
             if (studentiSoba == null)
             {
-                _ = SetStudentsSobaAsync(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
+                await SetStudentsSobaAsync(_context.Paviljon.FirstOrDefault().PaviljonId, _context.Soba.FirstOrDefault().SobaId);
             }
             ViewBag.studentiSoba = studentiSoba;
             return View();

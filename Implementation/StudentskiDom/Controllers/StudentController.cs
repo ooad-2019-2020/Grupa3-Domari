@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentskiDom.Models;
 
 namespace SD.Controllers
@@ -17,6 +20,7 @@ namespace SD.Controllers
     public class StudentController : Controller
     {
         private readonly StudentskiDomContext _context;
+        private readonly string apiUrl = "https://studentskidomapi2020.azurewebsites.net";
 
         public StudentController(StudentskiDomContext context)
         {
@@ -183,15 +187,17 @@ namespace SD.Controllers
             return View();
         }
 
-        public IActionResult Student(int ID)
+        public async Task<IActionResult> StudentAsync(int ID)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student =_context.Korisnik.Find(ID) as Student;
+            Student student =await GetStudentAsync(ID);
 
-            student.Soba = _context.Soba.Find(student.SobaId);
-            student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
-            student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
-            student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
+
+
+            //student.Soba = _context.Soba.Find(student.SobaId);
+            //student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
+            //student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
+            //student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
 
 
             ViewBag.Id = ID;
@@ -275,6 +281,34 @@ namespace SD.Controllers
         private bool StudentExists(int id)
         {
             return _context.Student.Any(e => e.Id == id);
+        }
+
+        private async Task<Student> GetStudentAsync(int id)
+        {
+            Student s = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage Res = await client.GetAsync("api/student/" + id);
+
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var response = Res.Content.ReadAsStringAsync().Result;
+
+                    s = JsonConvert.DeserializeObject<Student>(response);
+                    s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+                    s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+                    s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+                    s.Soba = _context.Soba.Find(s.SobaId);
+                    s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                }
+            }
+            return s;
         }
     }
 }

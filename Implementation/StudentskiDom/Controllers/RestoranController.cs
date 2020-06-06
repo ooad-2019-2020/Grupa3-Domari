@@ -16,7 +16,7 @@ using StudentskiDom.Models;
 
 namespace SD.Controllers
 {
-    //[Authorize(Roles = "Restoran")]
+    [Authorize(Roles = "Restoran")]
     public class RestoranController : Controller
     {
         private readonly StudentskiDomContext _context;
