@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model StudentskiDom.ViewModels.PrijavaViewModel
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -26,17 +28,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="height: 80px;">
-                                        <td>&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldPrezime" type="text" style="width: 200px;"></td>
-                                        <td>JMBG<input name="fldJmbg" type="text" style="width: 200px;"></td>
+                                    <tr class="form-group" style="height: 80px;">
+                                        @*<td >&nbsp; Prezime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input asp-for="Prezime" name="fldPrezime" type="text" style="width: 200px;"></td>*@
+                                        <td class="form-group">
+                                            <label asp-for="Prezime"></label><input asp-for="Prezime"  style="width: 200px;"><span asp-validation-for="Prezime" class="text-danger"></span>                                 
+                                        </td>
+                                        <td class="form-group">
+                                            <label asp-for="JMBG"></label><input asp-for="JMBG" type="number" style="width: 200px"><span asp-validation-for="JMBG" class="text-danger"></span>
+                                        </td>
+                                        @*<td>JMBG<input asp-for="JMBG" name="fldJmbg" type="text" style="width: 200px;"><span asp-validation-for="JMBG" class="text-danger" style="margin: 0px 0px 0px 20px"></span></td>*@
                                     </tr>
-                                    <tr style="height: 80px;">
-                                        <td>&nbsp; Ime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldIme" type="text" style="width: 200px;"></td>
+                                    <tr class="form-group" style="height: 80px;">
+                                        <td class="form-group">
+                                            <label asp-for="Ime" style="width:200px"></label><input asp-for="Ime" type="text" style="width: 200px" /><span asp-validation-for="Ime" class="text-danger"></span>
+                                        </td>
+                                        @*<td>&nbsp; Ime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldIme" type="text" style="width: 200px;"></td>*@
+                                        @*<td class="form-group">
+                                            <label asp-for="DatumRodjenja">Datum rođenja</label><input type="date" style="width: 200px" /><span asp-validation-for="DatumRodjenja" class="text-danger"></span>
+                                        </td>*@
                                         <td>Datum rođenja<input name="fldDatumRodjenja" type="date" style="width: 200px;"></td>
                                     </tr>
                                     <tr style="height: 80px;">
-                                        <td>&nbsp; Mjesto rođenja&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldMjestoRodjenja" type="text" style="width: 200px;"></td>
-                                        <td><label>Mobitel</label><input name="fldMobitel" type="tel" style="width: 200px;"></td>
+                                        <td class="form-group">
+                                            <label asp-for="MjestoRodjenja">Mjesto rođenja</label><input asp-for="MjestoRodjenja" type="text" style="width:200px"><span asp-validation-for="MjestoRodjenja" class="text-danger"></span>
+                                        </td>
+                                        @*<td>&nbsp; Mjesto rođenja&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="fldMjestoRodjenja" type="text" style="width: 200px;"></td>*@
+                                        <td class="form-group">
+                                            <label asp-for="Mobitel">Mobitel</label><input asp-for="Mobitel" type="number" style="width:200px" /><span asp-validation-for="Mobitel" class="text-danger"></span>
+                                        </td>
+                                        @*<td><label>Mobitel</label><input name="fldMobitel" type="tel" style="width: 200px;"></td>*@
                                     </tr>
                                     <tr style="height: 80px;">
                                         <td>
@@ -46,7 +66,9 @@
                                         <td></td>
                                     </tr>
                                     <tr style="height: 300px;">
-                                        <td><label>&nbsp; E-mail</label><input name="fldEmail" type="email" style="width: 200px;margin-left: 10px;"></td>
+                                        <td class="form-group" style="height: 80px">
+                                            <label asp-for="Email">E-mail</label><input asp-for="Email" type="email" style="width: 200px" /><span asp-validation-for="Email" class="text-danger"></span>
+                                        </td>
                                         <td class="span3 image">                                           
                                             <label for="file" class="control-label">Slika</label>
                                             <div class="image-preview" style="text-align: center;">
@@ -77,7 +99,10 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="height: 80px;">Adresa<input name="fldAdresa" type="text" style="width: 200px;"></td>
+                                        @*<td style="height: 80px;">Adresa<input name="fldAdresa" type="text" style="width: 200px;"></td>*@
+                                        <td class="form-group" style="height: 80px">
+                                            <label asp-for="Adresa">Adresa</label><input asp-for="Adresa" type="text" style="width: 200px" /><span asp-validation-for="Adresa" class="text-danger"></span>
+                                        </td>
                                         <td style="height: 80px;">
                                             Kanton<select name="dlKanton" style="width: 200px;height: 30px;">
                                                 <optgroup label="Kanton:">
@@ -96,7 +121,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><label>Općina</label><input name="fldOpcina" type="text" style="width: 200px;"></td>
+                                        <td class="form-group" style="height: 80px">
+                                            <label asp-for="Opcina">Općina</label><input asp-for="Opcina" type="text" style="width: 200px" /><span asp-validation-for="Opcina" class="text-danger"></span>
+                                        </td>
+                                        @*<td><label>Općina</label><input name="fldOpcina" type="text" style="width: 200px;"></td>*@
                                     </tr>
                                 </tbody>
                             </table>
@@ -132,7 +160,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><label>Broj indeksa</label><input name="fldBrojIndeksa" type="text" style="width: 200px;"></td>
+                                        @*<td><label>Broj indeksa</label><input name="fldBrojIndeksa" type="text" style="width: 200px;"></td>*@
+                                        <td class="form-group" style="height: 80px">
+                                            <label asp-for="Index">Broj indexa</label><input asp-for="Index" type="number" style="width: 200px" /><span asp-validation-for="Index" class="text-danger"></span>
+                                        </td>
                                         <td><label>Godina studija</label><select name="dlGodinaStudija" style="width: 200px;height: 30px;"><optgroup label="Godina studija"><option value="1" selected="">Prva</option><option value="2">Druga</option><option value="3">Treća</option></optgroup></select></td>
                                     </tr>
                                 </tbody>
