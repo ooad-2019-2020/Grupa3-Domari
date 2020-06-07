@@ -22,30 +22,39 @@ namespace StudentskiDom.Models
         }
 
 
-        public DnevniMeni(List<string> listaRucaka, List<string> listaVecera)
+        public DnevniMeni(List<Rucak> listaRucaka, List<Vecera> listaVecera)
         {
-            //this.ListaRucaka = listaRucaka;
-            //this.ListaVecera = listaVecera;
+            this.Rucak = listaRucaka;
+            this.Vecera = listaVecera;
         }
 
-        public void DodajRucak(string rucak)
+        public void DodajRucak(Rucak rucak)
         {
-           throw new NotImplementedException();
+            Rucak.Add(rucak);
+            updateMeni();
         }
 
-        public void DodajVeceru(string vecera)
+        public void DodajVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            Vecera.Add(vecera);
+            updateMeni();
         }
 
-        public void IzbaciRucak(string rucak)
+        public void IzbaciRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            Rucak.Remove(rucak);
+            updateMeni();
         }
 
-        public void IzbaciVeceru(string vecera)
+        public void IzbaciVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            Vecera.Remove(vecera);
+            updateMeni();
+        }
+
+        private void updateMeni()
+        {
+            StudentskiDomSingleton.Context.DnevniMeni.Update(this);
         }
     }
 }

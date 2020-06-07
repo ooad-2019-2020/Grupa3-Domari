@@ -7,6 +7,6 @@ namespace StudentskiDom.Models
 {
     public interface IRaspored
     {
-        void RasporediStudenta(Student student);
+        Soba RasporediStudenta(Student student);
     }
 }

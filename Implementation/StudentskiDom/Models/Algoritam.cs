@@ -8,7 +8,8 @@ namespace StudentskiDom.Models
     public abstract class Algoritam
     {
         public List<Student> TemplateMethod(List<Student> studenti) {
-            List<Student> students = Filtriraj(studenti);
+            List<Student> students = new List<Student>(studenti);
+            students = Filtriraj(students);
             students = Sortiraj(students);
             return students;
         }

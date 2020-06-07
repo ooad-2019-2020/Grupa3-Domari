@@ -7,9 +7,9 @@ namespace StudentskiDom.Models
 {
     public interface AzurirajMeni
     {
-        void DodajRucak(string rucak);
-        void DodajVeceru(string vecera);
-        void IzbaciRucak(string rucak);
-        void IzbaciVeceru(string vecera);
+        void DodajRucak(Rucak rucak);
+        void DodajVeceru(Vecera vecera);
+        void IzbaciRucak(Rucak rucak);
+        void IzbaciVeceru(Vecera vecera);
     }
 }
