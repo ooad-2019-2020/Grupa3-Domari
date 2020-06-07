@@ -7,7 +7,7 @@ namespace StudentskiDom.Models
 {
     public interface PregledStanjaBonova
     {
-        int DajBrojRucakaZaStudenta(int id);
-        int DajBrojVeceraZaStudenta(int id);
+        Task<int> DajBrojRucakaZaStudentaAsync(int id);
+        Task<int> DajBrojVeceraZaStudentaAsync(int id);
     }
 }

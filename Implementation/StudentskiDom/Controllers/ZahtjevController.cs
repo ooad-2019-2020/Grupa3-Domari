@@ -27,6 +27,7 @@ namespace SD.Controllers
         public ZahtjevController(StudentskiDomContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            StudentskiDomSingleton.getInstance().SetContext(context);
             this.userManager = userManager;
         }
 
@@ -188,50 +189,53 @@ namespace SD.Controllers
         {
             ICollection<Zahtjev> zahtjevi = new Collection<Zahtjev>();
 
-            foreach(Zahtjev z in _context.Zahtjev)
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            await studentskiDom.RefreshZahtjeviAsync();
+
+            foreach(Zahtjev z in studentskiDom.Zahtjevi)
             {
                 if(z is ZahtjevZaUpis)
                 {
                     ZahtjevZaUpis zahtjevZaUpis = z as ZahtjevZaUpis;
 
-                    zahtjevZaUpis.PrebivalisteInfo = _context.PrebivalisteInfo.Find(zahtjevZaUpis.PrebivalisteInfoId);
-                    zahtjevZaUpis.SkolovanjeInfo = _context.SkolovanjeInfo.Find(zahtjevZaUpis.SkolovanjeInfoId);
-                    zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaUpis.LicniPodaciId);
+                    //zahtjevZaUpis.PrebivalisteInfo = _context.PrebivalisteInfo.Find(zahtjevZaUpis.PrebivalisteInfoId);
+                    //zahtjevZaUpis.SkolovanjeInfo = _context.SkolovanjeInfo.Find(zahtjevZaUpis.SkolovanjeInfoId);
+                    //zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaUpis.LicniPodaciId);
 
                     zahtjevi.Add(z);
                 }else if(z is ZahtjevZaCimeraj)
                 {
                     ZahtjevZaCimeraj zahtjevZaCimeraj = z as ZahtjevZaCimeraj;
 
-                    zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
-                    zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
-                    //zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
-                    //zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
-
-                    //zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
-
-                    zahtjevZaCimeraj.Cimer1 = await GetStudentAsync(zahtjevZaCimeraj.Cimer1Id);
-                    zahtjevZaCimeraj.Cimer2 = await GetStudentAsync(zahtjevZaCimeraj.Cimer2Id);
-
-                    zahtjevZaCimeraj.Student = await GetStudentAsync(zahtjevZaCimeraj.StudentId);
-
-                    zahtjevZaCimeraj.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Student.LicniPodaciId);
+                    //zahtjevZaCimeraj.Soba = _context.Soba.Find(zahtjevZaCimeraj.SobaId);
+                    //zahtjevZaCimeraj.Paviljon = _context.Paviljon.Find(zahtjevZaCimeraj.PaviljonId);
+                    ////zahtjevZaCimeraj.Cimer1 = _context.Student.Find(zahtjevZaCimeraj.Cimer1Id);
+                    ////zahtjevZaCimeraj.Cimer2 = _context.Student.Find(zahtjevZaCimeraj.Cimer2Id);
+                    //
+                    ////zahtjevZaCimeraj.Student = _context.Student.Find(zahtjevZaCimeraj.StudentId);
+                    //
+                    //zahtjevZaCimeraj.Cimer1 = await GetStudentAsync(zahtjevZaCimeraj.Cimer1Id);
+                    //zahtjevZaCimeraj.Cimer2 = await GetStudentAsync(zahtjevZaCimeraj.Cimer2Id);
+                    //
+                    //zahtjevZaCimeraj.Student = await GetStudentAsync(zahtjevZaCimeraj.StudentId);
+                    //
+                    //zahtjevZaCimeraj.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaCimeraj.Student.LicniPodaciId);
 
                     zahtjevi.Add(z);
                 }else if(z is ZahtjevZaPremjestanje)
                 {
                     ZahtjevZaPremjestanje zahtjevZaPremjestanje = z as ZahtjevZaPremjestanje;
 
-                    zahtjevZaPremjestanje.Soba1 = _context.Soba.Find(zahtjevZaPremjestanje.Soba1Id);
-                    zahtjevZaPremjestanje.Soba2 = _context.Soba.Find(zahtjevZaPremjestanje.Soba2Id);
-
-                    zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
-                    zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
-
-                    //zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
-                    zahtjevZaPremjestanje.Student= await GetStudentAsync(zahtjevZaPremjestanje.StudentId);
-
-                    zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
+                    //zahtjevZaPremjestanje.Soba1 = _context.Soba.Find(zahtjevZaPremjestanje.Soba1Id);
+                    //zahtjevZaPremjestanje.Soba2 = _context.Soba.Find(zahtjevZaPremjestanje.Soba2Id);
+                    //
+                    //zahtjevZaPremjestanje.Paviljon1 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon1Id);
+                    //zahtjevZaPremjestanje.Paviljon2 = _context.Paviljon.Find(zahtjevZaPremjestanje.Paviljon2Id);
+                    //
+                    ////zahtjevZaPremjestanje.Student = _context.Student.Find(zahtjevZaPremjestanje.StudentId);
+                    //zahtjevZaPremjestanje.Student= await GetStudentAsync(zahtjevZaPremjestanje.StudentId);
+                    //
+                    //zahtjevZaPremjestanje.Student.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaPremjestanje.Student.LicniPodaciId);
 
                     zahtjevi.Add(zahtjevZaPremjestanje);
                 }else if(z is ZahtjevZaNabavkuNamirnica)

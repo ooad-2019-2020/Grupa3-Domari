@@ -19,33 +19,60 @@ namespace StudentskiDom.Models
 
         public DnevniMeni()
         {
+
         }
 
 
-        public DnevniMeni(List<string> listaRucaka, List<string> listaVecera)
+        public DnevniMeni(List<Rucak> listaRucaka, List<Vecera> listaVecera)
         {
-            //this.ListaRucaka = listaRucaka;
-            //this.ListaVecera = listaVecera;
+            this.Rucak = listaRucaka;
+            this.Vecera = listaVecera;
         }
 
-        public void DodajRucak(string rucak)
+        public void DodajRucak(Rucak rucak)
         {
-           throw new NotImplementedException();
+            rucak.DnevniMeniId = DnevniMeniId;
+            Rucak.Add(rucak);
+            StudentskiDomSingleton.Context.Rucak.Add(rucak);
+            updateMeni();
         }
 
-        public void DodajVeceru(string vecera)
+        public void DodajVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            vecera.DnevniMeniId = DnevniMeniId;
+            Vecera.Add(vecera);
+            StudentskiDomSingleton.Context.Vecera.Add(vecera);
+            updateMeni();
         }
 
-        public void IzbaciRucak(string rucak)
+        public void IzbaciRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            rucak.DnevniMeniId = DnevniMeniId;
+            Rucak.Remove(rucak);
+            StudentskiDomSingleton.Context.Rucak.Remove(rucak);
+            updateMeni();
         }
 
-        public void IzbaciVeceru(string vecera)
+        public void IzbaciVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            vecera.DnevniMeniId = DnevniMeniId;
+            Vecera.Remove(vecera);
+            StudentskiDomSingleton.Context.Vecera.Remove(vecera);
+            updateMeni();
+        }
+
+        public void IzbaciSve()
+        {
+            StudentskiDomSingleton.Context.Rucak.RemoveRange(Rucak);
+            StudentskiDomSingleton.Context.Vecera.RemoveRange(Vecera);
+            Rucak.Clear();
+            Vecera.Clear();
+            updateMeni();
+        }
+
+        private void updateMeni()
+        {
+            StudentskiDomSingleton.Context.SaveChanges();
         }
     }
 }

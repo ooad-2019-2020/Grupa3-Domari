@@ -25,9 +25,20 @@ namespace StudentskiDom.Models
         //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
         //public virtual Korisnik Korisnik { get; set; }
 
-        public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
+        public void AzurirajDnevniMeni(List<Rucak> listRucaka, List<Vecera> listVecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.Rucak = listRucaka;
+            DnevniMeni.Vecera = listVecera;
+            foreach(Rucak r in listRucaka)
+            {
+                StudentskiDomSingleton.Context.Rucak.Add(r);
+            }
+            foreach(Vecera v in listVecera)
+            {
+                StudentskiDomSingleton.Context.Vecera.Add(v);
+            }
+            StudentskiDomSingleton.Context.DnevniMeni.Update(DnevniMeni);
+            StudentskiDomSingleton.Context.SaveChanges();
         }
 
         public Restoran()
@@ -36,44 +47,71 @@ namespace StudentskiDom.Models
             // Treba postaviti useranme i password za Restoran
         }
 
-        public void DodajRucak(string rucak)
+        public void DodajRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            DnevniMeni.DodajRucak(rucak);
         }
 
-        public void DodajVeceru(string vecera)
+        public void DodajVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.DodajVeceru(vecera);
         }
 
-        public void IzbaciRucak(string rucak)
+        public void IzbaciRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            DnevniMeni.IzbaciRucak(rucak);
         }
 
-        public void IzbaciVeceru(string vecera)
+        public void IzbaciVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.IzbaciVeceru(vecera);
         }
 
-        public void AzurirajStanjeRucaka(int id)
+        public void IzbaciSve()
         {
-            throw new NotImplementedException();
+            DnevniMeni.IzbaciSve();
         }
 
-        public void AzurirajStanjeVecera(int id)
+        public async void AzurirajStanjeRucakaAsync(int id)
         {
-            throw new NotImplementedException();
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if(student != null)
+            {
+                student.BrojRucaka--;
+                StudentskiDomSingleton.Context.Student.Update(student);
+                StudentskiDomSingleton.Context.SaveChanges();
+            }
         }
 
-        public int DajBrojRucakaZaStudenta(int id)
+        public async void AzurirajStanjeVeceraAsync(int id)
         {
-            throw new NotImplementedException();
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                student.BrojRucaka++;
+                StudentskiDomSingleton.Context.Student.Update(student);
+                StudentskiDomSingleton.Context.SaveChanges();
+            }
         }
 
-        public int DajBrojVeceraZaStudenta(int id)
+        public async Task<int> DajBrojRucakaZaStudentaAsync(int id)
         {
-            throw new NotImplementedException();
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                return student.BrojRucaka;
+            }
+            return 0;
+        }
+
+        public async Task<int> DajBrojVeceraZaStudentaAsync(int id)
+        {
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                return student.BrojVecera;
+            }
+            return 0;
         }
     }
 }

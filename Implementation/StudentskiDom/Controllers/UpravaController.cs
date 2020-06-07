@@ -34,6 +34,7 @@ namespace SD.Controllers
         public UpravaController(StudentskiDomContext context)
         {
             _context = context;
+            StudentskiDomSingleton.getInstance().SetContext(context);
         }
 
         // GET: Upravas
@@ -166,7 +167,7 @@ namespace SD.Controllers
         public async Task<IActionResult> BlagajnaAsync(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
-   
+
             Blagajna blagajna = _context.Blagajna.Find(1);           
 
             ViewBag.Blagajna = blagajna;
@@ -266,7 +267,10 @@ namespace SD.Controllers
 
         public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
-            ViewBag.paviljoni = _context.Paviljon.ToList();
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            studentskiDom.RefreshPaviljonAsync();
+
+            ViewBag.paviljoni = studentskiDom.Paviljoni;
             ViewBag.sobe = _context.Soba.ToList();
             ViewBag.id = UpravaId;
             if (studentiSoba == null)
@@ -338,7 +342,11 @@ namespace SD.Controllers
 
         public async Task<IActionResult> ListaStudenata()
         {
-            List<Student> studenti = await GetStudentsAsync();
+
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            await studentskiDom.RefreshStudentsAsync();
+
+            List<Student> studenti = studentskiDom.Studenti;
 
             ViewBag.ListaStudenata = studenti;
             ViewBag.id = UpravaId;
@@ -357,7 +365,7 @@ namespace SD.Controllers
 
         public async Task<IActionResult> ListaStudenataFakultetSort()
         {
-            List<Student> studenti = await GetStudentsAsync();
+            List<Student> studenti = StudentskiDomSingleton.getInstance().Studenti;
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.SkolovanjeInfo.Fakultet, s2.SkolovanjeInfo.Fakultet));
             ViewBag.ListaStudenata = studenti;
@@ -368,7 +376,7 @@ namespace SD.Controllers
 
         public async Task<IActionResult> ListaStudenataKantonSortAsync()
         {
-            List<Student> studenti = await GetStudentsAsync();
+            List<Student> studenti = StudentskiDomSingleton.getInstance().Studenti;
 
             studenti.Sort((Student s1, Student s2) => string.Compare(s1.PrebivalisteInfo.Kanton, s2.PrebivalisteInfo.Kanton));
             ViewBag.ListaStudenata = studenti;

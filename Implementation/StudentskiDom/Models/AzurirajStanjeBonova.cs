@@ -7,7 +7,7 @@ namespace StudentskiDom.Models
 {
     public interface AzurirajStanjeBonova
     {
-        void AzurirajStanjeRucaka(int id);
-        void AzurirajStanjeVecera(int id);
+        void AzurirajStanjeRucakaAsync(int id);
+        void AzurirajStanjeVeceraAsync(int id);
     }
 }

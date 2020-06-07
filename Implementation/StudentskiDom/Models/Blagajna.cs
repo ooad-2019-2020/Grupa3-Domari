@@ -36,12 +36,12 @@ namespace StudentskiDom.Models
             throw new NotImplementedException();
         }
 
-        public void AzurirajStanjeRucaka(int id)
+        public void AzurirajStanjeRucakaAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void AzurirajStanjeVecera(int id)
+        public void AzurirajStanjeVeceraAsync(int id)
         {
             throw new NotImplementedException();
         }
