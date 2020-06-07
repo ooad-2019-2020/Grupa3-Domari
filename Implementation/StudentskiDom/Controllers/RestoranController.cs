@@ -330,7 +330,9 @@ namespace SD.Controllers
                 }
             }
             if (student.BrojRucaka == 0)
-                throw new Exception("Nedovoljno bonova");
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }
             student.BrojRucaka = student.BrojRucaka - 1;
 
             _context.Student.Update(student);
@@ -367,7 +369,9 @@ namespace SD.Controllers
                 }
             }
             if (student.BrojVecera == 0)
-                throw new Exception("Nedovoljno bonova");
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }
             student.BrojVecera = student.BrojVecera - 1;
 
             _context.Student.Update(student);
