@@ -200,16 +200,14 @@ namespace SD.Controllers
         public IActionResult DodajRucak(string jelo)
         {
             Rucak rucak = new Rucak(jelo, 1);
-            _context.Rucak.Add(rucak);
-            _context.SaveChanges();
+            StudentskiDomSingleton.getInstance().Restoran.DodajRucak(rucak);
             return RedirectToAction("DnevniMeni", "Restoran");
         }
 
         public IActionResult DodajVeceru(string jelo)
         {
             Vecera vecera = new Vecera(jelo, 1);
-            _context.Vecera.Add(vecera);
-            _context.SaveChanges();
+            StudentskiDomSingleton.getInstance().Restoran.DodajVeceru(vecera);
             return RedirectToAction("DnevniMeni", "Restoran");
         }
 
@@ -218,8 +216,7 @@ namespace SD.Controllers
             Rucak rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1).ToList().FindLast(r => r.RucakId > 0);
             if (rucak != null)
             {
-                _context.Rucak.Remove(rucak);
-                _context.SaveChanges();
+                StudentskiDomSingleton.getInstance().Restoran.IzbaciRucak(rucak);
             }
             return RedirectToAction("DnevniMeni", "Restoran");
         }
@@ -229,17 +226,14 @@ namespace SD.Controllers
             Vecera vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1).ToList().FindLast(v => v.VeceraId > 0);
             if (vecera != null)
             {
-                _context.Vecera.Remove(vecera);
-                _context.SaveChanges();
+                StudentskiDomSingleton.getInstance().Restoran.IzbaciVeceru(vecera);
             }
             return RedirectToAction("DnevniMeni", "Restoran");
         }
 
         public IActionResult IzbaciSve()
         {
-            _context.Rucak.RemoveRange(_context.Rucak.Where(r => r.DnevniMeniId == 1));
-            _context.Vecera.RemoveRange(_context.Vecera.Where(v => v.DnevniMeniId == 1));
-            _context.SaveChanges();
+            StudentskiDomSingleton.getInstance().Restoran.IzbaciSve();
             return RedirectToAction("DnevniMeni", "Restoran");
         }
 

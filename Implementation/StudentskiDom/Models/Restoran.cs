@@ -25,9 +25,20 @@ namespace StudentskiDom.Models
         //public virtual ZahtjevZaNabavkuNamirnica ZahtjevZaNabavkuNamirnica { get; set; }
         //public virtual Korisnik Korisnik { get; set; }
 
-        public void AzurirajDnevniMeni(List<string> listRucaka, List<string> listVecera)
+        public void AzurirajDnevniMeni(List<Rucak> listRucaka, List<Vecera> listVecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.Rucak = listRucaka;
+            DnevniMeni.Vecera = listVecera;
+            foreach(Rucak r in listRucaka)
+            {
+                StudentskiDomSingleton.Context.Rucak.Add(r);
+            }
+            foreach(Vecera v in listVecera)
+            {
+                StudentskiDomSingleton.Context.Vecera.Add(v);
+            }
+            StudentskiDomSingleton.Context.DnevniMeni.Update(DnevniMeni);
+            StudentskiDomSingleton.Context.SaveChanges();
         }
 
         public Restoran()
@@ -56,6 +67,11 @@ namespace StudentskiDom.Models
             DnevniMeni.IzbaciVeceru(vecera);
         }
 
+        public void IzbaciSve()
+        {
+            DnevniMeni.IzbaciSve();
+        }
+
         public void AzurirajStanjeRucaka(int id)
         {
             Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
@@ -63,6 +79,7 @@ namespace StudentskiDom.Models
             {
                 student.BrojRucaka--;
                 StudentskiDomSingleton.Context.Student.Update(student);
+                StudentskiDomSingleton.Context.SaveChanges();
             }
         }
 
@@ -73,6 +90,7 @@ namespace StudentskiDom.Models
             {
                 student.BrojRucaka++;
                 StudentskiDomSingleton.Context.Student.Update(student);
+                StudentskiDomSingleton.Context.SaveChanges();
             }
         }
 

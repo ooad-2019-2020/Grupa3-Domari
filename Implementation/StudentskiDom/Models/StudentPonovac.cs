@@ -22,6 +22,7 @@ namespace StudentskiDom.Models
 
             //StudentskiDomSingleton.Context.RedovanStudent.Update(this);
             StudentskiDomSingleton.Context.Blagajna.Update(StudentskiDomSingleton.getInstance().Uprava.Blagajna);
+            StudentskiDomSingleton.Context.SaveChanges();
         }
     }
 }
