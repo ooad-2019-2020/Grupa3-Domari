@@ -72,9 +72,9 @@ namespace StudentskiDom.Models
             DnevniMeni.IzbaciSve();
         }
 
-        public void AzurirajStanjeRucaka(int id)
+        public async void AzurirajStanjeRucakaAsync(int id)
         {
-            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
             if(student != null)
             {
                 student.BrojRucaka--;
@@ -83,9 +83,9 @@ namespace StudentskiDom.Models
             }
         }
 
-        public void AzurirajStanjeVecera(int id)
+        public async void AzurirajStanjeVeceraAsync(int id)
         {
-            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
             if (student != null)
             {
                 student.BrojRucaka++;
@@ -94,9 +94,9 @@ namespace StudentskiDom.Models
             }
         }
 
-        public int DajBrojRucakaZaStudenta(int id)
+        public async Task<int> DajBrojRucakaZaStudentaAsync(int id)
         {
-            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
             if (student != null)
             {
                 return student.BrojRucaka;
@@ -104,9 +104,9 @@ namespace StudentskiDom.Models
             return 0;
         }
 
-        public int DajBrojVeceraZaStudenta(int id)
+        public async Task<int> DajBrojVeceraZaStudentaAsync(int id)
         {
-            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            Student student = await StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
             if (student != null)
             {
                 return student.BrojVecera;
