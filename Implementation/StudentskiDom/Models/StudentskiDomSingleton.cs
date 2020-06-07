@@ -142,6 +142,7 @@ namespace StudentskiDom.Models
                         s.LicniPodaci = Context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = Context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = Context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = Context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }
             }
@@ -245,16 +246,21 @@ namespace StudentskiDom.Models
                     s.LicniPodaci = Context.LicniPodaci.Find(s.LicniPodaciId);
                     s.Soba = Context.Soba.Find(s.SobaId);
                     s.Soba.Paviljon = Context.Paviljon.Find(s.Soba.PaviljonId);
+                    s.Mjesec = Context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                 }
             }
             return s;
         }
 
-        public async Task<Uprava> RefreshUpravaAsync()
+        public Uprava RefreshUpravaAsync()
         {
             Uprava uprava = Context.Uprava.FirstOrDefault();
+            uprava.Blagajna = new Blagajna();
 
-            uprava.Blagajna = Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id);
+            //uprava.Blagajna.TrenutniStudentD = null;
+            uprava.Blagajna.StanjeBudgeta= Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id).StanjeBudgeta;
+            uprava.Blagajna.UpravaId = uprava.Id;
+            uprava.Blagajna.BlagajnaId = Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id).BlagajnaId;
 
             Uprava = uprava;
 

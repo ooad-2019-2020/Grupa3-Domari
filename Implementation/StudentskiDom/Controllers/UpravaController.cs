@@ -168,7 +168,7 @@ namespace SD.Controllers
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
 
-            Blagajna blagajna = _context.Blagajna.Find(1);           
+            Blagajna blagajna = StudentskiDomSingleton.getInstance().Uprava.Blagajna;           
 
             ViewBag.Blagajna = blagajna;
             ViewBag.mjeseci = new List<String>();
@@ -178,7 +178,7 @@ namespace SD.Controllers
             }
             else
             {
-                Student s=new Student();
+                Student s = null;
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
@@ -188,9 +188,10 @@ namespace SD.Controllers
 
                     HttpResponseMessage Res = await client.GetAsync("api/student/" + StudentId);
 
-
+                    
                     if (Res.IsSuccessStatusCode)
                     {
+                        s = new Student();
                         var response = Res.Content.ReadAsStringAsync().Result;
 
                         s = JsonConvert.DeserializeObject<Student>(response);
@@ -199,6 +200,7 @@ namespace SD.Controllers
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = _context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }
 
@@ -231,23 +233,38 @@ namespace SD.Controllers
         }
 
         [HttpPost]
-        public IActionResult UplatiMjesec(IFormCollection forma)
+        public async Task<IActionResult> UplatiMjesecAsync(IFormCollection forma)
         {
             string mjesec = forma["dlMjesec"];
-            if(IdTrenutnogStudenta!=-1 && !mjesec.Equals(""))
+            if(IdTrenutnogStudenta!=-1 && !string.IsNullOrEmpty(mjesec))
             {
                 Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
                 _context.Mjesec.Remove(m);
+                Student student = _context.Student.Find(IdTrenutnogStudenta);
 
                 int dodajUBudzet = 158;
                 if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
+                {
                     dodajUBudzet /= 2;
+                    student.BrojRucaka += 13;
+                    student.BrojVecera += 12;
+                }
+                else
+                {
+                    student.BrojRucaka += 25;
+                    student.BrojVecera += 25;
+                }
+
+                _context.Student.Update(student);
+                _context.SaveChanges();
 
                 Blagajna blagajna = _context.Blagajna.FirstOrDefault();
                 blagajna.StanjeBudgeta += dodajUBudzet;
+                StudentskiDomSingleton.getInstance().Uprava.Blagajna = blagajna;
 
                 _context.Blagajna.Update(blagajna);
                 _context.SaveChanges();
+                
             }
 
             Debug.WriteLine("Hocel nekad nesta da se desi - "  + mjesec + " - " + IdTrenutnogStudenta);
@@ -258,8 +275,7 @@ namespace SD.Controllers
 
         public IActionResult Uprava(int? id)
         {
-            Uprava uprava = _context.Uprava.Find(id);
-            uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
+            Uprava uprava = StudentskiDomSingleton.getInstance().Uprava;
             UpravaId = (int) id;
             ViewBag.id = id;
             return View();
@@ -268,7 +284,7 @@ namespace SD.Controllers
         public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
             StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
-            studentskiDom.RefreshPaviljonAsync();
+            await studentskiDom.RefreshPaviljonAsync();
 
             ViewBag.paviljoni = studentskiDom.Paviljoni;
             ViewBag.sobe = _context.Soba.ToList();
@@ -324,6 +340,7 @@ namespace SD.Controllers
                     student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
                     student.Soba = _context.Soba.Find(student.SobaId);
                     student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                    student.Mjesec = _context.Mjesec.Where(m => m.StudentId == student.Id).ToList();
                 }
             }
 
@@ -385,6 +402,28 @@ namespace SD.Controllers
             return View();
         }
 
+        public async Task<IActionResult> PregledPodataka(int? id)
+        {
+            Student s = _context.Student.Find(id);
+
+            s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+            s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+            s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+
+            ViewBag.Student = s;
+
+
+            return View();
+        }
+
+        public async Task<IActionResult> ObrisiStudenta(int? id)
+        {
+
+            // Ovdje treba obrisati studenta
+
+            return RedirectToAction("ListaStudenata", "Uprava");
+        }
+
         private bool UpravaExists(int id)
         {
             return _context.Uprava.Any(e => e.Id == id);
@@ -415,6 +454,7 @@ namespace SD.Controllers
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = _context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }                
             }
@@ -444,6 +484,7 @@ namespace SD.Controllers
                         s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
 
                         studentiSoba.Add(s);
                     }

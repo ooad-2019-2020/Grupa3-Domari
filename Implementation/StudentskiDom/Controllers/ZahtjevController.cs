@@ -167,8 +167,8 @@ namespace SD.Controllers
             zahtjevZaUpis.SkolovanjeInfo = _context.SkolovanjeInfo.Find(zahtjevZaUpis.SkolovanjeInfoId);
             zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaUpis.LicniPodaciId);
 
-            ViewBag.Soba = "?";
-            ViewBag.Paviljon = "?";
+            ViewBag.Soba = "/";
+            ViewBag.Paviljon = "/";
             ViewBag.Ime = zahtjevZaUpis.LicniPodaci.Ime;
             ViewBag.Prezime = zahtjevZaUpis.LicniPodaci.Prezime;
             ViewBag.Slika = zahtjevZaUpis.LicniPodaci.Slika;
@@ -255,6 +255,7 @@ namespace SD.Controllers
             }
 
             ViewBag.Zahtjevi = zahtjevi;
+            ViewBag.id = UpravaController.UpravaId;
 
             return View();
         }
@@ -830,6 +831,7 @@ namespace SD.Controllers
                     s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                     s.Soba = _context.Soba.Find(s.SobaId);
                     s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                    s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                 }
             }
             return s;

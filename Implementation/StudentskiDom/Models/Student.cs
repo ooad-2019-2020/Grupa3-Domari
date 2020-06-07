@@ -63,6 +63,19 @@ namespace StudentskiDom.Models
         {
             SkolovanjeInfo = new SkolovanjeInfo(fakultet, brojIndeksa, ciklusStudija, godinaStudija);   
         }
-        
+
+        public void uplatiDom(Mjesec mjesec)
+        {
+            Student.Mjesec.Remove(mjesec);
+            double dodajBudzet = 158;
+            if (mjesec.Naziv.Equals("Septembar") || mjesec.Naziv.Equals("Juli"))
+                dodajBudzet /= 2;
+            StudentskiDomSingleton.getInstance().Uprava.Blagajna.StanjeBudgeta += dodajBudzet;
+
+            //StudentskiDomSingleton.Context.RedovanStudent.Update(this);
+            StudentskiDomSingleton.Context.Blagajna.Update(StudentskiDomSingleton.getInstance().Uprava.Blagajna);
+            StudentskiDomSingleton.Context.SaveChanges();
+        }
+
     }
 }

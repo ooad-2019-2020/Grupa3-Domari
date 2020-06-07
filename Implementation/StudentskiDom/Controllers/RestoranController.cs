@@ -30,7 +30,7 @@ namespace SD.Controllers
         public static List<StavkaNarudzbe> StavkeNarudzbe = new List<StavkaNarudzbe>();
         public static List<StavkaNarudzbe> Namirnice;
 
-        private Restoran model { get; set; }
+        private Restoran Model { get; set; }
 
         public RestoranController(StudentskiDomContext context)
         {
@@ -330,7 +330,9 @@ namespace SD.Controllers
                 }
             }
             if (student.BrojRucaka == 0)
-                throw new Exception("Nedovoljno bonova");
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }
             student.BrojRucaka = student.BrojRucaka - 1;
 
             _context.Student.Update(student);
@@ -367,7 +369,9 @@ namespace SD.Controllers
                 }
             }
             if (student.BrojVecera == 0)
-                throw new Exception("Nedovoljno bonova");
+            {
+                return RedirectToAction("Restoran", "Restoran");
+            }
             student.BrojVecera = student.BrojVecera - 1;
 
             _context.Student.Update(student);

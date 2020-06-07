@@ -27,18 +27,18 @@ namespace StudentskiDom.Controllers
         private IHostingEnvironment Environment;
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> LoginAsync()
         {
             //ova se prva pokrece
 
             StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
             studentskiDom.SetContext(_context);
 
-            studentskiDom.RefreshStudentsAsync();
-            studentskiDom.RefreshZahtjeviAsync();
+            await studentskiDom.RefreshStudentsAsync();
+            await studentskiDom.RefreshZahtjeviAsync();
             studentskiDom.RefreshUpravaAsync();
-            studentskiDom.RefreshPaviljonAsync();
-            studentskiDom.RefreshRestoranAsync();
+            await studentskiDom.RefreshPaviljonAsync();
+            await studentskiDom.RefreshRestoranAsync();
          
             return View();
         }

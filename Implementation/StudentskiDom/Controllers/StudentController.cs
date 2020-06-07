@@ -190,16 +190,7 @@ namespace SD.Controllers
         public async Task<IActionResult> StudentAsync(int ID)
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
-            Student student =await GetStudentAsync(ID);
-
-
-
-            //student.Soba = _context.Soba.Find(student.SobaId);
-            //student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
-            //student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
-            //student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
-
-
+            Student student = await GetStudentAsync(ID);
             ViewBag.Id = ID;
             ViewBag.ImePrezime = student.LicniPodaci.Ime + " " + student.LicniPodaci.Prezime;
             ViewBag.Pol = student.LicniPodaci.Pol.ToString();
@@ -306,6 +297,7 @@ namespace SD.Controllers
                     s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                     s.Soba = _context.Soba.Find(s.SobaId);
                     s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                    s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                 }
             }
             return s;
