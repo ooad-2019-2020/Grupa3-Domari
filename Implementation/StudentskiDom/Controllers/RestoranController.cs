@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,9 @@ using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using StudentskiDom.Models;
+using ActionNameAttribute = Microsoft.AspNetCore.Mvc.ActionNameAttribute;
+using AuthorizeAttribute = Microsoft.AspNetCore.Authorization.AuthorizeAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 
 namespace SD.Controllers
 {
@@ -31,6 +35,7 @@ namespace SD.Controllers
         public RestoranController(StudentskiDomContext context)
         {
             _context = context;
+            StudentskiDomSingleton.getInstance().SetContext(context);
         }
 
         // GET: Restorans
@@ -170,15 +175,15 @@ namespace SD.Controllers
         public IActionResult DnevniMeni()
         {
             ViewBag.jela = _context.Rucak.Where(r => r.DnevniMeniId == 2);
-            ViewBag.rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1);
-            ViewBag.vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1);
+            ViewBag.rucak = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Rucak;
+            ViewBag.vecera = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Vecera;
             return View();
         }
 
         public IActionResult PregledDnevniMeni()
         {
-            ViewBag.rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1);
-            ViewBag.vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1);
+            ViewBag.rucak = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Rucak;
+            ViewBag.vecera = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Vecera;
             return View();
         }
 
@@ -213,7 +218,7 @@ namespace SD.Controllers
 
         public IActionResult IzbaciRucak()
         {
-            Rucak rucak = _context.Rucak.Where(r => r.DnevniMeniId == 1).ToList().FindLast(r => r.RucakId > 0);
+            Rucak rucak = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Rucak.Last();
             if (rucak != null)
             {
                 StudentskiDomSingleton.getInstance().Restoran.IzbaciRucak(rucak);
@@ -223,7 +228,7 @@ namespace SD.Controllers
 
         public IActionResult IzbaciVeceru()
         {
-            Vecera vecera = _context.Vecera.Where(v => v.DnevniMeniId == 1).ToList().FindLast(v => v.VeceraId > 0);
+            Vecera vecera = StudentskiDomSingleton.getInstance().Restoran.DnevniMeni.Vecera.Last();
             if (vecera != null)
             {
                 StudentskiDomSingleton.getInstance().Restoran.IzbaciVeceru(vecera);
