@@ -7,6 +7,6 @@ namespace StudentskiDom.Models
 {
     public interface IStudent
     {
-        void uplatiDom(DateTime date);
+        void uplatiDom(Mjesec mjesec);
     }
 }

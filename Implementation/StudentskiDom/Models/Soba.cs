@@ -53,7 +53,10 @@ namespace StudentskiDom.Models
 
         public ISoba Clone()
         {
-            throw new NotImplementedException();
+            Soba s = Clone() as Soba;
+            s.BrojSobe++;
+            StudentskiDomSingleton.getInstance().Context.Soba.Add(s);
+            return s;
         }
     }
 }
