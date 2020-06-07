@@ -31,31 +31,48 @@ namespace StudentskiDom.Models
 
         public void DodajRucak(Rucak rucak)
         {
+            rucak.DnevniMeniId = DnevniMeniId;
             Rucak.Add(rucak);
+            StudentskiDomSingleton.Context.Rucak.Add(rucak);
             updateMeni();
         }
 
         public void DodajVeceru(Vecera vecera)
         {
+            vecera.DnevniMeniId = DnevniMeniId;
             Vecera.Add(vecera);
+            StudentskiDomSingleton.Context.Vecera.Add(vecera);
             updateMeni();
         }
 
         public void IzbaciRucak(Rucak rucak)
         {
+            rucak.DnevniMeniId = DnevniMeniId;
             Rucak.Remove(rucak);
+            StudentskiDomSingleton.Context.Rucak.Remove(rucak);
             updateMeni();
         }
 
         public void IzbaciVeceru(Vecera vecera)
         {
+            vecera.DnevniMeniId = DnevniMeniId;
             Vecera.Remove(vecera);
+            StudentskiDomSingleton.Context.Vecera.Remove(vecera);
+            updateMeni();
+        }
+
+        public void IzbaciSve()
+        {
+            StudentskiDomSingleton.Context.Rucak.RemoveRange(Rucak);
+            StudentskiDomSingleton.Context.Vecera.RemoveRange(Vecera);
+            Rucak.Clear();
+            Vecera.Clear();
             updateMeni();
         }
 
         private void updateMeni()
         {
-            StudentskiDomSingleton.Context.DnevniMeni.Update(this);
+            StudentskiDomSingleton.Context.SaveChanges();
         }
     }
 }

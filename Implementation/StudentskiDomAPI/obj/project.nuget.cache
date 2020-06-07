@@ -1,13 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "xUlI96gGjFYReu6SmQGpDdvHS18lWIQZONgFjTav8c6o5Z99GMiKBtfY4Y+zEEv6rkT9TVZin1FLvaGDJgSlkA==",
+  "dgSpecHash": "H4Phv69QTMV7himFAeGt19GsIc3FI8ULrgrKdSRhMdt+GVYwHTJSZuTeaP0a8rqmOPQhO2Op7NcB+F394WiIEg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nedo\\.nuget\\packages\\documentformat.openxml\\2.11.0\\documentformat.openxml.2.11.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\google.apis\\1.46.0\\google.apis.1.46.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\google.apis.admin.directory.directory_v1\\1.46.0.1860\\google.apis.admin.directory.directory_v1.1.46.0.1860.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\google.apis.auth\\1.46.0\\google.apis.auth.1.46.0.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\google.apis.core\\1.46.0\\google.apis.core.1.46.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.razor\\3.2.7\\microsoft.aspnet.razor.3.2.7.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
+    "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnet.webpages\\3.2.7\\microsoft.aspnet.webpages.3.2.7.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\Nedo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -241,6 +247,16 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Razor 3.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Razor",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

@@ -45,14 +45,14 @@ namespace StudentskiDom.Models
             Soba soba, int brojRucaka, int brojVecera)
         {
             Id = id;
-            //LicniPodaci = podaci;
-            //PrebivalisteInfo = prebivaliste;
-            //SkolovanjeInfo = skolovanje;
-            //Soba = soba;
+            LicniPodaci = podaci;
+            PrebivalisteInfo = prebivaliste;
+            SkolovanjeInfo = skolovanje;
+            Soba = soba;
             BrojRucaka = brojRucaka;
             BrojVecera = brojVecera;
         }
-        /*
+        
         public void azurirajLicnePodatke(string prezime, string ime, string mjestoRodjenja, Pol pol, string email,
             long jmbg, DateTime datumRodjenja, int mobitel, string slika)
         {
@@ -63,6 +63,6 @@ namespace StudentskiDom.Models
         {
             SkolovanjeInfo = new SkolovanjeInfo(fakultet, brojIndeksa, ciklusStudija, godinaStudija);   
         }
-        */
+        
     }
 }
