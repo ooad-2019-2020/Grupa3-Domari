@@ -8,10 +8,10 @@ namespace StudentskiDom.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Morate unijeti korisničko ime.")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Morate unijeti lozinku.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

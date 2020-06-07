@@ -225,7 +225,7 @@ namespace StudentskiDom.Controllers
                         }
                     }
                 }
-               ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+               ModelState.AddModelError(string.Empty, "Pogrešni pristupni podaci.");
             }           
             return View(model);
         }
