@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentskiDom.Models
@@ -28,20 +31,21 @@ namespace StudentskiDom.Models
         public IRaspored Strategy { get { return strategy; } set { strategy = value; } }
         public void DodajZahtjev(Zahtjev zahtjev)
         {
+            Context.Zahtjev.Add(zahtjev);
             zahtjevi.Add(zahtjev);
         }
         public bool DaLiImaMjesta()
         {
-            return true;
+            return Paviljoni.Any(p => p.DaLiImaMjesta());
         }
-        public Student NadjiStudentaPoIDu(int id)
+        public async Task<Student> NadjiStudentaPoIDu(int id)
         {
-            return null;
+            return await GetStudentAsync(id);
         }
 
         private StudentskiDomSingleton()
         {
-         
+            Strategy = new RasporedKanton();
         }
 
         public static StudentskiDomSingleton getInstance()
@@ -56,27 +60,60 @@ namespace StudentskiDom.Models
 
         public void PostaviStrategiju(IRaspored strategy)
         {
-
-        }
-
-        public List<Student> FiltrirajPoKantonu(List<Student> studenti, string kanton)
-        {
-            return studenti;
+            Strategy = strategy;
         }
 
         public List<Student> SortirajPoGodiniStudija(List<Student> studenti, bool desc)
         {
+            if (desc)
+            {
+                studenti.Sort((Student s1, Student s2) => s2.SkolovanjeInfo.GodinaStudija.CompareTo(s1.SkolovanjeInfo.GodinaStudija));
+            }
+            else
+            {
+                studenti.Sort((Student s1, Student s2) => s1.SkolovanjeInfo.GodinaStudija.CompareTo(s2.SkolovanjeInfo.GodinaStudija));
+            }
+            
             return studenti;
         }
 
         public void UpisiStudenta(Student student)
         {
-            throw new NotImplementedException();
+            student.Soba = Strategy.RasporediStudenta(student);
+
+            if (student.Soba != null)
+            {
+                student.SobaId = student.Soba.SobaId;
+
+                int indeksPaviljona = Paviljoni.FindIndex(p => p.PaviljonId == student.Soba.PaviljonId);
+                Paviljoni[indeksPaviljona].BrojStudenata++;
+
+                Studenti.Add(student);
+                
+                Context.Student.Add(student);
+                Context.Soba.Update(student.Soba);
+                Context.Paviljon.Update(Paviljoni[indeksPaviljona]);
+
+                Context.SaveChanges();
+            }
+
         }
 
         public void BrisiStudenta(Student student)
         {
-            throw new NotImplementedException();
+            student.Soba = Context.Soba.FirstOrDefault(s => s.SobaId == student.SobaId);
+            
+            int indeksPaviljona = Paviljoni.FindIndex(p => p.PaviljonId == student.Soba.PaviljonId);
+            Paviljoni[indeksPaviljona].BrojStudenata--;
+
+            int indeksStudenta = Studenti.FindIndex(s => s.Id == student.Id);
+            Studenti.RemoveAt(indeksStudenta);
+
+            Context.Student.Remove(student);
+            Context.Paviljon.Update(Paviljoni[indeksStudenta]);
+
+            Context.SaveChanges();
+
         }
 
         public void ObradiZahtjev(Zahtjev zahtjev)
