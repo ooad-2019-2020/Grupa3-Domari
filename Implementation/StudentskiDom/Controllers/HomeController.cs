@@ -85,7 +85,8 @@ namespace StudentskiDom.Controllers
                     string polValue = forma["pol"].ToString();
                     Pol pol = Pol.Musko;
 
-                    if (polValue.Equals("Žensko"))
+                    Debug.WriteLine("POLLL " + polValue);
+                    if (polValue.Equals("zensko"))
                     {
                         pol = Pol.Zensko;
                     }

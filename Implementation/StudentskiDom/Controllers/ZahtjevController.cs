@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -296,7 +297,44 @@ namespace SD.Controllers
             student.PrebivalisteInfo = zahtjevZaUpis.PrebivalisteInfo;
             student.SkolovanjeInfo = zahtjevZaUpis.SkolovanjeInfo;
 
-            student.Soba = NadjiSobu(student);
+            //student.Soba = NadjiSobu(student);
+
+            IRaspored strategija = new RasporedKanton();
+            
+            student.Soba = strategija.RasporediStudenta(student);
+            
+            if(student.Soba == null || student.Soba.Students.Count()==0)
+            {
+                strategija = new RasporedFakultet();
+                student.Soba = strategija.RasporediStudenta(student);
+            
+                if(student.Soba == null)
+                {
+                    student.Soba = NadjiSobu(student);
+                }
+                else
+                {
+                    List<Student> studenti = _context.Student.Where(st => st.SobaId == student.Soba.SobaId).ToList();
+                    if (studenti.Count < student.Soba.Kapacitet)
+                    {
+                        studenti.Add(student);
+                        student.Soba.Students = studenti;
+
+                        _context.Soba.Update(student.Soba);
+                    }
+                }
+            }
+            else
+            {
+                List<Student> studenti = _context.Student.Where(st => st.SobaId == student.Soba.SobaId).ToList();
+                if (studenti.Count < student.Soba.Kapacitet)
+                {
+                    studenti.Add(student);
+                    student.Soba.Students = studenti;
+
+                    _context.Soba.Update(student.Soba);
+                }
+            }
 
             var user = new IdentityUser { UserName = student.Username };
             var result = await userManager.CreateAsync(user, student.Password);
@@ -326,6 +364,19 @@ namespace SD.Controllers
                     Debug.WriteLine("ez");
                 }
             }
+
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Septembar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Oktobar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Novembar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Decembar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Januar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Februar", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Mart", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("April", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Maj", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Juni", student.Id));
+            StudentskiDomSingleton.Context.Mjesec.Add(new Mjesec("Juli", student.Id));
+            StudentskiDomSingleton.Context.SaveChanges();
 
             return RedirectToAction("PregledZahtjeva", "Zahtjev");
         }

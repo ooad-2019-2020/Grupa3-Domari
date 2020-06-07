@@ -116,11 +116,6 @@ namespace StudentskiDom.Models
 
         }
 
-        public void ObradiZahtjev(Zahtjev zahtjev)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Student>> RefreshStudentsAsync()
         {
 

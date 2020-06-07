@@ -9,6 +9,5 @@ namespace StudentskiDom.Models
     {
         void UpisiStudenta(Student student);
         void BrisiStudenta(Student student);
-        void ObradiZahtjev(Zahtjev zahtjev);
     }
 }

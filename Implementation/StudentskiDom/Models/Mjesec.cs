@@ -13,5 +13,11 @@ namespace StudentskiDom.Models
 
         //Veze sa ostalim klasama
         public virtual Student Student { get; set; }
+
+        public Mjesec(string naziv, int studentId)
+        {
+            Naziv = naziv;
+            StudentId = studentId;
+        }
     }
 }

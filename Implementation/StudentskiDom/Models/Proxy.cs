@@ -33,14 +33,6 @@ namespace StudentskiDom.Models
             }
         }
 
-        public void ObradiZahtjev(Zahtjev zahtjev)
-        {
-            if (NivoPristupa == 1)
-            {
-                StudentskiDomSingleton.getInstance().ObradiZahtjev(zahtjev);
-            }
-        }
-
         public void UpisiStudenta(Student student)
         {
             if (NivoPristupa == 1)

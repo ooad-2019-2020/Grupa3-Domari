@@ -222,7 +222,6 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\staticwebassets\SD.StaticWebAssets.Manifest.cache
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\staticwebassets\SD.StaticWebAssets.xml
-C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.TagHelpers.input.cache
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.TagHelpers.output.cache
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.dll
@@ -759,3 +758,5 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\AutoMapper.dll
