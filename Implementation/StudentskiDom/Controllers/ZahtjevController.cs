@@ -426,8 +426,10 @@ namespace SD.Controllers
         {
             ZahtjevZaPremjestanje z = _context.ZahtjevZaPremjestanje.Find(id);
 
-            //Student s = _context.Student.Find(z.StudentId);
-            Student s= await GetStudentAsync(z.StudentId);
+            Student s = _context.Student.Find(z.StudentId);
+            //Student s= await GetStudentAsync(z.StudentId);
+
+            z.Soba2Id = z.Soba2Id + (z.Paviljon2Id-1)*25;
 
             Soba soba = _context.Soba.Find(z.Soba2Id);
 
@@ -441,6 +443,7 @@ namespace SD.Controllers
             _context.Zahtjev.Remove(z);
 
             s.SobaId = z.Soba2Id;
+
             _context.Student.Update(s);
             _context.SaveChanges();
 

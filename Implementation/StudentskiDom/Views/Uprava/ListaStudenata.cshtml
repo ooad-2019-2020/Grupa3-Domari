@@ -44,7 +44,7 @@
                             <td>@student.Soba.BrojSobe</td>
                             <td>@student.PrebivalisteInfo.Kanton</td>
                             <td>@student.SkolovanjeInfo.Fakultet</td>
-                            <td><button onclick="window.location.href='@Url.Action("PregledPodataka", "Uprava", new { student.Id })'" class="btn btn-primary border rounded" type="button" style="font-size: 15px;">Pregled</button></td>
+                            <td><button onclick="window.location.href='@Url.Action("PregledPodataka", "Uprava", new { id = student.Id })'" class="btn btn-primary border rounded" type="button" style="font-size: 15px;">Pregled</button></td>
                         </tr>
                     }
                 <tr>

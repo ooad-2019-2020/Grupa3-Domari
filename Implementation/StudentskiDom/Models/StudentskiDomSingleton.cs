@@ -86,7 +86,7 @@ namespace StudentskiDom.Models
                 student.SobaId = student.Soba.SobaId;
 
                 int indeksPaviljona = Paviljoni.FindIndex(p => p.PaviljonId == student.Soba.PaviljonId);
-                Paviljoni[indeksPaviljona].BrojStudenata++;
+                //Paviljoni[indeksPaviljona].BrojStudenata++;
 
                 Studenti.Add(student);
                 
@@ -101,16 +101,24 @@ namespace StudentskiDom.Models
 
         public void BrisiStudenta(Student student)
         {
-            student.Soba = Context.Soba.FirstOrDefault(s => s.SobaId == student.SobaId);
-            
-            int indeksPaviljona = Paviljoni.FindIndex(p => p.PaviljonId == student.Soba.PaviljonId);
-            Paviljoni[indeksPaviljona].BrojStudenata--;
-
-            int indeksStudenta = Studenti.FindIndex(s => s.Id == student.Id);
-            Studenti.RemoveAt(indeksStudenta);
+            //student.Soba = Context.Soba.FirstOrDefault(s => s.SobaId == student.SobaId);
+            //
+            //int indeksPaviljona = Paviljoni.FindIndex(p => p.PaviljonId == student.Soba.PaviljonId);
+            //Paviljoni[indeksPaviljona].BrojStudenata--;
+            //
+            //int indeksStudenta = Studenti.FindIndex(s => s.Id == student.Id);
+            //Studenti.RemoveAt(indeksStudenta);
 
             Context.Student.Remove(student);
-            Context.Paviljon.Update(Paviljoni[indeksStudenta]);
+            //Context.Paviljon.Update(Paviljoni[indeksStudenta]);
+
+            PrebivalisteInfo prebivalisteInfo = Context.PrebivalisteInfo.FirstOrDefault(p => p.PrebivalisteInfoId == student.PrebivalisteInfoId);
+            SkolovanjeInfo skolovanjeInfo = Context.SkolovanjeInfo.FirstOrDefault(p => p.SkolovanjeInfoId == student.SkolovanjeInfoId);
+            LicniPodaci licniPodaci = Context.LicniPodaci.FirstOrDefault(p => p.LicniPodaciId == student.LicniPodaciId);
+
+            Context.PrebivalisteInfo.Remove(prebivalisteInfo);
+            Context.SkolovanjeInfo.Remove(skolovanjeInfo);
+            Context.LicniPodaci.Remove(licniPodaci);
 
             Context.SaveChanges();
 

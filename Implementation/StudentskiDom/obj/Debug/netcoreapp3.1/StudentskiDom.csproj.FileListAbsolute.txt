@@ -760,3 +760,8 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Http.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Uprava\PregledPodataka.cshtml.g.cs

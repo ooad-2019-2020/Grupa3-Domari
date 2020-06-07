@@ -283,10 +283,10 @@ namespace SD.Controllers
 
         public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
-            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
-            await studentskiDom.RefreshPaviljonAsync();
+            //StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            //await studentskiDom.RefreshPaviljonAsync();
 
-            ViewBag.paviljoni = studentskiDom.Paviljoni;
+            ViewBag.paviljoni = _context.Paviljon.ToList();
             ViewBag.sobe = _context.Soba.ToList();
             ViewBag.id = UpravaId;
             if (studentiSoba == null)
@@ -301,7 +301,7 @@ namespace SD.Controllers
         public async Task<IActionResult> DajKpacitetAsync(IFormCollection forma)
         {
             int paviljonId = Int32.Parse(forma["dlPaviljon"]);
-            int sobaId = Int32.Parse(forma["dlSoba"]);
+            int sobaId = Int32.Parse(forma["dlSoba"]) + (paviljonId - 1) * 25;
             await SetStudentsSobaAsync(paviljonId, sobaId);
             return RedirectToAction("SmjestajniKapacitet", "Uprava");
         }
@@ -412,14 +412,15 @@ namespace SD.Controllers
 
             ViewBag.Student = s;
 
-
             return View();
         }
 
         public async Task<IActionResult> ObrisiStudenta(int? id)
         {
 
-            // Ovdje treba obrisati studenta
+            Student s = _context.Student.Find(id);
+
+            StudentskiDomSingleton.getInstance().BrisiStudenta(s);
 
             return RedirectToAction("ListaStudenata", "Uprava");
         }
