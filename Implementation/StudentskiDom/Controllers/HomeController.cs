@@ -49,85 +49,94 @@ namespace StudentskiDom.Controllers
 
         [HttpPost]
        
-        public ActionResult PosaljiPrijavuAction(IFormCollection forma, IFormFile file)
+        public ActionResult PosaljiPrijavuAction(IFormCollection forma, IFormFile file, PrijavaViewModel viewModel)
         {
-
-            var allowedExtensions = new[] {
-            ".png", ".jpg", ".jpeg"
-            };
-
-            string wwwPath = this.Environment.WebRootPath;
-            string contentPath = this.Environment.ContentRootPath;
-
-            string path= Path.Combine(this.Environment.WebRootPath, "images");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
            
-            var extension=Path.GetExtension(file.FileName);
-            if (allowedExtensions.Contains(extension))
+            if (ModelState.IsValid)
             {
-                string prezime = forma["fldPrezime"].ToString();
-                string ime = forma["fldIme"].ToString();
-                long jmbg = long.Parse(forma["fldJmbg"].ToString());
-                DateTime datumRodjenja = StringToDateTime(forma["fldDatumRodjenja"].ToString());
-                string mjestoRodjenja = forma["fldMjestoRodjenja"].ToString();
-                int mobitel = Int32.Parse(forma["fldMobitel"].ToString());
-                string polValue = forma["pol"].ToString();
-                Pol pol = Pol.Musko;
+                string wwwPath = this.Environment.WebRootPath;
+                string contentPath = this.Environment.ContentRootPath;
 
-                if (polValue.Equals("Žensko"))
+                string path = Path.Combine(this.Environment.WebRootPath, "images");
+                if (!Directory.Exists(path))
                 {
-                    pol = Pol.Zensko;
+                    Directory.CreateDirectory(path);
+                }
+                var extension = Path.GetExtension(file.FileName);
+                var allowedExtensions = new[] {
+                ".png", ".jpg", ".jpeg"
+                };
+                if (allowedExtensions.Contains(extension))
+                {
+                    string prezime = viewModel.Prezime;
+                    string ime = viewModel.Ime;
+                    long jmbg = viewModel.JMBG;
+                    string mjestoRodjenja = viewModel.MjestoRodjenja;
+                    DateTime datumRodjenja = StringToDateTime(forma["fldDatumRodjenja"].ToString());
+                    int mobitel = viewModel.Mobitel;
+                    string email = viewModel.Email;
+                    string adresa = viewModel.Adresa;
+                    string opcina = viewModel.Opcina;
+                    int brojIndeksa = viewModel.Index;
+
+                 
+                    string polValue = forma["pol"].ToString();
+                    Pol pol = Pol.Musko;
+
+                    if (polValue.Equals("Žensko"))
+                    {
+                        pol = Pol.Zensko;
+                    }
+
+                    
+                    string kanton = forma["dlKanton"].ToString();
+
+                    string fakultet = forma["dlFakultet"].ToString();
+                    int ciklusStudija = Int32.Parse(forma["dlCiklusStudija"].ToString());
+                    int godinaStudija = Int32.Parse(forma["dlGodinaStudija"].ToString());
+
+                    string fileName = GenerisiPathSlike(prezime, ime) + extension;
+                    using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+
+                    SkolovanjeInfo skolovanjeInfo = new SkolovanjeInfo(fakultet, brojIndeksa, ciklusStudija, godinaStudija);
+                    PrebivalisteInfo prebivalisteInfo = new PrebivalisteInfo(adresa, kanton, opcina);
+                    LicniPodaci licniPodaci = new LicniPodaci(prezime, ime, mjestoRodjenja, pol, email, jmbg, datumRodjenja, mobitel, fileName);
+
+                    ZahtjevZaUpis zahtjevZaUpis = new ZahtjevZaUpis();
+                    zahtjevZaUpis.LicniPodaci = licniPodaci;
+                    zahtjevZaUpis.PrebivalisteInfo = prebivalisteInfo;
+                    zahtjevZaUpis.SkolovanjeInfo = skolovanjeInfo;
+
+
+
+                    _context.LicniPodaci.Add(licniPodaci);
+                    _context.PrebivalisteInfo.Add(prebivalisteInfo);
+                    _context.SkolovanjeInfo.Add(skolovanjeInfo);
+
+                    _context.ZahtjevZaUpis.Add(zahtjevZaUpis);
+
+                    _context.SaveChanges();
+
+                }
+                else
+                {
+                    ViewBag.Message = "Slika mora biti u formatu .jpg, .jpeg, .png";
+                    return RedirectToAction("ObrazacZaUpis", "Home");
                 }
 
-                string email = forma["fldEmail"].ToString();
-
-                string adresa = forma["fldAdresa"].ToString();
-                string kanton = forma["dlKanton"].ToString();
-                string opcina = forma["fldOpcina"].ToString();
-
-                string fakultet = forma["dlFakultet"].ToString();
-                int ciklusStudija = Int32.Parse(forma["dlCiklusStudija"].ToString());
-                int brojIndeksa = Int32.Parse(forma["fldBrojIndeksa"].ToString());
-                int godinaStudija = Int32.Parse(forma["dlGodinaStudija"].ToString());
-
-                string fileName = GenerisiPathSlike(prezime, ime)+extension;
-                using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-
-
-                SkolovanjeInfo skolovanjeInfo = new SkolovanjeInfo(fakultet, brojIndeksa, ciklusStudija, godinaStudija);
-                PrebivalisteInfo prebivalisteInfo = new PrebivalisteInfo(adresa, kanton, opcina);
-                LicniPodaci licniPodaci = new LicniPodaci(prezime, ime, mjestoRodjenja, pol, email, jmbg, datumRodjenja, mobitel, fileName);
-
-                ZahtjevZaUpis zahtjevZaUpis = new ZahtjevZaUpis();
-                zahtjevZaUpis.LicniPodaci = licniPodaci;
-                zahtjevZaUpis.PrebivalisteInfo = prebivalisteInfo;
-                zahtjevZaUpis.SkolovanjeInfo = skolovanjeInfo;
-
-
-
-                _context.LicniPodaci.Add(licniPodaci);
-                _context.PrebivalisteInfo.Add(prebivalisteInfo);
-                _context.SkolovanjeInfo.Add(skolovanjeInfo);
-
-                _context.ZahtjevZaUpis.Add(zahtjevZaUpis);
-
-                _context.SaveChanges();
-
+                return RedirectToAction("Login", "Home");
             }
             else
             {
-                ViewBag.Message = "Slika mora biti u formatu .jpg, .jpeg, .png";
-                return RedirectToAction("ObrazacZaUpis", "Home");
+                ModelState.AddModelError(string.Empty, "Pogrešno ispunjena forma.");
             }
 
-            return RedirectToAction("Login", "Home");
+            return View(viewModel);
+
         }
 
         private string GenerisiPathSlike(string prezime, string ime)
