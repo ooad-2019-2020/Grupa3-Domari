@@ -36,7 +36,7 @@ namespace StudentskiDom.Controllers
 
             await studentskiDom.RefreshStudentsAsync();
             await studentskiDom.RefreshZahtjeviAsync();
-            await studentskiDom.RefreshUpravaAsync();
+            studentskiDom.RefreshUpravaAsync();
             await studentskiDom.RefreshPaviljonAsync();
             await studentskiDom.RefreshRestoranAsync();
          

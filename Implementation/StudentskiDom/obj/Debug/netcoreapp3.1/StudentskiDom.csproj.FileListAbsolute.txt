@@ -766,3 +766,5 @@ C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\n
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll

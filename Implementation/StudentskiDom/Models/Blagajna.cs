@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,16 +10,18 @@ namespace StudentskiDom.Models
     {
         public int BlagajnaId { get; set; }
         public double StanjeBudgeta { get; set; }
-        public Student TrenutniStudentD { get; set; }
+       
         // Baza
         public int UpravaId { get; set; }
 
         // Veze sa ostalim klasama
         public virtual Uprava Uprava { get; set; }
+        [NotMapped]
+        public Student TrenutniStudentD { get; set; }
 
         public Blagajna()
         {
-            //UcitajStanjeBudzeta();
+            TrenutniStudentD = null;
         }
 
         public async Task<bool> ProvjeriIdAsync(int id)
@@ -41,6 +44,7 @@ namespace StudentskiDom.Models
             AzurirajStanjeRucakaAsync(TrenutniStudentD.Id);
             AzurirajStanjeVeceraAsync(TrenutniStudentD.Id);
             StudentskiDomSingleton.Context.Student.Update(TrenutniStudentD);
+            StudentskiDomSingleton.Context.Mjesec.Remove(mjesec);
             StudentskiDomSingleton.Context.SaveChanges();
         }
 

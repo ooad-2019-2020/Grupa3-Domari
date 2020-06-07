@@ -255,11 +255,15 @@ namespace StudentskiDom.Models
             return s;
         }
 
-        public async Task<Uprava> RefreshUpravaAsync()
+        public Uprava RefreshUpravaAsync()
         {
             Uprava uprava = Context.Uprava.FirstOrDefault();
+            uprava.Blagajna = new Blagajna();
 
-            uprava.Blagajna = Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id);
+            //uprava.Blagajna.TrenutniStudentD = null;
+            uprava.Blagajna.StanjeBudgeta= Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id).StanjeBudgeta;
+            uprava.Blagajna.UpravaId = uprava.Id;
+            uprava.Blagajna.BlagajnaId = Context.Blagajna.FirstOrDefault(b => b.UpravaId == uprava.Id).BlagajnaId;
 
             Uprava = uprava;
 

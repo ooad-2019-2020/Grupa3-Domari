@@ -231,23 +231,29 @@ namespace SD.Controllers
         }
 
         [HttpPost]
-        public IActionResult UplatiMjesec(IFormCollection forma)
+        public async Task<IActionResult> UplatiMjesecAsync(IFormCollection forma)
         {
             string mjesec = forma["dlMjesec"];
             if(IdTrenutnogStudenta!=-1 && !mjesec.Equals(""))
             {
-                Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
-                _context.Mjesec.Remove(m);
+                //Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
+                //_context.Mjesec.Remove(m);
 
-                int dodajUBudzet = 158;
-                if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
-                    dodajUBudzet /= 2;
+                //int dodajUBudzet = 158;
+                //if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
+                //    dodajUBudzet /= 2;
 
                 Blagajna blagajna = StudentskiDomSingleton.getInstance().Uprava.Blagajna;
-                blagajna.StanjeBudgeta += dodajUBudzet;
+                //blagajna.StanjeBudgeta += dodajUBudzet;
 
-                _context.Blagajna.Update(blagajna);
-                _context.SaveChanges();
+                //_context.Blagajna.Update(blagajna);
+                //_context.SaveChanges();
+                if (await blagajna.ProvjeriIdAsync(IdTrenutnogStudenta))
+                {
+                    Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
+                    blagajna.UplatiDomZaOdabraniMjesec(m);
+                }
+                
             }
 
             Debug.WriteLine("Hocel nekad nesta da se desi - "  + mjesec + " - " + IdTrenutnogStudenta);
