@@ -268,7 +268,7 @@ namespace SD.Controllers
         public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
             StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
-            studentskiDom.RefreshPaviljonAsync();
+            await studentskiDom.RefreshPaviljonAsync();
 
             ViewBag.paviljoni = studentskiDom.Paviljoni;
             ViewBag.sobe = _context.Soba.ToList();

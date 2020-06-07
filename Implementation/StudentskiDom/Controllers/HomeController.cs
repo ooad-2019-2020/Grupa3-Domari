@@ -27,7 +27,7 @@ namespace StudentskiDom.Controllers
         private IHostingEnvironment Environment;
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult LoginAsync()
         {
             //ova se prva pokrece
 

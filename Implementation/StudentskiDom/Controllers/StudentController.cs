@@ -191,15 +191,6 @@ namespace SD.Controllers
         {
             //ovog dohvatiti iz baze, nek se zove varijabla student
             Student student =await GetStudentAsync(ID);
-
-
-
-            //student.Soba = _context.Soba.Find(student.SobaId);
-            //student.SkolovanjeInfo = _context.SkolovanjeInfo.Find(student.SkolovanjeInfoId);
-            //student.PrebivalisteInfo = _context.PrebivalisteInfo.Find(student.PrebivalisteInfoId);
-            //student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
-
-
             ViewBag.Id = ID;
             ViewBag.ImePrezime = student.LicniPodaci.Ime + " " + student.LicniPodaci.Prezime;
             ViewBag.Pol = student.LicniPodaci.Pol.ToString();

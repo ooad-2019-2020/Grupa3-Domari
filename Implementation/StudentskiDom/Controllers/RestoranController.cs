@@ -30,7 +30,7 @@ namespace SD.Controllers
         public static List<StavkaNarudzbe> StavkeNarudzbe = new List<StavkaNarudzbe>();
         public static List<StavkaNarudzbe> Namirnice;
 
-        private Restoran model { get; set; }
+        private Restoran Model { get; set; }
 
         public RestoranController(StudentskiDomContext context)
         {

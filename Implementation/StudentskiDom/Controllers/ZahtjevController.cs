@@ -166,8 +166,8 @@ namespace SD.Controllers
             zahtjevZaUpis.SkolovanjeInfo = _context.SkolovanjeInfo.Find(zahtjevZaUpis.SkolovanjeInfoId);
             zahtjevZaUpis.LicniPodaci = _context.LicniPodaci.Find(zahtjevZaUpis.LicniPodaciId);
 
-            ViewBag.Soba = "?";
-            ViewBag.Paviljon = "?";
+            ViewBag.Soba = "/";
+            ViewBag.Paviljon = "/";
             ViewBag.Ime = zahtjevZaUpis.LicniPodaci.Ime;
             ViewBag.Prezime = zahtjevZaUpis.LicniPodaci.Prezime;
             ViewBag.Slika = zahtjevZaUpis.LicniPodaci.Slika;

@@ -759,3 +759,10 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Admin.Directory.directory_v1.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Auth.PlatformServices.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Auth.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.Web.Http.dll
