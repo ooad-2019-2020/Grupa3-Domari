@@ -740,3 +740,5 @@ C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\Studentsk
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\korisnik\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Zahtjev\PregledPodataka.cshtml.g.cs
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\5440\Source\Repos\ooad-2019-2020\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll

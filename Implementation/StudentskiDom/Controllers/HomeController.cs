@@ -30,6 +30,14 @@ namespace StudentskiDom.Controllers
         public IActionResult Login()
         {
             //ova se prva pokrece
+
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            studentskiDom.SetContext(_context);
+
+            studentskiDom.RefreshStudentsAsync();
+            studentskiDom.RefreshZahtjeviAsync();
+            studentskiDom.RefreshUpravaAsync();
+         
             return View();
         }
 
