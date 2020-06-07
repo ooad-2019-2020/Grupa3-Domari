@@ -168,7 +168,7 @@ namespace SD.Controllers
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
 
-            Blagajna blagajna = _context.Blagajna.Find(1);           
+            Blagajna blagajna = StudentskiDomSingleton.getInstance().Uprava.Blagajna;           
 
             ViewBag.Blagajna = blagajna;
             ViewBag.mjeseci = new List<String>();
@@ -243,7 +243,7 @@ namespace SD.Controllers
                 if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
                     dodajUBudzet /= 2;
 
-                Blagajna blagajna = _context.Blagajna.FirstOrDefault();
+                Blagajna blagajna = StudentskiDomSingleton.getInstance().Uprava.Blagajna;
                 blagajna.StanjeBudgeta += dodajUBudzet;
 
                 _context.Blagajna.Update(blagajna);
@@ -258,8 +258,7 @@ namespace SD.Controllers
 
         public IActionResult Uprava(int? id)
         {
-            Uprava uprava = _context.Uprava.Find(id);
-            uprava.Blagajna = _context.Blagajna.FirstOrDefault(b => b.UpravaId == id);
+            Uprava uprava = StudentskiDomSingleton.getInstance().Uprava;
             UpravaId = (int) id;
             ViewBag.id = id;
             return View();

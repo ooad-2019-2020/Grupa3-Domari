@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {}
+    "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {}
   },
   "projects": {
-    "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
+    "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+        "projectUniqueName": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
         "projectName": "SD",
-        "projectPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
-        "packagesPath": "C:\\Users\\5440\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
+        "projectPath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj",
+        "packagesPath": "C:\\Users\\Nedo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\5440\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nedo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -61,6 +61,10 @@
             "Microsoft.AspNet.WebApi.Core": {
               "target": "Package",
               "version": "[5.2.7, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -127,6 +131,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -135,7 +145,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
