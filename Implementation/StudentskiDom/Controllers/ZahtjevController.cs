@@ -254,6 +254,7 @@ namespace SD.Controllers
             }
 
             ViewBag.Zahtjevi = zahtjevi;
+            ViewBag.id = UpravaController.UpravaId;
 
             return View();
         }
