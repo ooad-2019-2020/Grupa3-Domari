@@ -178,7 +178,7 @@ namespace SD.Controllers
             }
             else
             {
-                Student s=new Student();
+                Student s = null;
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
@@ -188,9 +188,10 @@ namespace SD.Controllers
 
                     HttpResponseMessage Res = await client.GetAsync("api/student/" + StudentId);
 
-
+                    
                     if (Res.IsSuccessStatusCode)
                     {
+                        s = new Student();
                         var response = Res.Content.ReadAsStringAsync().Result;
 
                         s = JsonConvert.DeserializeObject<Student>(response);
@@ -199,6 +200,7 @@ namespace SD.Controllers
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = _context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }
 
@@ -234,25 +236,34 @@ namespace SD.Controllers
         public async Task<IActionResult> UplatiMjesecAsync(IFormCollection forma)
         {
             string mjesec = forma["dlMjesec"];
-            if(IdTrenutnogStudenta!=-1 && !mjesec.Equals(""))
+            if(IdTrenutnogStudenta!=-1 && !string.IsNullOrEmpty(mjesec))
             {
-                //Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
-                //_context.Mjesec.Remove(m);
+                Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
+                _context.Mjesec.Remove(m);
+                Student student = _context.Student.Find(IdTrenutnogStudenta);
 
-                //int dodajUBudzet = 158;
-                //if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
-                //    dodajUBudzet /= 2;
-
-                Blagajna blagajna = StudentskiDomSingleton.getInstance().Uprava.Blagajna;
-                //blagajna.StanjeBudgeta += dodajUBudzet;
-
-                //_context.Blagajna.Update(blagajna);
-                //_context.SaveChanges();
-                if (await blagajna.ProvjeriIdAsync(IdTrenutnogStudenta))
+                int dodajUBudzet = 158;
+                if (m.Naziv.Equals("Septembar") || m.Naziv.Equals("Juli"))
                 {
-                    Mjesec m = _context.Mjesec.Find(Int32.Parse(mjesec));
-                    blagajna.UplatiDomZaOdabraniMjesec(m);
+                    dodajUBudzet /= 2;
+                    student.BrojRucaka += 13;
+                    student.BrojVecera += 12;
                 }
+                else
+                {
+                    student.BrojRucaka += 25;
+                    student.BrojVecera += 25;
+                }
+
+                _context.Student.Update(student);
+                _context.SaveChanges();
+
+                Blagajna blagajna = _context.Blagajna.FirstOrDefault();
+                blagajna.StanjeBudgeta += dodajUBudzet;
+                StudentskiDomSingleton.getInstance().Uprava.Blagajna = blagajna;
+
+                _context.Blagajna.Update(blagajna);
+                _context.SaveChanges();
                 
             }
 
