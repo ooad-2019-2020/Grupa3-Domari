@@ -55,7 +55,7 @@ namespace StudentskiDom.Models
         {
             Soba s = Clone() as Soba;
             s.BrojSobe++;
-            StudentskiDomSingleton.getInstance().Context.Soba.Add(s);
+            StudentskiDomSingleton.Context.Soba.Add(s);
             return s;
         }
     }

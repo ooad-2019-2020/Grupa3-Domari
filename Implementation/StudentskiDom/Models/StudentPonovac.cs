@@ -20,8 +20,8 @@ namespace StudentskiDom.Models
                 dodajBudzet /= 2;
             StudentskiDomSingleton.getInstance().Uprava.Blagajna.StanjeBudgeta += dodajBudzet;
 
-            StudentskiDomSingleton.getInstance().Context.RedovanStudent.Update(this);
-            StudentskiDomSingleton.getInstance().Context.Blagajna.Update(StudentskiDomSingleton.getInstance().Uprava.Blagajna);
+            //StudentskiDomSingleton.Context.RedovanStudent.Update(this);
+            StudentskiDomSingleton.Context.Blagajna.Update(StudentskiDomSingleton.getInstance().Uprava.Blagajna);
         }
     }
 }

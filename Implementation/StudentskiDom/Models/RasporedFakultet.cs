@@ -31,6 +31,6 @@ namespace StudentskiDom.Models
             }
             return slobonda;
         }
-    }
+    
     }
 }

@@ -54,7 +54,7 @@ namespace StudentskiDom.Models
 
         private void updateMeni()
         {
-            StudentskiDomSingleton.getInstance().Context.DnevniMeni.Update(this);
+            StudentskiDomSingleton.Context.DnevniMeni.Update(this);
         }
     }
 }

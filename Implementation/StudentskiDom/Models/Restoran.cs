@@ -36,44 +36,64 @@ namespace StudentskiDom.Models
             // Treba postaviti useranme i password za Restoran
         }
 
-        public void DodajRucak(string rucak)
+        public void DodajRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            DnevniMeni.DodajRucak(rucak);
         }
 
-        public void DodajVeceru(string vecera)
+        public void DodajVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.DodajVeceru(vecera);
         }
 
-        public void IzbaciRucak(string rucak)
+        public void IzbaciRucak(Rucak rucak)
         {
-            throw new NotImplementedException();
+            DnevniMeni.IzbaciRucak(rucak);
         }
 
-        public void IzbaciVeceru(string vecera)
+        public void IzbaciVeceru(Vecera vecera)
         {
-            throw new NotImplementedException();
+            DnevniMeni.IzbaciVeceru(vecera);
         }
 
         public void AzurirajStanjeRucaka(int id)
         {
-            throw new NotImplementedException();
+            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if(student != null)
+            {
+                student.BrojRucaka--;
+                StudentskiDomSingleton.Context.Student.Update(student);
+            }
         }
 
         public void AzurirajStanjeVecera(int id)
         {
-            throw new NotImplementedException();
+            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                student.BrojRucaka++;
+                StudentskiDomSingleton.Context.Student.Update(student);
+            }
         }
 
         public int DajBrojRucakaZaStudenta(int id)
         {
-            throw new NotImplementedException();
+            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                return student.BrojRucaka;
+            }
+            return 0;
         }
 
         public int DajBrojVeceraZaStudenta(int id)
         {
-            throw new NotImplementedException();
+            Student student = StudentskiDomSingleton.getInstance().NadjiStudentaPoIDu(id);
+            if (student != null)
+            {
+                return student.BrojVecera;
+            }
+            return 0;
         }
     }
 }
