@@ -33,26 +33,29 @@
                         <th>Soba</th>
                         <th>Kanton</th>
                         <th>Fakultet</th>
+                        <th>Podaci</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var student in ViewBag.ListaStudenata)
                     {
-                        <tr>
-                            <td>@student.LicniPodaci.Ime @student.LicniPodaci.Prezime</td>
-                            <td>@student.Soba.Paviljon.Naziv</td>
-                            <td>@student.Soba.BrojSobe</td>
-                            <td>@student.PrebivalisteInfo.Kanton</td>
-                            <td>@student.SkolovanjeInfo.Fakultet</td>
-                        </tr>
-                    }
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td align="left"><button onclick="window.location.href='@Url.Action("Uprava", "Uprava", new { ViewBag.id })'" class="btn btn-primary border rounded" type="button" style="padding: 6px;margin: 15px;padding-left: 23;font-size: 20px; width: 200px;">Gotovo</button></td>
-                        <td></td>
+                        <td>@student.LicniPodaci.Ime @student.LicniPodaci.Prezime</td>
+                        <td>@student.Soba.Paviljon.Naziv</td>
+                        <td>@student.Soba.BrojSobe</td>
+                        <td>@student.PrebivalisteInfo.Kanton</td>
+                        <td>@student.SkolovanjeInfo.Fakultet</td>
+                        <td><button onclick="window.location.href='@Url.Action("PregledPodataka", "Uprava", new { student.Id })'" class="btn btn-primary border rounded" type="button" style="font-size: 15px;">Pregled</button></td>
                     </tr>
+                    }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align="left"><button onclick="window.location.href='@Url.Action("Uprava", "Uprava", new { ViewBag.id })'" class="btn btn-primary border rounded" type="button" style="padding: 6px;margin: 15px;padding-left: 23;font-size: 20px; width: 200px;">Gotovo</button></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 </tbody>
             </table>
         </div>

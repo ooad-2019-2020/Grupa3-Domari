@@ -401,6 +401,28 @@ namespace SD.Controllers
             return View();
         }
 
+        public async Task<IActionResult> PregledPodataka(int? id)
+        {
+            Student s = _context.Student.Find(id);
+
+            s.PrebivalisteInfo = _context.PrebivalisteInfo.Find(s.PrebivalisteInfoId);
+            s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
+            s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
+
+            ViewBag.Student = s;
+
+
+            return View();
+        }
+
+        public async Task<IActionResult> ObrisiStudenta(int? id)
+        {
+
+            // Ovdje treba obrisati studenta
+
+            return RedirectToAction("ListaStudenata", "Uprava");
+        }
+
         private bool UpravaExists(int id)
         {
             return _context.Uprava.Any(e => e.Id == id);

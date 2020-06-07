@@ -772,3 +772,4 @@ C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netco
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\StudentskiDom.csproj.CoreCompileInputs.cache
 C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\SD.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nedo\Desktop\Grupa3-Domari\Implementation\StudentskiDom\obj\Debug\netcoreapp3.1\Razor\Views\Uprava\PregledPodataka.cshtml.g.cs
