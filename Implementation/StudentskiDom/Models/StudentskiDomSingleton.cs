@@ -228,5 +228,36 @@ namespace StudentskiDom.Models
 
             return uprava;
         }
+
+        public async Task<List<Paviljon>> RefreshPaviljonAsync()
+        {
+            List<Paviljon> paviljoni = new List<Paviljon>();
+
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+
+            paviljoni = Context.Paviljon.ToList();
+
+            foreach(Paviljon p in paviljoni)
+            {
+                p.Sobe = Context.Soba.Where(s => s.PaviljonId == p.PaviljonId).ToList();
+            }
+
+            Paviljoni = paviljoni;
+            
+            return paviljoni;
+        }
+
+        public async Task<Restoran> RefreshRestoranAsync()
+        {
+            Restoran restoran = Context.Restoran.FirstOrDefault();
+
+            restoran.DnevniMeni = Context.DnevniMeni.FirstOrDefault(dm => dm.DnevniMeniId == restoran.DnevniMeniId);
+            restoran.DnevniMeni.Rucak = Context.Rucak.Where(r => r.DnevniMeniId == restoran.DnevniMeniId).ToList();
+            restoran.DnevniMeni.Vecera = Context.Vecera.Where(v => v.DnevniMeniId == restoran.DnevniMeniId).ToList();
+
+            Restoran = restoran;
+
+            return restoran;
+        }
     }
 }

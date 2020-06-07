@@ -167,7 +167,7 @@ namespace SD.Controllers
         public async Task<IActionResult> BlagajnaAsync(int? StudentId)
         {
             //naci blagajnu iz uprava id, a kao parametar nek se prima student
-   
+
             Blagajna blagajna = _context.Blagajna.Find(1);           
 
             ViewBag.Blagajna = blagajna;
@@ -267,7 +267,10 @@ namespace SD.Controllers
 
         public async Task<IActionResult> SmjestajniKapacitetAsync()
         {
-            ViewBag.paviljoni = _context.Paviljon.ToList();
+            StudentskiDomSingleton studentskiDom = StudentskiDomSingleton.getInstance();
+            studentskiDom.RefreshPaviljonAsync();
+
+            ViewBag.paviljoni = studentskiDom.Paviljoni;
             ViewBag.sobe = _context.Soba.ToList();
             ViewBag.id = UpravaId;
             if (studentiSoba == null)

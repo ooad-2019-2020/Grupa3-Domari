@@ -10548,23 +10548,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nedo\\.nuget\\packages\\": {},
+    "C:\\Users\\5440\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
+      "projectUniqueName": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
       "projectName": "StudentskiDomAPI",
-      "projectPath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
-      "packagesPath": "C:\\Users\\Nedo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\obj\\",
+      "projectPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\StudentskiDomAPI.csproj",
+      "packagesPath": "C:\\Users\\5440\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDomAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nedo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\5440\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -10578,8 +10578,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
-              "projectPath": "C:\\Users\\Nedo\\Desktop\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj"
+            "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj": {
+              "projectPath": "C:\\Users\\5440\\Source\\Repos\\ooad-2019-2020\\Grupa3-Domari\\Implementation\\StudentskiDom\\StudentskiDom.csproj"
             }
           }
         }
@@ -10620,12 +10620,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.2, 3.1.2]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -10634,7 +10628,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
