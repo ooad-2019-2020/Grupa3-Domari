@@ -37,6 +37,8 @@ namespace StudentskiDom.Controllers
             studentskiDom.RefreshStudentsAsync();
             studentskiDom.RefreshZahtjeviAsync();
             studentskiDom.RefreshUpravaAsync();
+            studentskiDom.RefreshPaviljonAsync();
+            studentskiDom.RefreshRestoranAsync();
          
             return View();
         }

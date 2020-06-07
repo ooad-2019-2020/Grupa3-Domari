@@ -19,6 +19,7 @@ namespace StudentskiDom.Models
 
         public DnevniMeni()
         {
+
         }
 
 
