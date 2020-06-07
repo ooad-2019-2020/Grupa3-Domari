@@ -779,6 +779,7 @@ namespace SD.Controllers
                     s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                     s.Soba = _context.Soba.Find(s.SobaId);
                     s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                    s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                 }
             }
             return s;

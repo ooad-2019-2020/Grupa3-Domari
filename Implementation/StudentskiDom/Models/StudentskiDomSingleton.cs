@@ -147,6 +147,7 @@ namespace StudentskiDom.Models
                         s.LicniPodaci = Context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = Context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = Context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = Context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }
             }
@@ -250,6 +251,7 @@ namespace StudentskiDom.Models
                     s.LicniPodaci = Context.LicniPodaci.Find(s.LicniPodaciId);
                     s.Soba = Context.Soba.Find(s.SobaId);
                     s.Soba.Paviljon = Context.Paviljon.Find(s.Soba.PaviljonId);
+                    s.Mjesec = Context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                 }
             }
             return s;

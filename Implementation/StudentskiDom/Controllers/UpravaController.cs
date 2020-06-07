@@ -329,6 +329,7 @@ namespace SD.Controllers
                     student.LicniPodaci = _context.LicniPodaci.Find(student.LicniPodaciId);
                     student.Soba = _context.Soba.Find(student.SobaId);
                     student.Soba.Paviljon = _context.Paviljon.Find(student.Soba.PaviljonId);
+                    student.Mjesec = _context.Mjesec.Where(m => m.StudentId == student.Id).ToList();
                 }
             }
 
@@ -420,6 +421,7 @@ namespace SD.Controllers
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba = _context.Soba.Find(s.SobaId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
                     }
                 }                
             }
@@ -449,6 +451,7 @@ namespace SD.Controllers
                         s.SkolovanjeInfo = _context.SkolovanjeInfo.Find(s.SkolovanjeInfoId);
                         s.LicniPodaci = _context.LicniPodaci.Find(s.LicniPodaciId);
                         s.Soba.Paviljon = _context.Paviljon.Find(s.Soba.PaviljonId);
+                        s.Mjesec = _context.Mjesec.Where(m => m.StudentId == s.Id).ToList();
 
                         studentiSoba.Add(s);
                     }
